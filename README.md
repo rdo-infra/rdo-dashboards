@@ -4,4 +4,4 @@ Then follow http://dashing.io/#setup
 
 Add a crontab launching:
 
-    ./feed-dashboard.sh \<dashboard url\> \<token\>
+    ./feed-dashboard.sh <dashboard url> <token>
