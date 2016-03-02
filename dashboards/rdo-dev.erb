@@ -1,8 +1,20 @@
+<script type='text/javascript'>
+$(function() {
+  // These settings override the defaults set in application.coffee.
+  // You can do this on a per dashboard basis.
+  Dashing.widget_base_dimensions = [370, 340]
+  Dashing.numColumns = 5
+});
+</script>
+
 <% content_for(:title) { "RDO Dashboard" } %>
 <div class="gridster">
   <ul>
-    <li data-row="2" data-col="1" data-sizex="1" data-sizey="1">
-      <div data-id="clock" data-view="Clock"></div>
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="delorean" data-view="Alert" data-title="Delorean" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days with a failed build" data-link="http://trunk.rdoproject.org/centos7/status_report.html"></div>
+    </li>
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="puppetci" data-view="Alert" data-title="Puppet CI" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days behind delorean pkgs" data-link="http://status.openstack.org/openstack-health/#/?searchProject=puppet"></div>
     </li>
     <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
       <div data-id="tripleoci" data-view="Alert" data-title="Tripleo deploying trunk" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since successful run" data-link="http://tripleo.org/cistatus-periodic.html"></div>
@@ -11,10 +23,10 @@
       <div data-id="tripleopin" data-view="Alert" data-title="Tripleo Pin Packages" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since pinning" data-link="http://trunk.rdoproject.org/centos7/current-tripleo"></div>
     </li>
     <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
-      <div data-id="delorean" data-view="Alert" data-title="Delorean" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days with a FTBFS" data-link="http://trunk.rdoproject.org/centos7/status_report.html"></div>
+      <div data-id="deloreanci" data-view="Alert" data-title="RDO Promotion CI" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since successful run" data-link="https://ci.centos.org/view/rdo/"></div>
     </li>
-    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
-      <div data-id="deloreanci" data-view="Alert" data-title="Delorean CI" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since successful run" data-link="https://ci.centos.org/view/rdo/"></div>
+    <li data-row="2" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="clock" data-view="Clock"></div>
     </li>
   </ul>
 </div>
