@@ -14,7 +14,7 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-set -e
+set -ex
 
 if [ $# != 2 ]; then
     echo "Usage: $0 <dashboard url> <token>" 1>&2
@@ -39,7 +39,13 @@ now=$min
 
 # process puppetci
 PUPPET_REPO_URL=$(curl -s $PUPPET_URL|grep -F https://trunk.rdoproject.org/centos7/|sed -e "s/.* => '\(.*\)'.*/\1/")
-ts=$(curl -s $PUPPET_REPO_URL/versions.csv|head -2|tail -1|cut -d, -f7)
+ts=0
+for line in $(curl -s $PUPPET_REPO_URL/versions.csv); do
+    val=$(echo $line|cut -d, -f7)
+    if [ $val != 'Last Success Timestamp' ] && [ $val -ge $ts ]; then
+        ts=$val
+    fi
+done
 
 days=$(( ( $now - $ts ) / (24 * 3600) ))
 send_to_dashboard puppetci $days
@@ -63,7 +69,13 @@ send_to_dashboard tripleopin $days
 
 # process delorean
 
-ts=$(curl -s $CONSISTENT_URL|head -2|tail -1|cut -d, -f7)
+ts=0
+for line in $(curl -s $CONSISTENT_URL); do
+    val=$(echo $line|cut -d, -f7)
+    if [ $val != 'Last Success Timestamp' ] && [ $val -ge $ts ]; then
+        ts=$val
+    fi
+done
 
 days=$(( ( $now - $ts ) / (24 * 3600) ))
 send_to_dashboard delorean $days
