@@ -42,7 +42,7 @@ PUPPET_REPO_URL=$(curl -s $PUPPET_URL|grep -F https://trunk.rdoproject.org/cento
 ts=0
 for line in $(curl -s $PUPPET_REPO_URL/versions.csv); do
     val=$(echo $line|cut -d, -f7)
-    if [ "$val" != 'Last Success Timestamp' ] && [ $val -ge $ts ]; then
+    if [ "$val" != 'Last Success Timestamp' ] && [ "$val" -ge "$ts" ]; then
         ts=$val
     fi
 done
@@ -72,7 +72,7 @@ send_to_dashboard tripleopin $days
 ts=0
 for line in $(curl -s $CONSISTENT_URL); do
     val=$(echo $line|cut -d, -f7)
-    if [ $val != 'Last Success Timestamp' ] && [ $val -ge $ts ]; then
+    if [ "$val" != 'Last Success Timestamp' ] && [ "$val" -ge "$ts" ]; then
         ts=$val
     fi
 done
