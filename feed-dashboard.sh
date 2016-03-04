@@ -34,18 +34,24 @@ send_to_dashboard() {
     curl -s -d "{ \"auth_token\": \"$TOKEN\", \"value\": $2 }" $WIDGETS_URL/$1
 }
 
+get_max_ts() {
+    ts=0
+    for line in $(curl -s $1); do
+        val="$(echo $line|cut -d, -f7)"
+        if [[ "$val" != 'Last Success Timestamp' ]] && [[ "$val" -ge "$ts" ]]; then
+            ts=$val
+        fi
+    done
+    echo $ts
+}
+
 min=$(date '+%s')
 now=$min
 
 # process puppetci
 PUPPET_REPO_URL=$(curl -s $PUPPET_URL|grep -F https://trunk.rdoproject.org/centos7/|sed -e "s/.* => '\(.*\)'.*/\1/")
-ts=0
-for line in $(curl -s $PUPPET_REPO_URL/versions.csv); do
-    val=$(echo $line|cut -d, -f7)
-    if [ "$val" != 'Last Success Timestamp' ] && [ "$val" -ge "$ts" ]; then
-        ts=$val
-    fi
-done
+
+ts=$(get_max_ts $PUPPET_REPO_URL/versions.csv)
 
 days=$(( ( $now - $ts ) / (24 * 3600) ))
 send_to_dashboard puppetci $days
@@ -69,13 +75,7 @@ send_to_dashboard tripleopin $days
 
 # process delorean
 
-ts=0
-for line in $(curl -s $CONSISTENT_URL); do
-    val=$(echo $line|cut -d, -f7)
-    if [ "$val" != 'Last Success Timestamp' ] && [ "$val" -ge "$ts" ]; then
-        ts=$val
-    fi
-done
+ts=$(get_max_ts $CONSISTENT_URL)
 
 days=$(( ( $now - $ts ) / (24 * 3600) ))
 send_to_dashboard delorean $days
