@@ -27,7 +27,8 @@ TOKEN="$2"
 PUPPET_URL=https://raw.githubusercontent.com/openstack/puppet-openstack-integration/master/manifests/repos.pp
 CURRENT_URL=http://trunk.rdoproject.org/centos7/current/versions.csv
 CONSISTENT_URL=http://trunk.rdoproject.org/centos7/consistent/versions.csv
-CURRENT_URL=http://trunk.rdoproject.org/centos7/current-tripleo/versions.csv
+TRIPLEO_URL=http://trunk.rdoproject.org/centos7/current-tripleo/versions.csv
+RDO_URL=http://trunk.rdoproject.org/centos7/current-passed-ci/versions.csv
 PERIODIC_CGI=http://tripleo.org/cgi-bin/cistatus-periodic.cgi
 
 send_to_dashboard() {
@@ -35,31 +36,32 @@ send_to_dashboard() {
 }
 
 get_max_ts() {
+    url=$1
+    widget=$2
     ts=0
-    for line in $(curl -s $1); do
+    for line in $(curl -s $url); do
         val="$(echo $line|cut -d, -f7)"
         if [[ "$val" != 'Last Success Timestamp' ]] && [[ "$val" -ge "$ts" ]]; then
             ts=$val
         fi
     done
-    echo $ts
+    
+    days=$(( ( $now - $ts ) / (24 * 3600) ))
+    send_to_dashboard $widget $days
 }
 
 min=$(date '+%s')
 now=$min
 
 # process puppetci
-PUPPET_REPO_URL=$(curl -s $PUPPET_URL|grep -F https://trunk.rdoproject.org/centos7/|sed -e "s/.* => '\(.*\)'.*/\1/")
+PUPPET_REPO_URL=$(curl -s $PUPPET_URL|egrep '(/trunk|delorean/)'|sed -e "s/.* => '\(.*\)'.*/\1/")
 
-ts=$(get_max_ts $PUPPET_REPO_URL/versions.csv)
-
-days=$(( ( $now - $ts ) / (24 * 3600) ))
-send_to_dashboard puppetci $days
+get_max_ts $PUPPET_REPO_URL/versions.csv puppetci
 
 # process tripleoci
 
 ts=$(curl -s $PERIODIC_CGI|grep ^periodic-tripleo-ci-f22-ha,|grep -F SUCCESS|cut -d, -f2)
-if [ -z "$ts"]; then
+if [ -z "$ts" ]; then
     ts=$(python -c 'import datetime as dt;print (dt.datetime.strptime("2016-01-06", "%Y-%m-%d")- dt.datetime(1970,1,1)).total_seconds()'|sed 's/\.0//')
 fi
 days=$(( ( $now - $ts ) / (24 * 3600) ))
@@ -75,20 +77,10 @@ send_to_dashboard tripleopin $days
 
 # process delorean
 
-ts=$(get_max_ts $CONSISTENT_URL)
-
-days=$(( ( $now - $ts ) / (24 * 3600) ))
-send_to_dashboard delorean $days
+get_max_ts $CONSISTENT_URL delorean
 
 # process the deloreanci
 
-max=0
-
-# TBD use the date from the first line of
-# http://trunk.rdoproject.org/centos7/current-passed-ci/versions.csv
-
-ts=$(python -c 'import datetime as dt;print (dt.datetime.strptime("2016-02-23 18:44", "%Y-%m-%d %H:%M")- dt.datetime(1970,1,1)).total_seconds()'|sed 's/\.0//')
-days=$(( ( $now - $ts ) / (24 * 3600) ))
-send_to_dashboard deloreanci $days
+get_max_ts $RDO_URL deloreanci
 
 # feed-dashboard.sh ends here
