@@ -69,11 +69,7 @@ send_to_dashboard tripleoci $days
 
 # process tripleopin
 
-# TBD use the date from the first line of
-# http://trunk.rdoproject.org/centos7/current-tripleo/versions.csv
-ts=$(python -c 'import datetime as dt;print (dt.datetime.strptime("2016-02-23 18:44", "%Y-%m-%d %H:%M")- dt.datetime(1970,1,1)).total_seconds()'|sed 's/\.0//')
-days=$(( ( $now - $ts ) / (24 * 3600) ))
-send_to_dashboard tripleopin $days
+get_max_ts $TRIPLEO_URL tripleopin
 
 # process delorean
 
