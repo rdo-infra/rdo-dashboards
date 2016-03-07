@@ -61,9 +61,6 @@ get_max_ts $PUPPET_REPO_URL/versions.csv puppetci
 # process tripleoci
 
 ts=$(curl -s $PERIODIC_CGI|grep ^periodic-tripleo-ci-f22-ha,|grep -F SUCCESS|cut -d, -f2)
-if [ -z "$ts" ]; then
-    ts=$(python -c 'import datetime as dt;print (dt.datetime.strptime("2016-01-06", "%Y-%m-%d")- dt.datetime(1970,1,1)).total_seconds()'|sed 's/\.0//')
-fi
 days=$(( ( $now - $ts ) / (24 * 3600) ))
 send_to_dashboard tripleoci $days
 
