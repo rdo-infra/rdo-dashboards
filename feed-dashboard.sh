@@ -29,6 +29,9 @@ CURRENT_URL=http://trunk.rdoproject.org/centos7/current/versions.csv
 CONSISTENT_URL=http://trunk.rdoproject.org/centos7/consistent/versions.csv
 TRIPLEO_URL=http://trunk.rdoproject.org/centos7/current-tripleo/versions.csv
 RDO_URL=http://trunk.rdoproject.org/centos7/current-passed-ci/versions.csv
+MTK_CONSISTENT_URL=http://trunk.rdoproject.org/centos7-mitaka/consistent/versions.csv
+MTK_TRIPLEO_URL=http://trunk.rdoproject.org/centos7-mitaka/current-tripleo/versions.csv
+MTK_RDO_URL=http://trunk.rdoproject.org/centos7-mitaka/current-passed-ci/versions.csv
 PERIODIC_CGI=http://tripleo.org/cgi-bin/cistatus-periodic.cgi
 
 send_to_dashboard() {
@@ -67,13 +70,16 @@ send_to_dashboard tripleoci $days
 # process tripleopin
 
 get_max_ts $TRIPLEO_URL tripleopin
+get_max_ts $MTK_TRIPLEO_URL tripleopinmitaka
 
 # process delorean
 
 get_max_ts $CONSISTENT_URL delorean
+get_max_ts $MTK_CONSISTENT_URL deloreanmitaka
 
 # process the deloreanci
 
 get_max_ts $RDO_URL deloreanci
+get_max_ts $MTK_RDO_URL deloreancimitaka
 
 # feed-dashboard.sh ends here
