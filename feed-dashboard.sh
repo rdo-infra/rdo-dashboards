@@ -70,7 +70,7 @@ send_to_dashboard tripleoci $days
 # process tripleopin
 
 get_max_ts $TRIPLEO_URL tripleopin
-get_max_ts $MTK_TRIPLEO_URL tripleopinmitaka
+#get_max_ts $MTK_TRIPLEO_URL tripleopinmitaka
 
 # process delorean
 
