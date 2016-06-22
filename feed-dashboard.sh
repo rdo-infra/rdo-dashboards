@@ -33,24 +33,26 @@ MTK_CONSISTENT_URL=http://trunk.rdoproject.org/centos7-mitaka/consistent/version
 MTK_TRIPLEO_URL=http://trunk.rdoproject.org/centos7-mitaka/current-tripleo/versions.csv
 MTK_RDO_URL=http://trunk.rdoproject.org/centos7-mitaka/current-passed-ci/versions.csv
 PERIODIC_CGI=http://tripleo.org/cgi-bin/cistatus-periodic.cgi
+ISSUES_URL=https://etherpad.openstack.org/p/delorean_master_current_issues
 
 send_to_dashboard() {
-    curl -s -d "{ \"auth_token\": \"$TOKEN\", \"value\": $2 }" $WIDGETS_URL/$1
+    curl -s -d "{ \"auth_token\": \"$TOKEN\", \"value\": $2 $3 }" $WIDGETS_URL/$1
 }
 
 get_max_ts() {
     url=$1
     widget=$2
+    extra="$3"
     ts=0
     for line in $(curl -s $url); do
         val="$(echo $line|cut -d, -f7)"
-        if [[ "$val" != 'Last Success Timestamp' ]] && [[ "$val" -ge "$ts" ]]; then
+        if [[ "$val" != 'Last Success Timestamp' ]] && [[ "$val" -gt "$ts" ]]; then
             ts=$val
         fi
     done
     
     days=$(( ( $now - $ts ) / (24 * 3600) ))
-    send_to_dashboard $widget $days
+    send_to_dashboard $widget $days "$extra"
 }
 
 min=$(date '+%s')
@@ -79,7 +81,19 @@ get_max_ts $MTK_CONSISTENT_URL deloreanmitaka
 
 # process the deloreanci
 
-get_max_ts $RDO_URL deloreanci
+issues=$(curl -s $ISSUES_URL/export/txt | egrep '^[0-9]+\.' | grep -Fvi '[fixed]' | wc -l)
+
+if [ $issues -gt 0 ]; then
+    if [ $issues -eq 1 ]; then
+        extra=", \"moreinfo\": \"$issues issue\", \"link\": \"$ISSUES_URL\""
+    else
+        extra=", \"moreinfo\": \"$issues issues\", \"link\": \"$ISSUES_URL\""
+    fi
+else
+    extra=
+fi
+
+get_max_ts $RDO_URL deloreanci "$extra"
 get_max_ts $MTK_RDO_URL deloreancimitaka
 
 # feed-dashboard.sh ends here
