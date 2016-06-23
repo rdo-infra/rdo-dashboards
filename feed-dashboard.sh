@@ -44,15 +44,17 @@ get_max_ts() {
     widget=$2
     extra="$3"
     ts=0
-    for line in $(curl -s $url); do
+    for line in $(curl -s -L $url); do
         val="$(echo $line|cut -d, -f7)"
         if [[ "$val" != 'Last Success Timestamp' ]] && [[ "$val" -gt "$ts" ]]; then
             ts=$val
         fi
     done
     
-    days=$(( ( $now - $ts ) / (24 * 3600) ))
-    send_to_dashboard $widget $days "$extra"
+    if [ $ts != 0 ]; then
+        days=$(( ( $now - $ts ) / (24 * 3600) ))
+        send_to_dashboard $widget $days "$extra"
+    fi
 }
 
 min=$(date '+%s')
