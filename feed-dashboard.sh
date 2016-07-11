@@ -32,6 +32,7 @@ RDO_URL=http://trunk.rdoproject.org/centos7/current-passed-ci/versions.csv
 MTK_CONSISTENT_URL=http://trunk.rdoproject.org/centos7-mitaka/consistent/versions.csv
 MTK_TRIPLEO_URL=http://trunk.rdoproject.org/centos7-mitaka/current-tripleo/versions.csv
 MTK_RDO_URL=http://trunk.rdoproject.org/centos7-mitaka/current-passed-ci/versions.csv
+MTK_ISSUES_URL=https://etherpad.openstack.org/p/delorean_mitaka_current_issues
 PERIODIC_CGI=http://tripleo.org/cgi-bin/cistatus-periodic.cgi
 ISSUES_URL=https://etherpad.openstack.org/p/delorean_master_current_issues
 
@@ -84,6 +85,7 @@ get_max_ts $MTK_CONSISTENT_URL deloreanmitaka
 # process the deloreanci
 
 issues=$(curl -s $ISSUES_URL/export/txt | egrep '^[0-9]+\.' | grep -Fvi '[fixed]' | wc -l)
+mtk_issues=$(curl -s $MTK_ISSUES_URL/export/txt | egrep '^[0-9]+\.' | grep -Fvi '[fixed]' | wc -l)
 
 if [ $issues -gt 0 ]; then
     if [ $issues -eq 1 ]; then
@@ -95,7 +97,17 @@ else
     extra=
 fi
 
+if [ $mtk_issues -gt 0 ]; then
+    if [ $mtk_issues -eq 1 ]; then
+        mtk_extra=", \"moreinfo\": \"$mtk_issues issue\", \"link\": \"$MTK_ISSUES_URL\""
+    else
+        mtk_extra=", \"moreinfo\": \"$mtk_issues issues\", \"link\": \"$MTK_ISSUES_URL\""
+    fi
+else
+    mtk_extra=
+fi
+
 get_max_ts $RDO_URL deloreanci "$extra"
-get_max_ts $MTK_RDO_URL deloreancimitaka
+get_max_ts $MTK_RDO_URL deloreancimitaka "$mtk_extra"
 
 # feed-dashboard.sh ends here
