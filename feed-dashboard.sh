@@ -35,6 +35,7 @@ MTK_RDO_URL=http://trunk.rdoproject.org/centos7-mitaka/current-passed-ci/version
 MTK_ISSUES_URL=https://etherpad.openstack.org/p/delorean_mitaka_current_issues
 PERIODIC_CGI=http://tripleo.org/cgi-bin/cistatus-periodic.cgi
 ISSUES_URL=https://etherpad.openstack.org/p/delorean_master_current_issues
+TEMPEST_TOCI_URL=http://status-tripleoci.rhcloud.com/
 
 send_to_dashboard() {
     curl -s -d "{ \"auth_token\": \"$TOKEN\", \"value\": $2 $3 }" $WIDGETS_URL/$1
@@ -106,6 +107,18 @@ if [ $mtk_issues -gt 0 ]; then
 else
     mtk_extra=
 fi
+
+tempest_pass=$(curl -s $TEMPEST_TOCI_URL | grep tempest_stats:periodic-tripleo-ci-centos-7-ovb-ha-tempest | grep SUCCESS | head -1| cut -d"," -f2)
+if [[ -z "$tempest_pass" ]]; then
+    tempest_fail=$(curl -s $TEMPEST_TOCI_URL | grep tempest_stats:periodic-tripleo-ci-centos-7-ovb-ha-tempest | grep FAILURE | tail -1| cut -d"," -f2)
+    days=$(( ( $now - $tempest_fail ) / (24 * 3600) ))
+    extra="fail"
+else
+    days=$(( ( $now - $tempest_pass ) / (24 * 3600) ))
+    extra="pass"
+fi
+send_to_dashboard toci_tempest $days
+
 
 get_max_ts $RDO_URL deloreanci "$extra"
 get_max_ts $MTK_RDO_URL deloreancimitaka "$mtk_extra"
