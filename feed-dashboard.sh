@@ -28,6 +28,7 @@ PUPPET_URL=https://raw.githubusercontent.com/openstack/puppet-openstack-integrat
 CURRENT_URL=http://trunk.rdoproject.org/centos7/current/versions.csv
 CONSISTENT_URL=http://trunk.rdoproject.org/centos7/consistent/versions.csv
 TRIPLEO_URL=http://trunk.rdoproject.org/centos7/current-tripleo/versions.csv
+TRIPLEO_ISSUES=https://etherpad.openstack.org/p/tripleo-ci-status
 RDO_URL=http://trunk.rdoproject.org/centos7/current-passed-ci/versions.csv
 MTK_CONSISTENT_URL=http://trunk.rdoproject.org/centos7-mitaka/consistent/versions.csv
 MTK_TRIPLEO_URL=http://trunk.rdoproject.org/centos7-mitaka/current-tripleo/versions.csv
@@ -58,6 +59,25 @@ get_max_ts() {
     fi
 }
 
+process_issues() {
+    url="$1"
+    tag="$2"
+    issues_url="$3"
+    
+    issues=$(curl -s "$issues_url/export/txt" | egrep '^[0-9]+\.' | grep -Fvi '[fixed]' | wc -l)
+
+    if [ $issues -gt 0 ]; then
+        if [ $issues -eq 1 ]; then
+            extra=", \"moreinfo\": \"$issues issue\", \"link\": \"$issues_url\""
+        else
+            extra=", \"moreinfo\": \"$issues issues\", \"link\": \"$issues_url\""
+        fi
+    else
+        extra=
+    fi
+    get_max_ts "$url" "$tag" "$extra"
+}
+
 min=$(date '+%s')
 now=$min
 
@@ -74,7 +94,7 @@ send_to_dashboard tripleoci $days
 
 # process tripleopin
 
-get_max_ts $TRIPLEO_URL tripleopin
+process_issues $TRIPLEO_URL tripleopin $TRIPLEO_ISSUES
 #get_max_ts $MTK_TRIPLEO_URL tripleopinmitaka
 
 # process delorean
@@ -84,30 +104,7 @@ get_max_ts $MTK_CONSISTENT_URL deloreanmitaka
 
 # process the deloreanci
 
-issues=$(curl -s $ISSUES_URL/export/txt | egrep '^[0-9]+\.' | grep -Fvi '[fixed]' | wc -l)
-mtk_issues=$(curl -s $MTK_ISSUES_URL/export/txt | egrep '^[0-9]+\.' | grep -Fvi '[fixed]' | wc -l)
-
-if [ $issues -gt 0 ]; then
-    if [ $issues -eq 1 ]; then
-        extra=", \"moreinfo\": \"$issues issue\", \"link\": \"$ISSUES_URL\""
-    else
-        extra=", \"moreinfo\": \"$issues issues\", \"link\": \"$ISSUES_URL\""
-    fi
-else
-    extra=
-fi
-
-if [ $mtk_issues -gt 0 ]; then
-    if [ $mtk_issues -eq 1 ]; then
-        mtk_extra=", \"moreinfo\": \"$mtk_issues issue\", \"link\": \"$MTK_ISSUES_URL\""
-    else
-        mtk_extra=", \"moreinfo\": \"$mtk_issues issues\", \"link\": \"$MTK_ISSUES_URL\""
-    fi
-else
-    mtk_extra=
-fi
-
-get_max_ts $RDO_URL deloreanci "$extra"
-get_max_ts $MTK_RDO_URL deloreancimitaka "$mtk_extra"
+process_issues $RDO_URL deloreanci $ISSUES_URL
+process_issues $MTK_RDO_URL deloreancimitaka $MTK_ISSUES_URL
 
 # feed-dashboard.sh ends here
