@@ -1,3 +1,5 @@
-# UUID                                  	Group Name
-#
-93a2a3bd0c5fa81a47db693b39ea64a64109ec16	rdo-infra/rdo-dashboards-ptl
+# UUID          Group Name
+False 	Non-Interactive Users
+b2c43c5dce75e81bafaa55d14b8ef70a785fcb3a       	rdo-infra/rdo-dashboards-core
+93a2a3bd0c5fa81a47db693b39ea64a64109ec16        	rdo-infra/rdo-dashboards-ptl
+global:Registered-Users		Registered Users
