@@ -34,6 +34,9 @@ MTK_CONSISTENT_URL=http://trunk.rdoproject.org/centos7-mitaka/consistent/version
 MTK_TRIPLEO_URL=http://trunk.rdoproject.org/centos7-mitaka/current-tripleo/versions.csv
 MTK_RDO_URL=http://trunk.rdoproject.org/centos7-mitaka/current-passed-ci/versions.csv
 MTK_ISSUES_URL=https://etherpad.openstack.org/p/delorean_mitaka_current_issues
+NWTN_CONSISTENT_URL=http://trunk.rdoproject.org/centos7-newton/consistent/versions.csv
+NWTN_RDO_URL=http://trunk.rdoproject.org/centos7-newton/current-passed-ci/versions.csv
+NWTN_ISSUES_URL=https://etherpad.openstack.org/p/delorean_newton_current_issues
 PERIODIC_CGI=http://tripleo.org/cgi-bin/cistatus-periodic.cgi
 ISSUES_URL=https://etherpad.openstack.org/p/delorean_master_current_issues
 
@@ -88,9 +91,9 @@ get_max_ts $PUPPET_REPO_URL/versions.csv puppetci
 
 # process tripleoci
 
-ts=$(curl -s $PERIODIC_CGI|grep ^periodic-tripleo-ci-f22-ha,|grep -F SUCCESS|cut -d, -f2)
-days=$(( ( $now - $ts ) / (24 * 3600) ))
-send_to_dashboard tripleoci $days
+# ts=$(curl -s $PERIODIC_CGI|grep ^periodic-tripleo-ci-f22-ha,|grep -F SUCCESS|cut -d, -f2)
+# days=$(( ( $now - $ts ) / (24 * 3600) ))
+# send_to_dashboard tripleoci $days
 
 # process tripleopin
 
@@ -101,10 +104,12 @@ process_issues $TRIPLEO_URL tripleopin $TRIPLEO_ISSUES
 
 get_max_ts $CONSISTENT_URL delorean
 get_max_ts $MTK_CONSISTENT_URL deloreanmitaka
+get_max_ts $NWTN_CONSISTENT_URL deloreannewton
 
 # process the deloreanci
 
 process_issues $RDO_URL deloreanci $ISSUES_URL
-process_issues $MTK_RDO_URL deloreancimitaka $MTK_ISSUES_URL
+process_issues $MTK_RDO_URL deloreancinewton $MTK_ISSUES_URL
+process_issues $NWTN_RDO_URL deloreancinewton $NWTN_ISSUES_URL
 
 # feed-dashboard.sh ends here
