@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9ad9bd40_c2f4c489",
+        "filename": "feed-dashboard.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 85
+      },
+      "writtenOn": "2016-10-12T12:38:12Z",
+      "side": 1,
+      "message": "This does not actually exist.\nTripleO CI is not running on stable branches, RDO CI takes consistent directly.",
+      "range": {
+        "startLine": 38,
+        "startChar": 60,
+        "endLine": 38,
+        "endChar": 75
+      },
+      "revId": "2843b89772b05f7f5634b72b74328a3fffc6dd6b",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
