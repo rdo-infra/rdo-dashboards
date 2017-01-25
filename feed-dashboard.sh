@@ -37,6 +37,9 @@ MTK_ISSUES_URL=https://etherpad.openstack.org/p/delorean_mitaka_current_issues
 NWTN_CONSISTENT_URL=http://trunk.rdoproject.org/centos7-newton/consistent/versions.csv
 NWTN_RDO_URL=http://trunk.rdoproject.org/centos7-newton/current-passed-ci/versions.csv
 NWTN_ISSUES_URL=https://etherpad.openstack.org/p/delorean_newton_current_issues
+OCAT_CONSISTENT_URL=http://trunk.rdoproject.org/centos7-ocata/consistent/versions.csv
+OCAT_RDO_URL=http://trunk.rdoproject.org/centos7-ocata/current-passed-ci/versions.csv
+OCAT_ISSUES_URL=https://etherpad.openstack.org/p/tripleo-ci-status
 PERIODIC_CGI=http://tripleo.org/cgi-bin/cistatus-periodic.cgi
 ISSUES_URL=https://etherpad.openstack.org/p/delorean_master_current_issues
 
@@ -55,7 +58,7 @@ get_max_ts() {
             ts=$val
         fi
     done
-    
+
     if [ $ts != 0 ]; then
         days=$(( ( $now - $ts ) / (24 * 3600) ))
         send_to_dashboard $widget $days "$extra"
@@ -66,7 +69,7 @@ process_issues() {
     url="$1"
     tag="$2"
     issues_url="$3"
-    
+
     issues=$(curl -s "$issues_url/export/txt" | egrep '^[0-9]+\.' | grep -Fvi '[fixed]' | wc -l)
 
     if [ $issues -gt 0 ]; then
@@ -105,11 +108,13 @@ process_issues $TRIPLEO_URL tripleopin $TRIPLEO_ISSUES
 get_max_ts $CONSISTENT_URL delorean
 get_max_ts $MTK_CONSISTENT_URL deloreanmitaka
 get_max_ts $NWTN_CONSISTENT_URL deloreannewton
+get_max_ts $OCAT_CONSISTENT_URL deloreanocata
 
 # process the deloreanci
 
 process_issues $RDO_URL deloreanci $ISSUES_URL
 process_issues $MTK_RDO_URL deloreancimitaka $MTK_ISSUES_URL
 process_issues $NWTN_RDO_URL deloreancinewton $NWTN_ISSUES_URL
+process_issues $OCAT_RDO_URL deloreanciocata $OCAT_ISSUES_URL
 
 # feed-dashboard.sh ends here
