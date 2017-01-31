@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (C) 2016 Red Hat, Inc.
+# Copyright (C) 2016-2017 Red Hat, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
@@ -54,7 +54,7 @@ get_max_ts() {
     ts=0
     for line in $(curl -s -L $url); do
         val="$(echo $line|cut -d, -f7)"
-        if [[ "$val" != 'Last Success Timestamp' ]] && [[ "$val" -gt "$ts" ]]; then
+        if [[ "$val" =~ ^[0-9]+$ ]] && [[ "$val" -gt "$ts" ]]; then
             ts=$val
         fi
     done
@@ -62,6 +62,12 @@ get_max_ts() {
     if [ $ts != 0 ]; then
         days=$(( ( $now - $ts ) / (24 * 3600) ))
         send_to_dashboard $widget $days "$extra"
+
+        echo "$url -> $days" 1>&2
+    else
+        send_to_dashboard $widget 1000 "$extra"
+
+        echo "$url -> never" 1>&2
     fi
 }
 
