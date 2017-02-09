@@ -16,6 +16,8 @@
 
 set -e
 
+DIR=$(cd $(dirname $0); pwd)
+
 if [ $# != 2 ]; then
     echo "Usage: $0 <dashboard url> <token>" 1>&2
     exit 1
@@ -28,7 +30,7 @@ PUPPET_URL=https://raw.githubusercontent.com/openstack/puppet-openstack-integrat
 CURRENT_URL=http://trunk.rdoproject.org/centos7/current/versions.csv
 CONSISTENT_URL=http://trunk.rdoproject.org/centos7/consistent/versions.csv
 TRIPLEO_URL=http://trunk.rdoproject.org/centos7/current-tripleo/versions.csv
-TRIPLEO_ISSUES=https://etherpad.openstack.org/p/tripleo-ci-status
+TRIPLEO_ISSUES=https://trello.com/b/WXJTwsuU/tripleo-and-rdo-ci-status
 RDO_URL=http://trunk.rdoproject.org/centos7/current-passed-ci/versions.csv
 MTK_CONSISTENT_URL=http://trunk.rdoproject.org/centos7-mitaka/consistent/versions.csv
 MTK_TRIPLEO_URL=http://trunk.rdoproject.org/centos7-mitaka/current-tripleo/versions.csv
@@ -75,10 +77,19 @@ process_issues() {
     url="$1"
     tag="$2"
     issues_url="$3"
+    shift 3
 
-    issues=$(curl -s "$issues_url/export/txt" | egrep '^[0-9]+\.' | grep -Fvi '[fixed]' | wc -l)
+    case $issues_url in
+        *trello.com*)
+            issues=$($DIR/count-trello-cards.py "$@")
+            ;;
+        *)
+            issues=$(curl -s "$issues_url/export/txt" | egrep '^[0-9]+\.' | grep -Fvi '[fixed]' | wc -l)
+            ;;
+    esac
 
     if [ $issues -gt 0 ]; then
+        echo "$issues issues"
         if [ $issues -eq 1 ]; then
             extra=", \"moreinfo\": \"$issues issue\", \"link\": \"$issues_url\""
         else
@@ -106,7 +117,8 @@ get_max_ts $PUPPET_REPO_URL/versions.csv puppetci
 
 # process tripleopin
 
-process_issues $TRIPLEO_URL tripleopin $TRIPLEO_ISSUES
+process_issues $TRIPLEO_URL tripleopin $TRIPLEO_ISSUES WXJTwsuU 'Critical CI Outage' 'CI Failing Jobs'
+
 #get_max_ts $MTK_TRIPLEO_URL tripleopinmitaka
 
 # process delorean
@@ -118,7 +130,7 @@ get_max_ts $OCAT_CONSISTENT_URL deloreanocata
 
 # process the deloreanci
 
-process_issues $RDO_URL deloreanci $ISSUES_URL
+process_issues $RDO_URL deloreanci $TRIPLEO_ISSUES WXJTwsuU 'Critical CI Outage' 'CI Failing Jobs'
 process_issues $MTK_RDO_URL deloreancimitaka $MTK_ISSUES_URL
 process_issues $NWTN_RDO_URL deloreancinewton $NWTN_ISSUES_URL
 process_issues $OCAT_RDO_URL deloreanciocata $OCAT_ISSUES_URL
