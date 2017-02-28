@@ -34,14 +34,28 @@ def get_cards(list_id):
 
 def main(argv):
     if len(argv) == 1:
-        print('Usage: %s <board name> <list name> [<list name>...]' % argv[0])
+        print('Usage: %s <board name> <+ separated list of labels> '
+              '<list name> [<list name>...]' % argv[0])
         sys.exit(1)
 
     lists = get_lists(argv[1])
     sum = 0
+    label_list = argv[2].split('+')
+    cards = []
     for list_json in lists:
-        if list_json['name'] in argv[2:]:
-            sum += len(get_cards(list_json['id']))
+        if list_json['name'] in argv[3:]:
+            cards = cards + get_cards(list_json['id'])
+    for card in cards:
+        labels = map(lambda x: x['name'], card['labels'])
+        valid = False
+        for label in label_list:
+            if label not in labels:
+                valid = False
+                break
+            else:
+                valid = True
+        if valid:
+            sum += 1
     print sum
 
 

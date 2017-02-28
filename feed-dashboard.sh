@@ -117,7 +117,7 @@ get_max_ts $PUPPET_REPO_URL/versions.csv puppetci
 
 # process tripleopin
 
-process_issues $TRIPLEO_URL tripleopin $TRIPLEO_ISSUES WXJTwsuU 'Critical CI Outage' 'CI Failing Jobs'
+process_issues $TRIPLEO_URL tripleopin $TRIPLEO_ISSUES WXJTwsuU 'TripleoCI Promotion blocker+master' 'Critical CI Outage' 'CI Failing Jobs'
 
 #get_max_ts $MTK_TRIPLEO_URL tripleopinmitaka
 
@@ -130,9 +130,9 @@ get_max_ts $OCAT_CONSISTENT_URL deloreanocata
 
 # process the deloreanci
 
-process_issues $RDO_URL deloreanci $TRIPLEO_ISSUES WXJTwsuU 'Critical CI Outage' 'CI Failing Jobs'
-process_issues $MTK_RDO_URL deloreancimitaka $MTK_ISSUES_URL
-process_issues $NWTN_RDO_URL deloreancinewton $NWTN_ISSUES_URL
-process_issues $OCAT_RDO_URL deloreanciocata $OCAT_ISSUES_URL
+process_issues $RDO_URL deloreanci "$TRIPLEO_ISSUES?menu=filter&filter=label:master,label:RDO CI Promotion blocker" WXJTwsuU 'RDO CI Promotion blocker+master' 'Critical CI Outage' 'CI Failing Jobs'
+process_issues $MTK_RDO_URL deloreancimitaka "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A mitaka,label:RDO CI Promotion blocker" WXJTwsuU 'RDO CI Promotion blocker+stable branch: mitaka' 'Critical CI Outage' 'CI Failing Jobs'
+process_issues $NWTN_RDO_URL deloreancinewton "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A newton,label:RDO CI Promotion blocker" WXJTwsuU 'RDO CI Promotion blocker+stable branch: newton' 'Critical CI Outage' 'CI Failing Jobs'
+process_issues $OCAT_RDO_URL deloreanciocata "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A ocata,label:RDO CI Promotion blocker" WXJTwsuU 'RDO CI Promotion blocker+stable branch: ocata' 'Critical CI Outage' 'CI Failing Jobs'
 
 # feed-dashboard.sh ends here
