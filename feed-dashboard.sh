@@ -35,16 +35,12 @@ RDO_URL=http://trunk.rdoproject.org/centos7/current-passed-ci/versions.csv
 MTK_CONSISTENT_URL=http://trunk.rdoproject.org/centos7-mitaka/consistent/versions.csv
 MTK_TRIPLEO_URL=http://trunk.rdoproject.org/centos7-mitaka/current-tripleo/versions.csv
 MTK_RDO_URL=http://trunk.rdoproject.org/centos7-mitaka/current-passed-ci/versions.csv
-MTK_ISSUES_URL=https://etherpad.openstack.org/p/delorean_mitaka_current_issues
 NWTN_CONSISTENT_URL=http://trunk.rdoproject.org/centos7-newton/consistent/versions.csv
 NWTN_RDO_URL=http://trunk.rdoproject.org/centos7-newton/current-passed-ci/versions.csv
-NWTN_ISSUES_URL=https://etherpad.openstack.org/p/delorean_newton_current_issues
 OCAT_CONSISTENT_URL=http://trunk.rdoproject.org/centos7-ocata/consistent/versions.csv
-OCAT_RDO_URL=http://trunk.rdoproject.org/centos7-ocata/current-passed-ci/versions.csv
-OCAT_ISSUES_URL=https://etherpad.openstack.org/p/tripleo-ci-status
+OCAT_RDO_URL=http://trunk.rdoproject.org/centos7-ocata/current-tripleo-rdo/versions.csv
 OCAT_TRIPLEO_URL=https://trunk.rdoproject.org/centos7-ocata/current-tripleo/versions.csv
 PERIODIC_CGI=http://tripleo.org/cgi-bin/cistatus-periodic.cgi
-ISSUES_URL=https://etherpad.openstack.org/p/delorean_master_current_issues
 
 send_to_dashboard() {
     curl -s -d "{ \"auth_token\": \"$TOKEN\", \"value\": $2 $3 }" $WIDGETS_URL/$1
