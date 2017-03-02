@@ -42,6 +42,7 @@ NWTN_ISSUES_URL=https://etherpad.openstack.org/p/delorean_newton_current_issues
 OCAT_CONSISTENT_URL=http://trunk.rdoproject.org/centos7-ocata/consistent/versions.csv
 OCAT_RDO_URL=http://trunk.rdoproject.org/centos7-ocata/current-passed-ci/versions.csv
 OCAT_ISSUES_URL=https://etherpad.openstack.org/p/tripleo-ci-status
+OCAT_TRIPLEO_URL=https://trunk.rdoproject.org/centos7-ocata/current-tripleo/versions.csv
 PERIODIC_CGI=http://tripleo.org/cgi-bin/cistatus-periodic.cgi
 ISSUES_URL=https://etherpad.openstack.org/p/delorean_master_current_issues
 
@@ -118,6 +119,8 @@ get_max_ts $PUPPET_REPO_URL/versions.csv puppetci
 # process tripleopin
 
 process_issues $TRIPLEO_URL tripleopin $TRIPLEO_ISSUES WXJTwsuU 'TripleoCI Promotion blocker+master' 'Critical CI Outage' 'CI Failing Jobs'
+
+process_issues $OCAT_TRIPLEO_URL tripleopin-ocata $TRIPLEO_ISSUES WXJTwsuU 'TripleoCI Promotion blocker+stable branch: ocata' 'Critical CI Outage' 'CI Failing Jobs'
 
 #get_max_ts $MTK_TRIPLEO_URL tripleopinmitaka
 
