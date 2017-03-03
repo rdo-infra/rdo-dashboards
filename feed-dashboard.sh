@@ -36,6 +36,7 @@ MTK_CONSISTENT_URL=http://trunk.rdoproject.org/centos7-mitaka/consistent/version
 MTK_TRIPLEO_URL=http://trunk.rdoproject.org/centos7-mitaka/current-tripleo/versions.csv
 MTK_RDO_URL=http://trunk.rdoproject.org/centos7-mitaka/current-passed-ci/versions.csv
 NWTN_CONSISTENT_URL=http://trunk.rdoproject.org/centos7-newton/consistent/versions.csv
+NWTN_TRIPLEO_URL=http://trunk.rdoproject.org/centos7-newton/current-tripleo/versions.csv
 NWTN_RDO_URL=http://trunk.rdoproject.org/centos7-newton/current-passed-ci/versions.csv
 OCAT_CONSISTENT_URL=http://trunk.rdoproject.org/centos7-ocata/consistent/versions.csv
 OCAT_RDO_URL=http://trunk.rdoproject.org/centos7-ocata/current-tripleo-rdo/versions.csv
@@ -117,6 +118,8 @@ get_max_ts $PUPPET_REPO_URL/versions.csv puppetci
 process_issues $TRIPLEO_URL tripleopin $TRIPLEO_ISSUES WXJTwsuU 'TripleoCI Promotion blocker+master' 'Critical CI Outage' 'CI Failing Jobs'
 
 process_issues $OCAT_TRIPLEO_URL tripleopin-ocata $TRIPLEO_ISSUES WXJTwsuU 'TripleoCI Promotion blocker+stable branch: ocata' 'Critical CI Outage' 'CI Failing Jobs'
+process_issues $NWTN_TRIPLEO_URL tripleopin-newton $TRIPLEO_ISSUES WXJTwsuU 'TripleoCI Promotion blocker+stable branch: newton' 'Critical CI Outage' 'CI Failing Jobs'
+process_issues $MTK_TRIPLEO_URL tripleopin-mitaka $TRIPLEO_ISSUES WXJTwsuU 'TripleoCI Promotion blocker+stable branch: mitaka' 'Critical CI Outage' 'CI Failing Jobs'
 
 #get_max_ts $MTK_TRIPLEO_URL tripleopinmitaka
 
