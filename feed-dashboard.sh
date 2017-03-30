@@ -26,7 +26,6 @@ fi
 WIDGETS_URL="$1/widgets"
 TOKEN="$2"
 
-PUPPET_URL=https://raw.githubusercontent.com/openstack/puppet-openstack-integration/master/manifests/repos.pp
 CURRENT_URL=http://trunk.rdoproject.org/centos7/current/versions.csv
 CONSISTENT_URL=http://trunk.rdoproject.org/centos7/consistent/versions.csv
 TRIPLEO_URL=http://trunk.rdoproject.org/centos7/current-tripleo/versions.csv
@@ -102,9 +101,7 @@ min=$(date '+%s')
 now=$min
 
 # process puppetci
-PUPPET_REPO_URL=$(curl -s $PUPPET_URL|egrep '(/trunk|delorean/)'|sed -e "s/.* => '\(.*\)'.*/\1/")
-
-get_max_ts $PUPPET_REPO_URL/versions.csv puppetci
+get_max_ts https://trunk.rdoproject.org/centos7-master/puppet-passed-ci/versions.csv puppetci
 
 # process tripleoci
 
