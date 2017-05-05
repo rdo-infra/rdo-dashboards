@@ -31,9 +31,6 @@ CONSISTENT_URL=http://trunk.rdoproject.org/centos7/consistent/versions.csv
 TRIPLEO_URL=http://trunk.rdoproject.org/centos7/current-tripleo/versions.csv
 TRIPLEO_ISSUES=https://trello.com/b/WXJTwsuU/tripleo-and-rdo-ci-status
 RDO_URL=http://trunk.rdoproject.org/centos7/current-passed-ci/versions.csv
-MTK_CONSISTENT_URL=http://trunk.rdoproject.org/centos7-mitaka/consistent/versions.csv
-MTK_TRIPLEO_URL=http://trunk.rdoproject.org/centos7-mitaka/current-tripleo/versions.csv
-MTK_RDO_URL=http://trunk.rdoproject.org/centos7-mitaka/current-passed-ci/versions.csv
 NWTN_CONSISTENT_URL=http://trunk.rdoproject.org/centos7-newton/consistent/versions.csv
 NWTN_RDO_URL=http://trunk.rdoproject.org/centos7-newton/current-passed-ci/versions.csv
 OCAT_CONSISTENT_URL=http://trunk.rdoproject.org/centos7-ocata/consistent/versions.csv
@@ -115,19 +112,15 @@ process_issues $TRIPLEO_URL tripleopin $TRIPLEO_ISSUES WXJTwsuU 'TripleoCI Promo
 
 process_issues $OCAT_TRIPLEO_URL tripleopin-ocata $TRIPLEO_ISSUES WXJTwsuU 'TripleoCI Promotion blocker+stable branch: ocata' 'Critical CI Outage' 'CI Failing Jobs'
 
-#get_max_ts $MTK_TRIPLEO_URL tripleopinmitaka
-
 # process delorean
 
 get_max_ts $CONSISTENT_URL delorean
-get_max_ts $MTK_CONSISTENT_URL deloreanmitaka
 get_max_ts $NWTN_CONSISTENT_URL deloreannewton
 get_max_ts $OCAT_CONSISTENT_URL deloreanocata
 
 # process the deloreanci
 
 process_issues $RDO_URL deloreanci "$TRIPLEO_ISSUES?menu=filter&filter=label:master,label:RDO CI Promotion blocker" WXJTwsuU 'RDO CI Promotion blocker+master' 'Critical CI Outage' 'CI Failing Jobs'
-process_issues $MTK_RDO_URL deloreancimitaka "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A mitaka,label:RDO CI Promotion blocker" WXJTwsuU 'RDO CI Promotion blocker+stable branch: mitaka' 'Critical CI Outage' 'CI Failing Jobs'
 process_issues $NWTN_RDO_URL deloreancinewton "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A newton,label:RDO CI Promotion blocker" WXJTwsuU 'RDO CI Promotion blocker+stable branch: newton' 'Critical CI Outage' 'CI Failing Jobs'
 process_issues $OCAT_RDO_URL deloreanciocata "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A ocata,label:RDO CI Promotion blocker" WXJTwsuU 'RDO CI Promotion blocker+stable branch: ocata' 'Critical CI Outage' 'CI Failing Jobs'
 
