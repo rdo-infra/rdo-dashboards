@@ -3,7 +3,7 @@ $(function() {
   // These settings override the defaults set in application.coffee.
   // You can do this on a per dashboard basis.
   Dashing.widget_base_dimensions = [305, 305]
-  Dashing.numColumns = 6
+  Dashing.numColumns = 5
 });
 </script>
 
@@ -19,10 +19,10 @@ $(function() {
     <li data-row="1" data-col="3" data-sizex="1" data-sizey="1">
       <div data-id="deloreannewton" data-view="Alert" data-title="Newton Packaging" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days with a failed build" data-link="http://trunk.rdoproject.org/centos7-newton/status_report.html"></div>
     </li>
-    <li data-row="1" data-col="5" data-sizex="1" data-sizey="1">
+    <li data-row="1" data-col="4" data-sizex="1" data-sizey="1">
       <div data-id="clock" data-view="Clock"></div>
     </li>
-    <li data-row="1" data-col="6" data-sizex="1" data-sizey="1">
+    <li data-row="1" data-col="5" data-sizex="1" data-sizey="1">
       <div data-view="Countdown" data-title="Pike M2" data-end="Thu, 08 Jun 2017 23:59:59 EST"></div>
     </li>
 
@@ -44,7 +44,7 @@ $(function() {
     </li>
     // TODO: Newton
 
-    <li data-row="2" data-col="6" data-sizex="1" data-sizey="1">
+    <li data-row="2" data-col="4" data-sizex="1" data-sizey="1">
       <div data-id="puppetci" data-view="Alert" data-title="Puppet CI" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days behind master pkgs" data-link="https://review.openstack.org/#/q/status:open+project:openstack/puppet-openstack-integration+branch:master+topic:openstack/puppet/rdo"></div>
     </li>
   </ul>
