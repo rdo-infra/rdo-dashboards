@@ -14,15 +14,18 @@ $(function() {
       <div data-id="delorean" data-view="Alert" data-title="Master Packaging" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days with a failed build" data-link="http://trunk.rdoproject.org/centos7/status_report.html"></div>
     </li>
     <li data-row="1" data-col="2" data-sizex="1" data-sizey="1">
-      <div data-id="deloreanocata" data-view="Alert" data-title="Ocata Packaging" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days with a failed build" data-link="http://trunk.rdoproject.org/centos7-ocata/status_report.html"></div>
+      <div data-id="deloreanpike" data-view="Alert" data-title="Pike Packaging" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days with a failed build" data-link="http://trunk.rdoproject.org/centos7-pike/status_report.html"></div>
     </li>
     <li data-row="1" data-col="3" data-sizex="1" data-sizey="1">
-      <div data-id="deloreannewton" data-view="Alert" data-title="Newton Packaging" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days with a failed build" data-link="http://trunk.rdoproject.org/centos7-newton/status_report.html"></div>
+      <div data-id="deloreanocata" data-view="Alert" data-title="Ocata Packaging" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days with a failed build" data-link="http://trunk.rdoproject.org/centos7-ocata/status_report.html"></div>
     </li>
     <li data-row="1" data-col="4" data-sizex="1" data-sizey="1">
-      <div data-id="clock" data-view="Clock"></div>
+      <div data-id="deloreannewton" data-view="Alert" data-title="Newton Packaging" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days with a failed build" data-link="http://trunk.rdoproject.org/centos7-newton/status_report.html"></div>
     </li>
     <li data-row="1" data-col="5" data-sizex="1" data-sizey="1">
+      <div data-id="clock" data-view="Clock"></div>
+    </li>
+    <li data-row="1" data-col="6" data-sizex="1" data-sizey="1">
       <div data-view="Countdown" data-title="Pike RC1" data-end="Thu, 10 Aug 2017 23:59:59 EST"></div>
     </li>
 
@@ -30,21 +33,27 @@ $(function() {
       <div data-id="deloreanci" data-view="Alert" data-title="Master RDO Promotion CI" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since successful run" data-link="https://ci.centos.org/view/rdo/view/promotion-pipeline/job/rdo-delorean-promote-master/"></div>
     </li>
     <li data-row="2" data-col="2" data-sizex="1" data-sizey="1">
-      <div data-id="deloreanciocata" data-view="Alert" data-title="Ocata RDO Promotion CI" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since successful run" data-link="https://ci.centos.org/view/rdo/view/promotion-pipeline/job/rdo_trunk-promote-ocata-current-tripleo/"></div>
+      <div data-id="deloreancipike" data-view="Alert" data-title="Pike RDO Promotion CI" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since successful run" data-link="https://ci.centos.org/view/rdo/view/promotion-pipeline/job/rdo_trunk-promote-pike-current-tripleo/"></div>
     </li>
     <li data-row="2" data-col="3" data-sizex="1" data-sizey="1">
+      <div data-id="deloreanciocata" data-view="Alert" data-title="Ocata RDO Promotion CI" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since successful run" data-link="https://ci.centos.org/view/rdo/view/promotion-pipeline/job/rdo_trunk-promote-ocata-current-tripleo/"></div>
+    </li>
+    <li data-row="2" data-col="4" data-sizex="1" data-sizey="1">
       <div data-id="deloreancinewton" data-view="Alert" data-title="Newton RDO Promotion CI" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since successful run" data-link="https://ci.centos.org/view/rdo/view/promotion-pipeline/job/rdo-delorean-promote-newton/"></div>
     </li>
 
     <li data-row="3" data-col="1" data-sizex="1" data-sizey="1">
-      <div data-id="tripleopin" data-view="Alert" data-title="Tripleo Pin Packages Master" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since pinning" data-link="https://etherpad.openstack.org/p/tripleo-ci-status"></div>
+      <div data-id="tripleopin" data-view="Alert" data-title="Tripleo Pin Packages Master" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since pinning" data-link="http://cistatus.tripleo.org/"></div>
     </li>
     <li data-row="3" data-col="2" data-sizex="1" data-sizey="1">
-      <div data-id="tripleopin-ocata" data-view="Alert" data-title="Tripleo Pin Packages Ocata" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since pinning" data-link="https://etherpad.openstack.org/p/tripleo-ci-status"></div>
+      <div data-id="tripleopin-pike" data-view="Alert" data-title="Tripleo Pin Packages Pike" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since pinning" data-link="http://cistatus.tripleo.org/"></div>
+    </li>
+    <li data-row="3" data-col="3" data-sizex="1" data-sizey="1">
+      <div data-id="tripleopin-ocata" data-view="Alert" data-title="Tripleo Pin Packages Ocata" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since pinning" data-link="http://cistatus.tripleo.org/"></div>
     </li>
     // TODO: Newton
 
-    <li data-row="2" data-col="4" data-sizex="1" data-sizey="1">
+    <li data-row="2" data-col="5" data-sizex="1" data-sizey="1">
       <div data-id="puppetci" data-view="Alert" data-title="Puppet CI" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days behind master pkgs" data-link="https://review.openstack.org/#/q/status:open+project:openstack/puppet-openstack-integration+branch:master+topic:openstack/puppet/rdo"></div>
     </li>
   </ul>

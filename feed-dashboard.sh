@@ -36,6 +36,9 @@ NWTN_RDO_URL=http://trunk.rdoproject.org/centos7-newton/current-passed-ci/versio
 OCAT_CONSISTENT_URL=http://trunk.rdoproject.org/centos7-ocata/consistent/versions.csv
 OCAT_RDO_URL=http://trunk.rdoproject.org/centos7-ocata/current-tripleo-rdo/versions.csv
 OCAT_TRIPLEO_URL=https://trunk.rdoproject.org/centos7-ocata/current-tripleo/versions.csv
+PIKE_CONSISTENT_URL=http://trunk.rdoproject.org/centos7-pike/consistent/versions.csv
+PIKE_RDO_URL=http://trunk.rdoproject.org/centos7-pike/current-tripleo-rdo/versions.csv
+PIKE_TRIPLEO_URL=https://trunk.rdoproject.org/centos7-pike/current-tripleo/versions.csv
 PERIODIC_CGI=http://tripleo.org/cgi-bin/cistatus-periodic.cgi
 
 send_to_dashboard() {
@@ -112,16 +115,21 @@ process_issues $TRIPLEO_URL tripleopin $TRIPLEO_ISSUES WXJTwsuU 'TripleoCI Promo
 
 process_issues $OCAT_TRIPLEO_URL tripleopin-ocata $TRIPLEO_ISSUES WXJTwsuU 'TripleoCI Promotion blocker+stable branch: ocata' 'Critical CI Outage' 'CI Failing Jobs'
 
+process_issues $PIKE_TRIPLEO_URL tripleopin-pike $TRIPLEO_ISSUES WXJTwsuU 'TripleoCI Promotion blocker+stable branch: pike' 'Critical CI Outage' 'CI Failing Jobs'
+
 # process delorean
 
 get_max_ts $CONSISTENT_URL delorean
 get_max_ts $NWTN_CONSISTENT_URL deloreannewton
 get_max_ts $OCAT_CONSISTENT_URL deloreanocata
+get_max_ts $PIKE_CONSISTENT_URL deloreanpike
 
 # process the deloreanci
 
 process_issues $RDO_URL deloreanci "$TRIPLEO_ISSUES?menu=filter&filter=label:master,label:RDO CI Promotion blocker" WXJTwsuU 'RDO CI Promotion blocker+master' 'Critical CI Outage' 'CI Failing Jobs'
 process_issues $NWTN_RDO_URL deloreancinewton "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A newton,label:RDO CI Promotion blocker" WXJTwsuU 'RDO CI Promotion blocker+stable branch: newton' 'Critical CI Outage' 'CI Failing Jobs'
 process_issues $OCAT_RDO_URL deloreanciocata "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A ocata,label:RDO CI Promotion blocker" WXJTwsuU 'RDO CI Promotion blocker+stable branch: ocata' 'Critical CI Outage' 'CI Failing Jobs'
+process_issues $PIKE_RDO_URL deloreancipike "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A pike,label:RDO CI Promotion blocker" WXJTwsuU 'RDO CI Promotion blocker+stable branch: pik' 'Critical CI Outage' 'CI Failing Jobs'
+
 
 # feed-dashboard.sh ends here
