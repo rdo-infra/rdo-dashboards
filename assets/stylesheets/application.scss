@@ -58,6 +58,22 @@ a {
   color: inherit;
 }
 
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:active {
+  text-decoration: underline;
+}
+
 img {
   border: 0;
   -ms-interpolation-mode: bicubic;
@@ -143,9 +159,9 @@ h3 {
 }
 
 .widget {
-  padding: 25px 12px;
   text-align: center;
-  width: 100%;
+  width: inherit;
+  height: inherit;
   display: table-cell;
   vertical-align: middle;
 }
