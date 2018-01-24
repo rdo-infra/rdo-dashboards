@@ -1,0 +1,19 @@
+<h1 class="title" data-bind="title"></h1>
+
+<!-- this is the link to delorean URL, with x_y hash id as the text -->
+<b><a target=“_blank" data-bind-href="delorean_url"><p data-bind="hash_id"></p></a></b>
+<br/>
+
+<table>
+    <tr>
+        <td><i>repo promoted:</i></td>
+        <td data-bind="promote_ts"></td>
+    </tr>
+    <tr>
+        <td><i>repo created:</i></td>
+        <td><span data-bind="lastmod_ts"></span></td>
+    </tr>
+
+</table>
+
+<p class="updated-at" data-bind="updatedAtMessage"></p>
