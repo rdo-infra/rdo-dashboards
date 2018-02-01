@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9aa53dc9_14dd6214",
+        "filename": "requirements-dlrnapi.txt",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2018-02-01T16:54:27Z",
+      "side": 1,
+      "message": "This is available from PyPi (dlrnapi-client), so there\u0027s no need to install from Git.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 61
+      },
+      "revId": "de5a05fbe6ab320ae0d685cfc17cf8cf158b81ef",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
