@@ -22,6 +22,30 @@
       "revId": "601996c9f9156ef08cba79afb229946eba08919a",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9aa53dc9_e898e26c",
+        "filename": "requirements-dlrnapi.txt",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 202
+      },
+      "writtenOn": "2018-02-02T15:00:55Z",
+      "side": 1,
+      "message": "hah!  me either, but it works :)\n\nhttps://paste.fedoraproject.org/paste/wK1uWCjhIRyEHaH4yLcQhg\n\nI\u0027ll change it to dlrnapi-client so it matches the package name.",
+      "parentUuid": "9aa53dc9_48734e4e",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 14
+      },
+      "revId": "601996c9f9156ef08cba79afb229946eba08919a",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
