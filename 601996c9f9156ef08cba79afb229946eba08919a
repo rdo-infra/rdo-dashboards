@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9aa53dc9_48734e4e",
+        "filename": "requirements-dlrnapi.txt",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2018-02-02T14:48:39Z",
+      "side": 1,
+      "message": "I didn\u0027t realize we could use both dlrnapi_client and dlrnapi-client to install from PyPi :)",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 14
+      },
+      "revId": "601996c9f9156ef08cba79afb229946eba08919a",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
