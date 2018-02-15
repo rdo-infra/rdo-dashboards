@@ -66,7 +66,7 @@ This has been tested on Fedora 27 and RHEL 7.4
 sudo dnf groupinstall 'Development Tools'
 sudo dnf install git ruby ruby-devel rubygem-json nodejs gcc-c++
 gem install --user-install bundler
-gem install --user-install smashing
+gem install --user-install dashing
 ```
 
 ##### bundle (install ruby deps)
@@ -128,7 +128,7 @@ Using sinatra-contrib 1.4.7
 Using sprockets 2.10.2
 Using thin 1.6.4
 Using thor 0.20.0
-Using smashing 1.0.0
+Using dashing 1.0.0
 Using twitter 6.1.0
 Bundle complete! 3 Gemfile dependencies, 45 gems now installed.
 Use `bundle info [gemname]` to see where a bundled gem is installed.
@@ -138,10 +138,10 @@ Use `bundle info [gemname]` to see where a bundled gem is installed.
 ##### Now start your dashboard!
 
 ```bash
-smashing start
+dashing start
 ```
 
-The dashboard uses [Thin](https://github.com/macournoyer/thin), which can be run in [other ways (background, arbitrary ports, etc)](https://github.com/Smashing/smashing/wiki/How-To:-Run-on-a-different-port,-or-in-production) .
+The dashboard uses [Thin](https://github.com/macournoyer/thin), which can be run in other ways (background, arbitrary ports, etc), for example with ``dashing start -p 5000``.
 
 Point your favorite browser at: http://localhost:3030
 
@@ -149,7 +149,7 @@ Point your favorite browser at: http://localhost:3030
 
 - feed-dashboard.log will be created and has the full debug output.
 - history.yml is what the dashboard uses as a cache.  If you're hacking on this and getting unexpected behaviors, nuke that.
-- Check out the [http://smashing.github.io](http://smashing.github.io) for more information.
+- Check out [http://dashing.io/](http://dashing.io/) for more information.
 
 # for the rdo-dev dashboard:
 
