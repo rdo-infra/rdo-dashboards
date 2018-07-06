@@ -3,7 +3,7 @@ $(function() {
   // These settings override the defaults set in application.coffee.
   // You can do this on a per dashboard basis.
   Dashing.widget_base_dimensions = [305, 305]
-  Dashing.numColumns = 6
+  Dashing.numColumns = 5
 });
 </script>
 
@@ -23,9 +23,6 @@ $(function() {
       <div data-id="deloreanocata" data-view="Alert" data-title="Ocata Packaging" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days with a failed build" data-link="http://trunk.rdoproject.org/centos7-ocata/status_report.html"></div>
     </li>
     <li data-row="1" data-col="5" data-sizex="1" data-sizey="1">
-      <div data-id="deloreannewton" data-view="Alert" data-title="Newton Packaging" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days with a failed build" data-link="http://trunk.rdoproject.org/centos7-newton/status_report.html"></div>
-    </li>
-    <li data-row="1" data-col="6" data-sizex="1" data-sizey="1">
       <div data-id="clock" data-view="Clock"></div>
     </li>
 
@@ -42,9 +39,6 @@ $(function() {
       <div data-id="deloreanciocata" data-view="Alert" data-title="Ocata RDO Promotion CI" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since successful run" data-link="https://ci.centos.org/view/rdo/view/promotion-pipeline/job/rdo_trunk-promote-ocata-current-tripleo/"></div>
     </li>
     <li data-row="2" data-col="5" data-sizex="1" data-sizey="1">
-      <div data-id="deloreancinewton" data-view="Alert" data-title="Newton RDO Promotion CI" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since successful run" data-link="https://ci.centos.org/view/rdo/view/promotion-pipeline/job/rdo-delorean-promote-newton/"></div>
-    </li>
-    <li data-row="2" data-col="6" data-sizex="1" data-sizey="1">
       <div data-view="Countdown" data-title="Rocky-2 milestone" data-end="Fri, 08 Jun 2018 12:00:00 EST"></div>
     </li>
 

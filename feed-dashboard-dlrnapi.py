@@ -67,8 +67,7 @@ def get_shorthash_from_commit_distro(commit, distro):
 map_version_to_endpoint = {'master'  : 'https://trunk.rdoproject.org/api-centos-master-uc',
                            'queens'  : 'https://trunk.rdoproject.org/api-centos-queens',
                            'pike'    : 'https://trunk.rdoproject.org/api-centos-pike',
-                           'ocata'   : 'https://trunk.rdoproject.org/api-centos-ocata',
-                           'newton'  : 'https://trunk.rdoproject.org/api-centos-newton'}
+                           'ocata'   : 'https://trunk.rdoproject.org/api-centos-ocata'}
 
 def get_endpoint(release):
     return map_version_to_endpoint[release]
