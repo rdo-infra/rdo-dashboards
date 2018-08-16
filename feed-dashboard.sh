@@ -40,6 +40,9 @@ PIKE_TRIPLEO_URL=https://trunk.rdoproject.org/centos7-pike/current-tripleo/versi
 QUEENS_CONSISTENT_URL=http://trunk.rdoproject.org/centos7-queens/consistent/versions.csv
 QUEENS_RDO_URL=http://trunk.rdoproject.org/centos7-queens/current-tripleo-rdo/versions.csv
 QUEENS_TRIPLEO_URL=https://trunk.rdoproject.org/centos7-queens/current-tripleo/versions.csv
+ROCKY_CONSISTENT_URL=http://trunk.rdoproject.org/centos7-rocky/consistent/versions.csv
+ROCKY_RDO_URL=http://trunk.rdoproject.org/centos7-rocky/current-tripleo-rdo/versions.csv
+ROCKY_TRIPLEO_URL=https://trunk.rdoproject.org/centos7-rocky/current-tripleo/versions.csv
 PERIODIC_CGI=http://tripleo.org/cgi-bin/cistatus-periodic.cgi
 
 send_to_dashboard() {
@@ -118,8 +121,9 @@ process_issues $OCAT_TRIPLEO_URL tripleopin-ocata $TRIPLEO_ISSUES U1ITy0cu 'Trip
 
 process_issues $PIKE_TRIPLEO_URL tripleopin-pike $TRIPLEO_ISSUES U1ITy0cu 'TripleoCI Promotion blocker+stable branch: pike' 'Critical CI Outage' 'CI Failing Jobs'
 
-# FIXME(jpena): this is not yet availabls
- process_issues $QUEENS_TRIPLEO_URL tripleopin-queens $TRIPLEO_ISSUES U1ITy0cu 'TripleoCI Promotion blocker+stable branch: queens' 'Critical CI Outage' 'CI Failing Jobs'
+process_issues $QUEENS_TRIPLEO_URL tripleopin-queens $TRIPLEO_ISSUES U1ITy0cu 'TripleoCI Promotion blocker+stable branch: queens' 'Critical CI Outage' 'CI Failing Jobs'
+
+process_issues $ROCKY_TRIPLEO_URL tripleopin-rocky $TRIPLEO_ISSUES U1ITy0cu 'TripleoCI Promotion blocker+stable branch: rocky' 'Critical CI Outage' 'CI Failing Jobs'
 
 # process delorean
 
@@ -127,6 +131,7 @@ get_max_ts $CONSISTENT_URL delorean
 get_max_ts $OCAT_CONSISTENT_URL deloreanocata
 get_max_ts $PIKE_CONSISTENT_URL deloreanpike
 get_max_ts $QUEENS_CONSISTENT_URL deloreanqueens
+get_max_ts $ROCKY_CONSISTENT_URL deloreanrocky
 
 # process the deloreanci
 
@@ -134,5 +139,6 @@ process_issues $RDO_URL deloreanci "$TRIPLEO_ISSUES?menu=filter&filter=label:mas
 process_issues $OCAT_RDO_URL deloreanciocata "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A ocata,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: ocata' 'Critical CI Outage' 'CI Failing Jobs'
 process_issues $PIKE_RDO_URL deloreancipike "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A pike,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: pik' 'Critical CI Outage' 'CI Failing Jobs'
 process_issues $QUEENS_RDO_URL deloreanciqueens "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A queens,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: queens' 'Critical CI Outage' 'CI Failing Jobs'
+process_issues $ROCKY_RDO_URL deloreancirocky "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A rocky,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: rocky' 'Critical CI Outage' 'CI Failing Jobs'
 
 # feed-dashboard.sh ends here
