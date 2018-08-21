@@ -18,13 +18,14 @@ set -e
 
 DIR=$(cd $(dirname $0); pwd)
 
-if [ $# != 2 ]; then
-    echo "Usage: $0 <dashboard url> <token>" 1>&2
+if [ $# != 1 ]; then
+    echo "Usage: $0 <dashboard url>" 1>&2
     exit 1
 fi
 
 WIDGETS_URL="$1/widgets"
-TOKEN="$2"
+TOKEN_FILE='/tmp/rdo-dashboards.conf'
+TOKEN=$(grep auth_token ${TOKEN_FILE} | cut -f2 -d:  | awk '{print $1}')
 
 CURRENT_URL=http://trunk.rdoproject.org/centos7/current/versions.csv
 CONSISTENT_URL=http://trunk.rdoproject.org/centos7/consistent/versions.csv

@@ -157,5 +157,12 @@ Point your favorite browser at: http://localhost:3030
 - Add a crontab launching:
 
 ```bash
-    ./feed-dashboard.sh <dashboard url> <token>
+    ./feed-dashboard.sh <dashboard url>
+```
+
+A file named /etc/rdo-dashboards.conf is expected to be present. This file must be in YAML format, and provide the token like this:
+
+```yaml
+---
+auth_token: "token"
 ```
