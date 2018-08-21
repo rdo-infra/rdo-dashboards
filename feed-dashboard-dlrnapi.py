@@ -29,11 +29,13 @@ from pprint import pprint
 import json
 import requests
 from urllib import urlopen
+import yaml
 
 import dlrnapi_client
 from dlrnapi_client.rest import ApiException
 
 ##################################################
+TOKEN_FILE='/etc/rdo-dashboards.conf'
 
 parser = argparse.ArgumentParser(description="display promotion status for RDO releases.  Pike is the default release.",
                                  formatter_class=lambda prog: argparse.HelpFormatter(prog, max_help_position=25,width=180))
@@ -45,6 +47,11 @@ args = parser.parse_args()
 
 if not args.dashboard:
     args.dashboard = 'http://localhost:3030'
+
+with open(TOKEN_FILE, 'r') as fp:
+    yaml_file = yaml.safe_load(fp)
+
+AUTH_TOKEN = yaml_file['auth_token']
 
 ##################################################
 
@@ -142,11 +149,13 @@ def update_dashboard_promotion_tile(dashurl, release, promote_name):
             lastmod_ts_str = lastmod_ts.strftime("%Y-%m-%d %H:%M")
 
         # TODO: pull out auth token in a better way
-        postdata = { "auth_token": "YOUR_AUTH_TOKEN",
+        postdata = { "auth_token": AUTH_TOKEN,
                      "hash_id": hash_id,
                      "delorean_url": delorean_url,
                      "promote_ts": promote_ts.strftime("%Y-%m-%d %H:%M"),
                      "lastmod_ts": lastmod_ts_str}
+
+        print(postdata)
 
         json_payload = json.dumps(postdata)
 
@@ -190,8 +199,10 @@ def update_dashboard_promotion_activity(dashurl, release):
         items.append(item)
 
     # TODO: pull out auth token in a better way
-    postdata = {"auth_token": "YOUR_AUTH_TOKEN",
+    postdata = {"auth_token": AUTH_TOKEN,
                 "items": items}
+
+    print(postdata)
 
     widget_url = get_promoactivity_widget_url(dashurl, release)
     json_payload = json.dumps(postdata)
