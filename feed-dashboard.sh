@@ -24,8 +24,8 @@ if [ $# != 1 ]; then
 fi
 
 WIDGETS_URL="$1/widgets"
-TOKEN_FILE='/tmp/rdo-dashboards.conf'
-TOKEN=$(grep auth_token ${TOKEN_FILE} | cut -f2 -d:  | awk '{print $1}')
+TOKEN_FILE='/etc/rdo-dashboards.conf'
+TOKEN=$(grep auth_token ${TOKEN_FILE} | cut -f2 -d:  | awk '{print $1}' | tr -d '"')
 
 CURRENT_URL=http://trunk.rdoproject.org/centos7/current/versions.csv
 CONSISTENT_URL=http://trunk.rdoproject.org/centos7/consistent/versions.csv
