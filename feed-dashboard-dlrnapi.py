@@ -72,10 +72,10 @@ def get_shorthash_from_commit_distro(commit, distro):
 #
 #
 map_version_to_endpoint = {'master'  : 'https://trunk.rdoproject.org/api-centos-master-uc',
+                           'stein'  : 'https://trunk.rdoproject.org/api-centos-stein',
                            'rocky'  : 'https://trunk.rdoproject.org/api-centos-rocky',
                            'queens'  : 'https://trunk.rdoproject.org/api-centos-queens',
-                           'pike'    : 'https://trunk.rdoproject.org/api-centos-pike',
-                           'ocata'   : 'https://trunk.rdoproject.org/api-centos-ocata'}
+                           'pike'    : 'https://trunk.rdoproject.org/api-centos-pike'}
 
 def get_endpoint(release):
     return map_version_to_endpoint[release]
@@ -223,6 +223,8 @@ def update_dashboard(dashboard, release):
 # update dashboards from delorean api
 #####
 update_dashboard(args.dashboard, 'master')
+update_dashboard(args.dashboard, 'stein')
+update_dashboard(args.dashboard, 'rocky')
 update_dashboard(args.dashboard, 'queens')
 update_dashboard(args.dashboard, 'pike')
 update_dashboard(args.dashboard, 'ocata')
