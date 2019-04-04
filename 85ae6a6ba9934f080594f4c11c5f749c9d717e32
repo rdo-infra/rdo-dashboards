@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d28bd323_2013a3d2",
+        "filename": "dashboards/rocky.erb",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2019-04-04T07:42:43Z",
+      "side": 1,
+      "message": "here too",
+      "range": {
+        "startLine": 21,
+        "startChar": 45,
+        "endLine": 21,
+        "endChar": 56
+      },
+      "revId": "85ae6a6ba9934f080594f4c11c5f749c9d717e32",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "4ee06acd_ef1e82ae",
+        "filename": "dashboards/rocky.erb",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2019-04-04T07:42:43Z",
+      "side": 1,
+      "message": "i think we can get rid of phase2, as this pipeline is not running for a while, and CI team is moving those baremetal jobs in current-tripleo promotion itself.\ncan be done in a follow up review for all realeases.",
+      "range": {
+        "startLine": 34,
+        "startChar": 4,
+        "endLine": 37,
+        "endChar": 9
+      },
+      "revId": "85ae6a6ba9934f080594f4c11c5f749c9d717e32",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "325b8b26_0fac6264",
+        "filename": "feed-dashboard-dlrnapi.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2019-04-04T07:42:43Z",
+      "side": 1,
+      "message": "need to remove here also.",
+      "range": {
+        "startLine": 230,
+        "startChar": 0,
+        "endLine": 230,
+        "endChar": 41
+      },
+      "revId": "85ae6a6ba9934f080594f4c11c5f749c9d717e32",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
