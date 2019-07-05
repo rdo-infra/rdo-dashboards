@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7e9cd110_176c9ecf",
+        "filename": "dashboards/rdo-dev.erb",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2019-07-05T06:49:27Z",
+      "side": 1,
+      "message": "can we add Train-2 milestone",
+      "revId": "2fc1618c7dd4d276bb8ad75406c4b202ef52c7af",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
