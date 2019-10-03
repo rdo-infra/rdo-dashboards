@@ -32,9 +32,6 @@ CONSISTENT_URL=http://trunk.rdoproject.org/centos7/consistent/versions.csv
 TRIPLEO_URL=http://trunk.rdoproject.org/centos7/current-tripleo/versions.csv
 TRIPLEO_ISSUES=https://trello.com/b/U1ITy0cu/tripleo-and-rdo-ci
 RDO_URL=http://trunk.rdoproject.org/centos7/current-passed-ci/versions.csv
-PIKE_CONSISTENT_URL=http://trunk.rdoproject.org/centos7-pike/consistent/versions.csv
-PIKE_RDO_URL=http://trunk.rdoproject.org/centos7-pike/current-tripleo-rdo/versions.csv
-PIKE_TRIPLEO_URL=https://trunk.rdoproject.org/centos7-pike/current-tripleo/versions.csv
 QUEENS_CONSISTENT_URL=http://trunk.rdoproject.org/centos7-queens/consistent/versions.csv
 QUEENS_RDO_URL=http://trunk.rdoproject.org/centos7-queens/current-tripleo-rdo/versions.csv
 QUEENS_TRIPLEO_URL=https://trunk.rdoproject.org/centos7-queens/current-tripleo/versions.csv
@@ -44,6 +41,9 @@ ROCKY_TRIPLEO_URL=https://trunk.rdoproject.org/centos7-rocky/current-tripleo/ver
 STEIN_CONSISTENT_URL=http://trunk.rdoproject.org/centos7-stein/consistent/versions.csv
 STEIN_RDO_URL=http://trunk.rdoproject.org/centos7-stein/current-tripleo-rdo/versions.csv
 STEIN_TRIPLEO_URL=https://trunk.rdoproject.org/centos7-stein/current-tripleo/versions.csv
+TRAIN_CONSISTENT_URL=http://trunk.rdoproject.org/centos7-train/consistent/versions.csv
+TRAIN_RDO_URL=http://trunk.rdoproject.org/centos7-train/current-tripleo-rdo/versions.csv
+TRAIN_TRIPLEO_URL=https://trunk.rdoproject.org/centos7-train/current-tripleo/versions.csv
 PERIODIC_CGI=http://tripleo.org/cgi-bin/cistatus-periodic.cgi
 
 send_to_dashboard() {
@@ -118,28 +118,28 @@ get_max_ts https://trunk.rdoproject.org/centos7-master/puppet-passed-ci/versions
 
 process_issues $TRIPLEO_URL tripleopin $TRIPLEO_ISSUES U1ITy0cu 'TripleoCI Promotion blocker+master' 'Critical CI Outage' 'CI Failing Jobs'
 
-process_issues $PIKE_TRIPLEO_URL tripleopin-pike $TRIPLEO_ISSUES U1ITy0cu 'TripleoCI Promotion blocker+stable branch: pike' 'Critical CI Outage' 'CI Failing Jobs'
-
 process_issues $QUEENS_TRIPLEO_URL tripleopin-queens $TRIPLEO_ISSUES U1ITy0cu 'TripleoCI Promotion blocker+stable branch: queens' 'Critical CI Outage' 'CI Failing Jobs'
 
 process_issues $ROCKY_TRIPLEO_URL tripleopin-rocky $TRIPLEO_ISSUES U1ITy0cu 'TripleoCI Promotion blocker+stable branch: rocky' 'Critical CI Outage' 'CI Failing Jobs'
 
 process_issues $STEIN_TRIPLEO_URL tripleopin-stein $TRIPLEO_ISSUES U1ITy0cu 'TripleoCI Promotion blocker+stable branch: stein' 'Critical CI Outage' 'CI Failing Jobs'
 
+process_issues $TRAIN_TRIPLEO_URL tripleopin-train $TRIPLEO_ISSUES U1ITy0cu 'TripleoCI Promotion blocker+stable branch: train' 'Critical CI Outage' 'CI Failing Jobs'
+
 # process delorean
 
 get_max_ts $CONSISTENT_URL delorean
-get_max_ts $PIKE_CONSISTENT_URL deloreanpike
 get_max_ts $QUEENS_CONSISTENT_URL deloreanqueens
 get_max_ts $ROCKY_CONSISTENT_URL deloreanrocky
 get_max_ts $STEIN_CONSISTENT_URL deloreanstein
+get_max_ts $TRAIN_CONSISTENT_URL deloreantrain
 
 # process the deloreanci
 
 process_issues $RDO_URL deloreanci "$TRIPLEO_ISSUES?menu=filter&filter=label:master,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+master' 'Critical CI Outage' 'CI Failing Jobs'
-process_issues $PIKE_RDO_URL deloreancipike "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A pike,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: pike' 'Critical CI Outage' 'CI Failing Jobs'
 process_issues $QUEENS_RDO_URL deloreanciqueens "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A queens,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: queens' 'Critical CI Outage' 'CI Failing Jobs'
 process_issues $ROCKY_RDO_URL deloreancirocky "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A rocky,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: rocky' 'Critical CI Outage' 'CI Failing Jobs'
 process_issues $STEIN_RDO_URL deloreancistein "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A stein,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: stein' 'Critical CI Outage' 'CI Failing Jobs'
+process_issues $TRAIN_RDO_URL deloreancitrain "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A train,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: train' 'Critical CI Outage' 'CI Failing Jobs'
 
 # feed-dashboard.sh ends here
