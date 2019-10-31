@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5bdf66fa_e5594e4f",
+        "filename": "dashboards/rdo-dev.erb",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 586
+      },
+      "writtenOn": "2019-10-31T12:31:39Z",
+      "side": 1,
+      "message": "nit: except for the final release, the milestones are on Thursday of the week.  But I don\u0027t think there\u0027s a particular time, except \"the latest a release core is around to approve releases\", which means we\u0027re taking a guess here anyway ... so only change this if you feel like putting up another patch set.  The key thing is that it will be nice to have U-1 noted on the tile!",
+      "range": {
+        "startLine": 48,
+        "startChar": 75,
+        "endLine": 48,
+        "endChar": 110
+      },
+      "revId": "bce400f474728c592287dbf47208cadad53ccf2c",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
