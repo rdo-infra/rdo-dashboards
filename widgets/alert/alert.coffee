@@ -13,3 +13,9 @@ class Dashing.Alert extends Dashing.Widget
 
   @accessor 'isHigh', ->
     @get('value') > 1 && @get('value') <= 3
+
+  @accessor 'isTooHighForOld', ->
+    @get('value') > 7
+
+  @accessor 'isHighForOld', ->
+    @get('value') > 1 && @get('value') <= 7
