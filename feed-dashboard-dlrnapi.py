@@ -27,6 +27,7 @@ from datetime import datetime
 import time
 from pprint import pprint
 import json
+import re
 import requests
 from urllib import urlopen
 import yaml
@@ -55,23 +56,10 @@ AUTH_TOKEN = yaml_file['auth_token']
 
 ##################################################
 
-
-#
-# TODO: Propose API change.  This should not be something clients of dlrnapi need to codify.  It's beyond fragile.
-#
-def get_url_from_commit_distro(commit, distro, base_url):
-    if base_url[-1] != '/':
-        base_url += '/'
-    return (base_url + commit[0:2] + '/' + commit[2:4] + '/' + commit + '_' + distro[:8])
-
-def get_shorthash_from_commit_distro(commit, distro):
-    return (commit + '_' + distro[:8])
-
-
 #
 #
 #
-map_version_to_endpoint = {'master'  : 'https://trunk.rdoproject.org/api-centos-master-uc',
+map_version_to_endpoint = {'master'  : 'https://trunk.rdoproject.org/api-centos8-master-uc',
                            'train'  : 'https://trunk.rdoproject.org/api-centos-train',
                            'stein'  : 'https://trunk.rdoproject.org/api-centos-stein',
                            'rocky'  : 'https://trunk.rdoproject.org/api-centos-rocky',
@@ -84,8 +72,7 @@ def get_endpoint(release):
 def get_promotext_widget_url(dashurl, release, promote_name):
 
     map_name_to_widget = {'current-tripleo'              : 'promotext_%s_ooo'  % release,
-                          'current-tripleo-rdo'          : 'promotext_%s_rdo1' % release,
-                          'current-tripleo-rdo-internal' : 'promotext_%s_rdo2' % release}
+                          'current-tripleo-rdo'          : 'promotext_%s_rdo1' % release}
 
     widget = map_name_to_widget[promote_name]
     url = "%s/widgets/%s" % (dashurl, widget)
@@ -129,10 +116,16 @@ def update_dashboard_promotion_tile(dashurl, release, promote_name):
 
         promote_ts = datetime.fromtimestamp(promo.timestamp)
 
-        # RFE: Propose API change.  This is also needlessly forcing clients of the API to understand RDO infra.
-        dlrn_base_url = "https://trunk.rdoproject.org/centos7-%s" % release
-        delorean_url = get_url_from_commit_distro(promo.commit_hash, promo.distro_hash, dlrn_base_url)
-        hash_id = get_shorthash_from_commit_distro(promo.commit_hash, promo.distro_hash)
+        delorean_url = promo.repo_url
+        hash_id = promo.repo_hash
+
+        # Handle aggregate hash for CentOS8 component based repos
+        agg_hash = promo.aggregate_hash
+        if agg_hash:
+            base_url = re.match("(.*)component", delorean_url).group(1)
+            hash_url = "%s/%s/%s" % (agg_hash[0:2], agg_hash[2:4], agg_hash)
+            delorean_url = "%s%s/%s" % (base_url, promote_name, hash_url)
+            hash_id = agg_hash
 
         widget_url = get_promotext_widget_url(dashurl, release, promote_name)
 
@@ -184,14 +177,16 @@ def update_dashboard_promotion_activity(dashurl, release):
 
         ts = datetime.fromtimestamp(promo.timestamp)
 
-        # RFE: Propose API change.  This is also needlessly forcing clients of the API to understand RDO infra.
-        dlrn_base_url = "https://trunk.rdoproject.org/centos7-%s" % release
-        delorean_url = get_url_from_commit_distro(promo.commit_hash, promo.distro_hash, dlrn_base_url)
-        hash_id = get_shorthash_from_commit_distro(promo.commit_hash, promo.distro_hash)
+        delorean_url = promo.repo_url
+        hash_id = promo.repo_hash
+
+        # Handle aggregate hash for CentOS8 component based repos
+        if promo.aggregate_hash:
+            hash_id = promo.aggregate_hash
 
         # TODO: pass thru delorean_url and make a link within the <li>
 
-        #  ts: val,  ts := "2017-05-04 09:00",  val := "01234567 (current-tripleo-rdo-internal)"
+        #  ts: val,  ts := "2017-05-04 09:00",  val := "01234567 (current-tripleo-rdo)"
         item = { "label": ts.strftime("%Y-%m-%d %H:%M"), "value": '%s %s' % (promo.promote_name, hash_id)}
 
         items.append(item)
@@ -215,7 +210,6 @@ def update_dashboard_promotion_activity(dashurl, release):
 def update_dashboard(dashboard, release):
     update_dashboard_promotion_tile(dashboard, release, 'current-tripleo')
     update_dashboard_promotion_tile(dashboard, release, 'current-tripleo-rdo')
-    update_dashboard_promotion_tile(dashboard, release, 'current-tripleo-rdo-internal')
 
     update_dashboard_promotion_activity(dashboard, release)
 
