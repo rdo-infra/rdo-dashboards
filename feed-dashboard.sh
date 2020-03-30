@@ -27,11 +27,11 @@ WIDGETS_URL="$1/widgets"
 TOKEN_FILE='/etc/rdo-dashboards.conf'
 TOKEN=$(grep auth_token ${TOKEN_FILE} | cut -f2 -d:  | awk '{print $1}' | tr -d '"')
 
-CURRENT_URL=http://trunk.rdoproject.org/centos7/current/versions.csv
-CONSISTENT_URL=http://trunk.rdoproject.org/centos7/consistent/versions.csv
-TRIPLEO_URL=http://trunk.rdoproject.org/centos7/current-tripleo/versions.csv
+CURRENT_URL=http://trunk.rdoproject.org/centos8/current/versions.csv
+CONSISTENT_URL=http://trunk.rdoproject.org/centos8/consistent/versions.csv
+TRIPLEO_URL=http://trunk.rdoproject.org/centos8/current-tripleo/versions.csv
 TRIPLEO_ISSUES=https://trello.com/b/U1ITy0cu/tripleo-and-rdo-ci
-RDO_URL=http://trunk.rdoproject.org/centos7/current-passed-ci/versions.csv
+RDO_URL=http://trunk.rdoproject.org/centos8/current-passed-ci/versions.csv
 QUEENS_CONSISTENT_URL=http://trunk.rdoproject.org/centos7-queens/consistent/versions.csv
 QUEENS_RDO_URL=http://trunk.rdoproject.org/centos7-queens/current-tripleo-rdo/versions.csv
 QUEENS_TRIPLEO_URL=https://trunk.rdoproject.org/centos7-queens/current-tripleo/versions.csv
@@ -106,7 +106,7 @@ min=$(date '+%s')
 now=$min
 
 # process puppetci
-get_max_ts https://trunk.rdoproject.org/centos7-master/puppet-passed-ci/versions.csv puppetci
+get_max_ts https://trunk.rdoproject.org/centos8-master/puppet-passed-ci/versions.csv puppetci
 
 # process tripleoci
 
