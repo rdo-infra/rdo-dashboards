@@ -27,7 +27,7 @@ WIDGETS_URL="$1/widgets"
 TOKEN_FILE='/etc/rdo-dashboards.conf'
 TOKEN=$(grep auth_token ${TOKEN_FILE} | cut -f2 -d:  | awk '{print $1}' | tr -d '"')
 
-CURRENT_URL=http://trunk.rdoproject.org/centos8/current/versions.csv
+CURRENT_URL=http://trunk.rdoproject.org/centos8-master/current/delorean.repo
 CONSISTENT_URL=http://trunk.rdoproject.org/centos8/consistent/versions.csv
 TRIPLEO_URL=http://trunk.rdoproject.org/centos8/current-tripleo/versions.csv
 TRIPLEO_ISSUES=https://trello.com/b/U1ITy0cu/tripleo-and-rdo-ci
@@ -44,10 +44,25 @@ STEIN_TRIPLEO_URL=https://trunk.rdoproject.org/centos7-stein/current-tripleo/ver
 TRAIN_CONSISTENT_URL=http://trunk.rdoproject.org/centos7-train/consistent/versions.csv
 TRAIN_RDO_URL=http://trunk.rdoproject.org/centos7-train/current-tripleo-rdo/versions.csv
 TRAIN_TRIPLEO_URL=https://trunk.rdoproject.org/centos7-train/current-tripleo/versions.csv
+USSURI_CURRENT_URL=http://trunk.rdoproject.org/centos8-ussuri/current/delorean.repo
+USSURI_RDO_URL=http://trunk.rdoproject.org/centos7-train/current-tripleo-rdo/versions.csv
+USSURI_TRIPLEO_URL=https://trunk.rdoproject.org/centos7-train/current-tripleo/versions.csv
 PERIODIC_CGI=http://tripleo.org/cgi-bin/cistatus-periodic.cgi
 
 send_to_dashboard() {
+    set -x
     curl -s -d "{ \"auth_token\": \"$TOKEN\", \"value\": $2 $3 }" $WIDGETS_URL/$1
+    set +x
+}
+
+send_comps_to_dashboard() {
+    set -x
+    if [ -z "$3" ]; then
+        curl -s -d "{ \"auth_token\": \"$TOKEN\", \"value\": $2, \"moreinfo\": \"No FTBFS\" }" $WIDGETS_URL/$1
+    else
+        curl -s -d "{ \"auth_token\": \"$TOKEN\", \"value\": $2, \"moreinfo\": \"FTBFS in: $3\" }" $WIDGETS_URL/$1
+    fi
+    set +x
 }
 
 get_max_ts() {
@@ -72,6 +87,53 @@ get_max_ts() {
 
         echo "$url -> never" 1>&2
     fi
+}
+
+get_ftbfs() {
+    url=$1
+    FTBFS=$(curl -s -L $url |grep -c -v -e "^Project" -e SUCCESS)
+    echo $FTBFS
+}
+
+get_days_first_failure() {
+    url=$1
+    ts=$now
+    for line in $(curl -s -L $url | grep -v -e SUCCESS -e ^Project); do
+        val="$(echo $line|cut -d, -f7)"
+        if [[ "$val" =~ ^[0-9]+$ ]] && [[ "$val" -lt "$ts" ]]; then
+            ts=$val
+        fi
+    done
+
+    if [ $ts != $now ]; then
+        days=$(( ( $now - $ts ) / (24 * 3600) ))
+        echo $days
+    else
+       echo 1000
+    fi
+}
+
+get_components_max_ts() {
+    url=$1
+    widget=$2
+
+    ts=0
+    failed_comps=""
+    for repo in $(curl -s -L $url |grep baseurl|sed 's/baseurl=//g')
+    do
+        component=$(echo $repo|awk -F "component/" '{print $2}'|awk -F '/' '{print $1}')
+        ftbfs=$(get_ftbfs ${repo}/versions.csv)
+        if [ $ftbfs -ne 0 ]; then
+            val=$(get_days_first_failure ${repo}/versions.csv)
+            if [[ "$val" =~ ^[0-9]+$ ]] && [[ "$val" -gt "$ts" ]]; then
+                ts=$val
+            fi
+            failed_comps="$failed_comps $component"
+        fi
+    done
+
+    send_comps_to_dashboard $widget $ts "$failed_comps"
+
 }
 
 process_issues() {
@@ -126,9 +188,12 @@ process_issues $STEIN_TRIPLEO_URL tripleopin-stein $TRIPLEO_ISSUES U1ITy0cu 'Tri
 
 process_issues $TRAIN_TRIPLEO_URL tripleopin-train $TRIPLEO_ISSUES U1ITy0cu 'TripleoCI Promotion blocker+stable branch: train' 'Critical CI Outage' 'CI Failing Jobs'
 
+process_issues $USSURI_TRIPLEO_URL tripleopin-ussuri $TRIPLEO_ISSUES U1ITy0cu 'TripleoCI Promotion blocker+stable branch: ussuri' 'Critical CI Outage' 'CI Failing Jobs'
+
 # process delorean
 
-get_max_ts $CONSISTENT_URL delorean
+get_components_max_ts $CURRENT_URL delorean
+get_components_max_ts $USSURI_CURRENT_URL deloreanussuri
 get_max_ts $QUEENS_CONSISTENT_URL deloreanqueens
 get_max_ts $ROCKY_CONSISTENT_URL deloreanrocky
 get_max_ts $STEIN_CONSISTENT_URL deloreanstein
@@ -141,5 +206,6 @@ process_issues $QUEENS_RDO_URL deloreanciqueens "$TRIPLEO_ISSUES?menu=filter&fil
 process_issues $ROCKY_RDO_URL deloreancirocky "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A rocky,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: rocky' 'Critical CI Outage' 'CI Failing Jobs'
 process_issues $STEIN_RDO_URL deloreancistein "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A stein,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: stein' 'Critical CI Outage' 'CI Failing Jobs'
 process_issues $TRAIN_RDO_URL deloreancitrain "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A train,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: train' 'Critical CI Outage' 'CI Failing Jobs'
+process_issues $USSURI_RDO_URL deloreanciussuri "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A ussuri,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: ussuri' 'Critical CI Outage' 'CI Failing Jobs'
 
 # feed-dashboard.sh ends here
