@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "641cb8b1_c22e5568",
+        "filename": "feed-dashboard.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2020-06-16T10:52:13Z",
+      "side": 1,
+      "message": "centos8-ussuri",
+      "range": {
+        "startLine": 48,
+        "startChar": 43,
+        "endLine": 48,
+        "endChar": 56
+      },
+      "revId": "a8921805b7645e914a539b49583b32b8b785ef04",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "89add36f_ae59d0d9",
+        "filename": "feed-dashboard.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2020-06-16T10:52:13Z",
+      "side": 1,
+      "message": "centos8-ussuri",
+      "range": {
+        "startLine": 49,
+        "startChar": 48,
+        "endLine": 49,
+        "endChar": 61
+      },
+      "revId": "a8921805b7645e914a539b49583b32b8b785ef04",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
