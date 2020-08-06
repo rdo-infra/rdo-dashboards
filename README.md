@@ -64,7 +64,7 @@ This has been tested on Fedora 27 and RHEL 7.4
 
 ```bash
 sudo dnf groupinstall 'Development Tools'
-sudo dnf install git ruby ruby-devel rubygem-json nodejs gcc-c++
+sudo dnf install git ruby ruby-devel rubygem-json nodejs gcc-c++ python2-dnf python2-koji
 gem install --user-install bundler
 gem install --user-install dashing
 ```

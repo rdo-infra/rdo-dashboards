@@ -5,3 +5,5 @@ Gemfile.lock
 feed-dashboard.log
 .venv-dlrnapi/
 .idea/
+.venv-publish-report-uc/
+publish-report-uc.log
