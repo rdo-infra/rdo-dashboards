@@ -86,6 +86,30 @@
       "revId": "ec02cc8913e5e0a1f20f81e8951262843981857d",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da80e256_acf1b99b",
+        "filename": "setup-publish-report-uc-venv.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2020-08-27T14:18:48Z",
+      "side": 1,
+      "message": "So checked, dashboards.rdoproject.org is CentOS7.8, so need to make the scripts here and releng/scripts/report-uc.py python2 compatible until we port it to CentOS8.\n\nNeed to install python2-dnf and python2-koji on host.\n\n/me will push changes to both.",
+      "parentUuid": "9c952c6e_e06bc194",
+      "range": {
+        "startLine": 5,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 76
+      },
+      "revId": "ec02cc8913e5e0a1f20f81e8951262843981857d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
     }
   ]
 }
