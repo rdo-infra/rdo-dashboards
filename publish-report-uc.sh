@@ -26,5 +26,11 @@ export PYTHONPATH="${PYTHONPATH}:${HOME}/releng/scripts"
 echo "PYTHONPATH='${PYTHONPATH}'"
 
 echo ""
+echo "*** load the authentication token"
+TOKEN_FILE='/etc/rdo-dashboards.conf'
+TOKEN=$(grep auth_token ${TOKEN_FILE} | cut -f2 -d:  | awk '{print $1}' | tr -d '"')
+sed -i "s/YOUR_AUTH_TOKEN/${TOKEN}/g" publish-report-uc.py
+
+echo ""
 echo "*** publishing report-uc table"
 ./publish-report-uc.py

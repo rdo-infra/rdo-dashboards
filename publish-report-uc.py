@@ -8,13 +8,22 @@ repos_url = ['https://trunk.rdoproject.org/centos8-master/current/delorean.repo'
              'https://trunk.rdoproject.org/centos8-master/delorean-deps.repo']
 
 rows = []
+filtered_uc = {}
 for uc in report.provides_uc('master', 'centos8', repos_url, [], None,
                              '', 'cbs'):
+    try:
+        if uc.pkg_name == '':
+            continue
+        if uc.pkg_version > filtered_uc[uc.pkg_name]:
+            filtered_uc[uc.pkg_name] = uc
+    except:
+        filtered_uc[uc.pkg_name] = uc
+
+for uc in filtered_uc.values():
     _row = {}
     _row["cols"] = []
-    if uc.pkg_name != '':
-        for data in uc.to_list():
-            _row["cols"].append({"value": data})
+    for data in uc.to_list():
+        _row["cols"].append({"value": data})
     rows.append(_row)
 
 hrows = [{"cols":[{"value":'Release'},
