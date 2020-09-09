@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "980fc1bf_aeecb3e1",
+        "filename": "publish-report-uc.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 635
+      },
+      "writtenOn": "2020-09-09T09:07:04Z",
+      "side": 1,
+      "message": "I fixed this and added a control in the python script.",
+      "parentUuid": "c1fa73fe_4c826de6",
+      "revId": "ec50774a7f4b2c53ddd65de7afd15923e09455d8",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "8abba162_98773999",
         "filename": "publish-report-uc.sh",
         "patchSetId": 4
@@ -47,6 +65,24 @@
       "writtenOn": "2020-09-09T08:09:03Z",
       "side": 1,
       "message": "+1",
+      "parentUuid": "8abba162_98773999",
+      "revId": "ec50774a7f4b2c53ddd65de7afd15923e09455d8",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "b0b7668d_817aa3a1",
+        "filename": "publish-report-uc.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 635
+      },
+      "writtenOn": "2020-09-09T09:07:04Z",
+      "side": 1,
+      "message": "Yeah sure, this is a bad hack, i fixed this in PS5",
       "parentUuid": "8abba162_98773999",
       "revId": "ec50774a7f4b2c53ddd65de7afd15923e09455d8",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
