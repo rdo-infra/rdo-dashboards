@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8abba162_98773999",
+        "filename": "publish-report-uc.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2020-09-09T08:06:24Z",
+      "side": 1,
+      "message": "it\u0027d be better to pass the toker as parameter to publish-report-uc.py script or something like that instead of editing the script itself.",
+      "revId": "ec50774a7f4b2c53ddd65de7afd15923e09455d8",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
