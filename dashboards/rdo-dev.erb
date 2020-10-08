@@ -3,7 +3,7 @@ $(function() {
   // These settings override the defaults set in application.coffee.
   // You can do this on a per dashboard basis.
   Dashing.widget_base_dimensions = [305, 305]
-  Dashing.numColumns = 7
+  Dashing.numColumns = 8
 });
 </script>
 
@@ -14,21 +14,24 @@ $(function() {
       <div data-id="delorean" data-view="Alert" data-title="Master Packaging" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days with a failed build" data-link="http://trunk.rdoproject.org/centos8/status_report.html"></div>
     </li>
     <li data-row="1" data-col="2" data-sizex="1" data-sizey="1">
-      <div data-id="deloreanussuri" data-view="Alert" data-title="Ussuri Packaging" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days with a failed build" data-link="http://trunk.rdoproject.org/centos8-ussuri/status_report.html"></div>
+      <div data-id="deloreanvictoria" data-view="Alert" data-title="Victoria Packaging" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days with a failed build" data-link="http://trunk.rdoproject.org/centos8-victoria/status_report.html"></div>
     </li>
     <li data-row="1" data-col="3" data-sizex="1" data-sizey="1">
-      <div data-id="deloreantrain" data-view="Alert" data-title="Train Packaging" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days with a failed build" data-link="http://trunk.rdoproject.org/centos7-train/status_report.html"></div>
+      <div data-id="deloreanussuri" data-view="Alert" data-title="Ussuri Packaging" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days with a failed build" data-link="http://trunk.rdoproject.org/centos8-ussuri/status_report.html"></div>
     </li>
     <li data-row="1" data-col="4" data-sizex="1" data-sizey="1">
-      <div data-id="deloreanstein" data-view="Alert" data-title="Stein Packaging" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days with a failed build" data-link="http://trunk.rdoproject.org/centos7-stein/status_report.html"></div>
+      <div data-id="deloreantrain" data-view="Alert" data-title="Train Packaging" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days with a failed build" data-link="http://trunk.rdoproject.org/centos7-train/status_report.html"></div>
     </li>
     <li data-row="1" data-col="5" data-sizex="1" data-sizey="1">
-      <div data-id="deloreanrocky" data-view="Alert" data-title="Rocky Packaging" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days with a failed build" data-link="http://trunk.rdoproject.org/centos7-rocky/status_report.html"></div>
+      <div data-id="deloreanstein" data-view="Alert" data-title="Stein Packaging" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days with a failed build" data-link="http://trunk.rdoproject.org/centos7-stein/status_report.html"></div>
     </li>
     <li data-row="1" data-col="6" data-sizex="1" data-sizey="1">
-      <div data-id="deloreanqueens" data-view="Alert" data-title="Queens Packaging" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days with a failed build" data-link="http://trunk.rdoproject.org/centos7-queens/status_report.html"></div>
+      <div data-id="deloreanrocky" data-view="Alert" data-title="Rocky Packaging" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days with a failed build" data-link="http://trunk.rdoproject.org/centos7-rocky/status_report.html"></div>
     </li>
     <li data-row="1" data-col="7" data-sizex="1" data-sizey="1">
+      <div data-id="deloreanqueens" data-view="Alert" data-title="Queens Packaging" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days with a failed build" data-link="http://trunk.rdoproject.org/centos7-queens/status_report.html"></div>
+    </li>
+    <li data-row="1" data-col="8" data-sizex="1" data-sizey="1">
       <div data-id="clock" data-view="Clock"></div>
     </li>
 
@@ -36,44 +39,49 @@ $(function() {
       <div data-id="deloreanci" data-view="Alert" data-title="Master RDO Promotion CI" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since successful run" data-link="https://ci.centos.org/view/rdo/view/promotion-pipeline/job/rdo_trunk-promote-master-current-tripleo/"></div>
     </li>
     <li data-row="2" data-col="2" data-sizex="1" data-sizey="1">
+      <div data-id="deloreancivictoria" data-view="Alert" data-title="Victoria RDO Promotion CI" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since successful run" data-link="https://ci.centos.org/view/rdo/view/promotion-pipeline/job/rdo_trunk-promote-victoria-current-tripleo/"></div>
+    <li data-row="2" data-col="3" data-sizex="1" data-sizey="1">
       <div data-id="deloreanciussuri" data-view="Alert" data-title="Ussuri RDO Promotion CI" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since successful run" data-link="https://ci.centos.org/view/rdo/view/promotion-pipeline/job/rdo_trunk-promote-ussuri-current-tripleo/"></div>
     </li>
-    <li data-row="2" data-col="3" data-sizex="1" data-sizey="1">
+    <li data-row="2" data-col="4" data-sizex="1" data-sizey="1">
       <div data-id="deloreancitrain" data-view="Alert" data-title="Train RDO Promotion CI" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since successful run" data-link="https://ci.centos.org/view/rdo/view/promotion-pipeline/job/rdo_trunk-promote-train-current-tripleo/"></div>
     </li>
-    <li data-row="2" data-col="4" data-sizex="1" data-sizey="1">
+    <li data-row="2" data-col="5" data-sizex="1" data-sizey="1">
       <div data-id="deloreancistein" data-view="Alert" data-title="Stein RDO Promotion CI" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since successful run" data-link="https://ci.centos.org/view/rdo/view/promotion-pipeline/job/rdo_trunk-promote-stein-current-tripleo/"></div>
     </li>
-    <li data-row="2" data-col="5" data-sizex="1" data-sizey="1">
+    <li data-row="2" data-col="6" data-sizex="1" data-sizey="1">
       <div data-id="deloreancirocky" data-view="Alert" data-title="Rocky RDO Promotion CI" data-addclass-danger="isTooHighForOld" data-addclass-alert="isHighForOld" data-suffix="d" data-moreinfo="# of days since successful run" data-link="https://ci.centos.org/view/rdo/view/promotion-pipeline/job/rdo_trunk-promote-rocky-current-tripleo/"></div>
     </li>
-    <li data-row="2" data-col="6" data-sizex="1" data-sizey="1">
+    <li data-row="2" data-col="7" data-sizex="1" data-sizey="1">
       <div data-id="deloreanciqueens" data-view="Alert" data-title="Queens RDO Promotion CI" data-addclass-danger="isTooHighForOld" data-addclass-alert="isHighForOld" data-suffix="d" data-moreinfo="# of days since successful run" data-link="https://ci.centos.org/view/rdo/view/promotion-pipeline/job/rdo_trunk-promote-queens-current-tripleo/"></div>
     </li>
-    <li data-row="2" data-col="7" data-sizex="1" data-sizey="1">
-      <div data-view="Countdown" data-title="Victoria RC1" data-end="Wed, 23 September 2020 12:00:00 UTC"></div>
+    <li data-row="2" data-col="8" data-sizex="1" data-sizey="1">
+      <div data-view="Countdown" data-title="Wallaby M1" data-end="Wed, 02 December 2020 12:00:00 UTC"></div>
     </li>
 
     <li data-row="3" data-col="1" data-sizex="1" data-sizey="1">
       <div data-id="tripleopin" data-view="Alert" data-title="Tripleo Pin Packages Master" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since pinning" data-link="http://cistatus.tripleo.org/"></div>
     </li>
     <li data-row="3" data-col="2" data-sizex="1" data-sizey="1">
-      <div data-id="tripleopin-ussuri" data-view="Alert" data-title="Tripleo Pin Packages Ussuri" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since pinning" data-link="http://cistatus.tripleo.org/"></div>
+      <div data-id="tripleopin-victoria" data-view="Alert" data-title="Tripleo Pin Packages Victoria" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since pinning" data-link="http://cistatus.tripleo.org/"></div>
     </li>
     <li data-row="3" data-col="3" data-sizex="1" data-sizey="1">
-      <div data-id="tripleopin-train" data-view="Alert" data-title="Tripleo Pin Packages Train" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since pinning" data-link="http://cistatus.tripleo.org/"></div>
+      <div data-id="tripleopin-ussuri" data-view="Alert" data-title="Tripleo Pin Packages Ussuri" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since pinning" data-link="http://cistatus.tripleo.org/"></div>
     </li>
     <li data-row="3" data-col="4" data-sizex="1" data-sizey="1">
-      <div data-id="tripleopin-stein" data-view="Alert" data-title="Tripleo Pin Packages Stein" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since pinning" data-link="http://cistatus.tripleo.org/"></div>
+      <div data-id="tripleopin-train" data-view="Alert" data-title="Tripleo Pin Packages Train" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since pinning" data-link="http://cistatus.tripleo.org/"></div>
     </li>
     <li data-row="3" data-col="5" data-sizex="1" data-sizey="1">
-      <div data-id="tripleopin-rocky" data-view="Alert" data-title="Tripleo Pin Packages Rocky" data-addclass-danger="isTooHighForOld" data-addclass-alert="isHighForOld" data-suffix="d" data-moreinfo="# of days since pinning" data-link="http://cistatus.tripleo.org/"></div>
+      <div data-id="tripleopin-stein" data-view="Alert" data-title="Tripleo Pin Packages Stein" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since pinning" data-link="http://cistatus.tripleo.org/"></div>
     </li>
     <li data-row="3" data-col="6" data-sizex="1" data-sizey="1">
+      <div data-id="tripleopin-rocky" data-view="Alert" data-title="Tripleo Pin Packages Rocky" data-addclass-danger="isTooHighForOld" data-addclass-alert="isHighForOld" data-suffix="d" data-moreinfo="# of days since pinning" data-link="http://cistatus.tripleo.org/"></div>
+    </li>
+    <li data-row="3" data-col="7" data-sizex="1" data-sizey="1">
       <div data-id="tripleopin-queens" data-view="Alert" data-title="Tripleo Pin Packages Queens" data-addclass-danger="isTooHighForOld" data-addclass-alert="isHighForOld" data-suffix="d" data-moreinfo="# of days since pinning" data-link="http://cistatus.tripleo.org/"></div>
     </li>
 
-    <li data-row="3" data-col="7" data-sizex="1" data-sizey="1">
+    <li data-row="3" data-col="8" data-sizex="1" data-sizey="1">
       <div data-id="puppetci" data-view="Alert" data-title="Puppet CI" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days behind master pkgs" data-link="https://review.openstack.org/#/q/status:open+project:openstack/puppet-openstack-integration+branch:master+topic:openstack/puppet/rdo"></div>
     </li>
   </ul>
