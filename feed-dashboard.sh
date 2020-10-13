@@ -143,7 +143,7 @@ process_issues() {
 
     case $issues_url in
         *trello.com*)
-            issues=$($DIR/count-trello-cards.py "$@")
+            issues=$($DIR/count-trello-cards.py "$@" 2>/dev/null)
             ;;
         *)
             issues=$(curl -s "$issues_url/export/txt" | egrep '^[0-9]+\.' | grep -Fvi '[fixed]' | wc -l)
