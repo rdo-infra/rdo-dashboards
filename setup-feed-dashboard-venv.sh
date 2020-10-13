@@ -27,7 +27,7 @@ rm -rf .venv-dlrnapi
 echo "*** Using virtualenv with '--no-site-packages' to avoid known centos/fedora/rhel packaging nrv depency issues"
 echo ""
 
-python2 -m virtualenv --no-site-packages .venv-dlrnapi
+python3 -m virtualenv --no-site-packages .venv-dlrnapi
 
 # enter the venv
 source .venv-dlrnapi/bin/activate

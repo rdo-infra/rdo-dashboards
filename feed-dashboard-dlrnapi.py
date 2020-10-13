@@ -29,7 +29,7 @@ from pprint import pprint
 import json
 import re
 import requests
-from urllib import urlopen
+from urllib.request import urlopen
 import yaml
 
 import dlrnapi_client
@@ -137,8 +137,8 @@ def update_dashboard_promotion_tile(dashurl, release, promote_name):
         lastmod_ts_str = "MISSING"
 
         if f.getcode() == 200:
-            lastmod = i.getdate('last-modified')
-            lastmod_ts = datetime.fromtimestamp(time.mktime(lastmod))
+            lastmod = f.getheader('Last-Modified')
+            lastmod_ts = datetime.strptime(lastmod, '%a, %d %b %Y %H:%M:%S %Z')
             lastmod_ts_str = lastmod_ts.strftime("%Y-%m-%d %H:%M")
 
         # TODO: pull out auth token in a better way
