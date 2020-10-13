@@ -58,13 +58,13 @@ Full URI: https://trunk.rdoproject.org/centos7-{release}/{commit[0:2]}/{commit[2
 
 # installation directions
 
-This has been tested on Fedora 27 and RHEL 7.4
+This has been tested on CentOS 8
 
 ##### Install dependencies needed to get rolling.
 
 ```bash
-sudo dnf groupinstall 'Development Tools'
-sudo dnf install git ruby ruby-devel rubygem-json nodejs gcc-c++ python2-dnf python2-koji
+sudo dnf install git ruby rubygem-bundler ruby-devel libxcrypt-devel openssl-devel nodejs gcc-c++ make redhat-rpm-config \
+    python3 python3-virtualenv python3-koji
 gem install --user-install bundler
 gem install --user-install dashing
 ```
@@ -75,6 +75,7 @@ gem install --user-install dashing
 git clone https://github.com/rdo-infra/rdo-dashboards
 cd rdo-dashboards
 bundle
+sudo gem pristine json --version 2.3.1
 ```
 
 ##### The output should look like the following.
@@ -154,10 +155,11 @@ Point your favorite browser at: http://localhost:3030
 # for the rdo-dev dashboard:
 
 - Copy config.ru.in to config.ru then add your secret token to config.ru.
-- Add a crontab launching:
+- Add crontab jobs launching:
 
 ```bash
     ./feed-dashboard.sh <dashboard url>
+    ./publish-report-uc.sh
 ```
 
 A file named /etc/rdo-dashboards.conf is expected to be present. This file must be in YAML format, and provide the token like this:
