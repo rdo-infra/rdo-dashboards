@@ -7,7 +7,7 @@ echo "*** obliterating and recreating virtualenv"
 echo ""
 echo "*** sourcing publish-report-uc venv"
 source .venv-publish-report-uc/bin/activate
-python_version=`python --version`
+python_version=`python3 --version`
 echo "python version: $python_version"
 
 echo ""
