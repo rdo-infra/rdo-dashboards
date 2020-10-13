@@ -58,15 +58,15 @@ Full URI: https://trunk.rdoproject.org/centos7-{release}/{commit[0:2]}/{commit[2
 
 # installation directions
 
-This has been tested on Fedora 27 and RHEL 7.4
+This has been tested on CentOS 8
 
 ##### Install dependencies needed to get rolling.
 
 ```bash
-sudo dnf groupinstall 'Development Tools'
-sudo dnf install git ruby ruby-devel rubygem-json nodejs gcc-c++ python2-dnf python2-koji
+sudo dnf install git ruby ruby-devel libxcrypt-devel openssl-devel nodejs gcc-c++ make redhat-rpm-config \
+    python3 python3-virtualenv python3-koji
 gem install --user-install bundler
-gem install --user-install dashing
+gem install --user-install dashing json
 ```
 
 ##### bundle (install ruby deps)
@@ -82,55 +82,35 @@ bundle
 _note: Don't panic!  The first time you bundle, there will be spam from gems being installed._
 
 ```bash
-[you@yourbox dlrnapi-dashboard] $ bundle
-The latest bundler is 1.16.0.pre.3, but you are currently running 1.16.0.pre.2.
-To install the latest version, run `gem install bundler --pre`
-Using public_suffix 3.0.0
-Using addressable 2.5.2
-Using backports 3.10.3
-Using buftok 0.2.0
-Using bundler 1.16.0.pre.2
+$ bundle
+Fetching gem metadata from https://rubygems.org/..............
+Fetching gem metadata from https://rubygems.org/.
+Resolving dependencies...
+Using backports 3.18.2
+Using bundler 2.1.4
 Using coffee-script-source 1.12.2
 Using execjs 2.0.2
 Using coffee-script 2.2.0
-Using daemons 1.2.5
-Using unf_ext 0.0.7.4
-Using unf 0.1.4
-Using domain_name 0.5.20170404
-Using equalizer 0.0.11
-Using ffi 1.9.18
-Using ethon 0.11.0
-Using eventmachine 1.2.5
-Using multipart-post 2.0.0
-Using faraday 0.11.0
-Using hike 1.2.3
-Using http-cookie 1.0.3
-Using http-form_data 1.0.3
-Using http_parser.rb 0.6.0
-Using http 2.2.2
-Using json 2.1.0
-Using thread_safe 0.3.6
-Using memoizable 0.4.2
-Using multi_json 1.12.2
-Using naught 1.1.0
+Using concurrent-ruby 1.1.7
+Using daemons 1.3.1
 Using rack 1.5.5
-Using rack-protection 1.5.3
-Using rack-test 0.7.0
-Using typhoeus 1.3.0
-Using ruby_dlrnapi 1.0.0 from https://github.com/halcyondude/ruby_dlrnapi.git (at master@ab830dc)
-Using tzinfo 1.2.3
+Using tzinfo 2.0.2
 Using rufus-scheduler 2.0.24
 Using sass 3.2.19
-Using simple_oauth 0.3.1
+Using rack-protection 1.5.5
 Using tilt 1.4.1
 Using sinatra 1.4.8
+Using multi_json 1.15.0
+Using rack-test 1.1.0
 Using sinatra-contrib 1.4.7
+Using hike 1.2.3
 Using sprockets 2.10.2
+Using eventmachine 1.2.7
 Using thin 1.6.4
-Using thor 0.20.0
-Using dashing 1.0.0
-Using twitter 6.1.0
-Bundle complete! 3 Gemfile dependencies, 45 gems now installed.
+Using thor 1.0.1
+Using dashing 1.3.7
+Using json 2.3.1
+Bundle complete! 2 Gemfile dependencies, 24 gems now installed.
 Use `bundle info [gemname]` to see where a bundled gem is installed.
 
 ```
@@ -154,10 +134,11 @@ Point your favorite browser at: http://localhost:3030
 # for the rdo-dev dashboard:
 
 - Copy config.ru.in to config.ru then add your secret token to config.ru.
-- Add a crontab launching:
+- Add crontab jobs launching:
 
 ```bash
     ./feed-dashboard.sh <dashboard url>
+    ./publish-report-uc.sh
 ```
 
 A file named /etc/rdo-dashboards.conf is expected to be present. This file must be in YAML format, and provide the token like this:

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # Copyright (C) 2017 Red Hat, Inc.
 #
@@ -56,7 +56,7 @@ def main(argv):
                 valid = True
         if valid:
             sum += 1
-    print sum
+    print(sum)
 
 
 if __name__ == "__main__":
