@@ -18,7 +18,7 @@
 # this script is intended to be called from the smashing ruby scheduler (like cron)
 # it is decoupled to allow for easy development iteration
 
-python_version=`python --version`
+python_version=`python3 --version`
 echo "python version: $python_version"
 
 echo ""
