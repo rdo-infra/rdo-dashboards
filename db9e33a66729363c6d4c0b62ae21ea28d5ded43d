@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "2dbf572a_d5b9819a",
+        "filename": "README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2020-10-28T07:02:41Z",
+      "side": 1,
+      "message": "python3-koji not available in CentOS8, so need to pull from epel.\n\ni used following to setup/test on a CentOS8 VM:-\n\nsudo dnf install -y git ruby ruby-devel libxcrypt-devel openssl-devel nodejs gcc-c++ make redhat-rpm-config python3 python3-virtualenv\n\nsudo dnf install epel-release -y\nsudo dnf config-manager --disable epel*\nsudo dnf install --enablerepo\u003depel python3-koji -y\n\ngem install --user-install bundler\ngem install --user-install dashing json\n\n\ngit clone https://github.com/rdo-infra/rdo-dashboards\npushd rdo-dashboards\ngit pull https://review.rdoproject.org/r/rdo-infra/rdo-dashboards refs/changes/41/30041/4\n\nbundle\n\nsudo tee -a /etc/rdo-dashboards.conf \u003c\u003c EOF\n---\nauth_token: YOUR_AUTH_TOKEN\nEOF\n\ncp config.ru.in config.ru\n\ndashing start",
+      "range": {
+        "startLine": 67,
+        "startChar": 31,
+        "endLine": 67,
+        "endChar": 43
+      },
+      "revId": "db9e33a66729363c6d4c0b62ae21ea28d5ded43d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "a29dbb02_91fada1b",
+        "filename": "README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2020-10-28T07:02:41Z",
+      "side": 1,
+      "message": "explicit cron shouldn\u0027t be needed as it\u0027s already being scheduled at https://github.com/rdo-infra/rdo-dashboards/blob/master/jobs/report-uc.rb#L17 like dlrnapi-feed-dashboard.",
+      "range": {
+        "startLine": 141,
+        "startChar": 5,
+        "endLine": 141,
+        "endChar": 26
+      },
+      "revId": "db9e33a66729363c6d4c0b62ae21ea28d5ded43d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
