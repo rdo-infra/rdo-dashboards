@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "912c09e0_da7725e9",
+        "filename": "README.md",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2020-11-25T12:00:13Z",
+      "side": 1,
+      "message": "epel is enabled by default in those servers so i\u0027ll add the step to install epel-release at the beginning.",
+      "parentUuid": "2dbf572a_d5b9819a",
+      "range": {
+        "startLine": 67,
+        "startChar": 31,
+        "endLine": 67,
+        "endChar": 43
+      },
+      "revId": "db9e33a66729363c6d4c0b62ae21ea28d5ded43d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "a29dbb02_91fada1b",
         "filename": "README.md",
         "patchSetId": 4
