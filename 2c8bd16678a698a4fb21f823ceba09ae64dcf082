@@ -52,6 +52,24 @@
       "revId": "2c8bd16678a698a4fb21f823ceba09ae64dcf082",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "4e4e63bd_c6c613f4",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2020-11-25T12:13:22Z",
+      "side": 1,
+      "message": "Look at newer PatchSets, finally I used:\n\ngem install --user-install bundler\ngem install --user-install dashing json\n\nIf updating bundler in user directory is a problem, i can test without it. TBH, I just keep it from current version, i didn\u0027t check with bundler from CentOS",
+      "parentUuid": "b0efcb55_2d609f2a",
+      "revId": "2c8bd16678a698a4fb21f823ceba09ae64dcf082",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
     }
   ]
 }
