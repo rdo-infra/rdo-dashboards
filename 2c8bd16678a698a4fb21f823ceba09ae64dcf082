@@ -34,6 +34,24 @@
       "revId": "2c8bd16678a698a4fb21f823ceba09ae64dcf082",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b0efcb55_2d609f2a",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 422
+      },
+      "writtenOn": "2020-11-25T12:06:05Z",
+      "side": 1,
+      "message": "Why not use the --path option instead (bundle install --path vendor/bundle) to be sure it\u0027s installed in the user directory?\n\nAlso do you really need a newer version of bundler that you install it manually?\n\nWe\u0027ve been managing this kind of deps for Jekyll websites at OSPO on EL7 (so much older version of bundler) and this was never needed.",
+      "parentUuid": "3a81843e_80a66490",
+      "revId": "2c8bd16678a698a4fb21f823ceba09ae64dcf082",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
     }
   ]
 }
