@@ -14,10 +14,10 @@ report = importlib.import_module('report-uc')
 repos_url = ['https://trunk.rdoproject.org/centos8-master/current/delorean.repo',
              'https://trunk.rdoproject.org/centos8-master/delorean-deps.repo']
 
-repos = ['BaseOS,http://mirror.regionone.rdo-cloud.rdoproject.org/centos/8/BaseOS/x86_64/os/',
-         'AppStream,http://mirror.regionone.rdo-cloud.rdoproject.org/centos/8/AppStream/x86_64/os/',
-         'extras,http://mirror.regionone.rdo-cloud.rdoproject.org/centos/8/extras/x86_64/os/',
-         'PowerTools,http://mirror.regionone.rdo-cloud.rdoproject.org/centos/8/PowerTools/x86_64/os/']
+repos = ['BaseOS,http://mirror.regionone.rdo-cloud.rdoproject.org/centos/8-stream/BaseOS/x86_64/os/',
+         'AppStream,http://mirror.regionone.rdo-cloud.rdoproject.org/centos/8-stream/AppStream/x86_64/os/',
+         'extras,http://mirror.regionone.rdo-cloud.rdoproject.org/centos/8-stream/extras/x86_64/os/',
+         'PowerTools,http://mirror.regionone.rdo-cloud.rdoproject.org/centos/8-stream/PowerTools/x86_64/os/']
 
 rows = []
 for uc in report.provides_uc('master', 'centos8', repos_url, repos, None,
