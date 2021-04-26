@@ -60,12 +60,10 @@ AUTH_TOKEN = yaml_file['auth_token']
 #
 #
 map_version_to_endpoint = {'master'  : 'https://trunk.rdoproject.org/api-centos8-master-uc',
+                           'wallaby'  : 'https://trunk.rdoproject.org/api-centos8-wallaby',
                            'victoria'  : 'https://trunk.rdoproject.org/api-centos8-victoria',
                            'ussuri'  : 'https://trunk.rdoproject.org/api-centos8-ussuri',
-                           'train'  : 'https://trunk.rdoproject.org/api-centos-train',
-                           'stein'  : 'https://trunk.rdoproject.org/api-centos-stein',
-                           'rocky'  : 'https://trunk.rdoproject.org/api-centos-rocky',
-                           'queens'  : 'https://trunk.rdoproject.org/api-centos-queens'}
+                           'train'  : 'https://trunk.rdoproject.org/api-centos-train'}
 
 def get_endpoint(release):
     return map_version_to_endpoint[release]
@@ -219,9 +217,7 @@ def update_dashboard(dashboard, release):
 # update dashboards from delorean api
 #####
 update_dashboard(args.dashboard, 'master')
+update_dashboard(args.dashboard, 'wallaby')
 update_dashboard(args.dashboard, 'victoria')
 update_dashboard(args.dashboard, 'ussuri')
 update_dashboard(args.dashboard, 'train')
-update_dashboard(args.dashboard, 'stein')
-update_dashboard(args.dashboard, 'rocky')
-update_dashboard(args.dashboard, 'queens')
