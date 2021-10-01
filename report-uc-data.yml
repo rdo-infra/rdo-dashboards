@@ -1,0 +1,10 @@
+centos8:
+  url_path: 'report-uc'
+  repos_url:
+    - 'https://trunk.rdoproject.org/centos8-master/current/delorean.repo'
+    - 'https://trunk.rdoproject.org/centos8-master/delorean-deps.repo'
+  repos:
+    - 'BaseOS,http://mirror.centos.org/centos/8-stream/BaseOS/x86_64/os/'
+    - 'AppStream,http://mirror.centos.org/centos/8-stream/AppStream/x86_64/os/'
+    - 'extras,http://mirror.centos.org/centos/8-stream/extras/x86_64/os/'
+    - 'PowerTools,http://mirror.centos.org/centos/8-stream/PowerTools/x86_64/os/'

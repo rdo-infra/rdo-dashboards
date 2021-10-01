@@ -32,4 +32,4 @@ ls $TOKEN_FILE >/dev/null 2>&1 && TOKEN=$(grep auth_token ${TOKEN_FILE} | cut -f
 
 echo ""
 echo "*** publishing report-uc table"
-./publish-report-uc.py $TOKEN
+./publish-report-uc.py $TOKEN centos8

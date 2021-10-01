@@ -2,6 +2,7 @@
 import requests
 import importlib
 import json
+import yaml
 import sys
 
 try:
@@ -10,18 +11,22 @@ except IndexError:
     print("{}: Error: token not provided".format(sys.argv[0]))
     sys.exit(1)
 
-report = importlib.import_module('report-uc')
-repos_url = ['https://trunk.rdoproject.org/centos8-master/current/delorean.repo',
-             'https://trunk.rdoproject.org/centos8-master/delorean-deps.repo']
+try:
+    distro = sys.argv[2]
+except IndexError:
+    print("{}: Error: distro not provided".format(sys.argv[0]))
+    sys.exit(1)
 
-repos = ['BaseOS,http://mirror.regionone.rdo-cloud.rdoproject.org/centos/8-stream/BaseOS/x86_64/os/',
-         'AppStream,http://mirror.regionone.rdo-cloud.rdoproject.org/centos/8-stream/AppStream/x86_64/os/',
-         'extras,http://mirror.regionone.rdo-cloud.rdoproject.org/centos/8-stream/extras/x86_64/os/',
-         'PowerTools,http://mirror.regionone.rdo-cloud.rdoproject.org/centos/8-stream/PowerTools/x86_64/os/']
+with open('report-uc-data.yml', 'r') as file:
+    report_uc_data = yaml.safe_load(file)
+
+report = importlib.import_module('report-uc')
 
 rows = []
-for uc in report.provides_uc('master', 'centos8', repos_url, repos, None,
-                             '', 'cbs'):
+for uc in report.provides_uc('master', distro,
+                             report_uc_data[distro]['repos_url'],
+                             report_uc_data[distro]['repos'],
+                             None, '', 'cbs', ''):
     if uc.pkg_name == '':
         continue
     _row = {}
@@ -42,7 +47,8 @@ hrows = [{"cols":[{"value":'Release'},
 postdata={"auth_token": token, "hrows": hrows, "rows": rows}
 json_payload=json.dumps(postdata)
 headers = {'content-type': 'application/json'}
-r=requests.post('http://localhost:3030/widgets/report-uc',
+r=requests.post('http://localhost:3030/widgets/{}'.format(
+                report_uc_data[distro]['url_path']),
                 data=json_payload,
                 headers=headers)
 print("POST status code: %s" % r.status_code)
