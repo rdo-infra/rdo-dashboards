@@ -8,3 +8,13 @@ centos8:
     - 'AppStream,http://mirror.centos.org/centos/8-stream/AppStream/x86_64/os/'
     - 'extras,http://mirror.centos.org/centos/8-stream/extras/x86_64/os/'
     - 'PowerTools,http://mirror.centos.org/centos/8-stream/PowerTools/x86_64/os/'
+centos9:
+  url_path: 'report-uc-cs9'
+  repos_url:
+    - 'https://trunk.rdoproject.org/centos9-master/current/delorean.repo'
+    - 'https://trunk.rdoproject.org/centos9-master/delorean-deps.repo'
+  repos:
+    - 'BaseOS,https://composes.stream.centos.org/production/latest-CentOS-Stream/compose/BaseOS/x86_64/os/'
+    - 'AppStream,https://composes.stream.centos.org/production/latest-CentOS-Stream/compose/AppStream/x86_64/os/'
+    - 'HighAvailability,https://composes.stream.centos.org/production/latest-CentOS-Stream/compose/HighAvailability/x86_64/os/'
+    - 'CRB,https://composes.stream.centos.org/production/latest-CentOS-Stream/compose/CRB/x86_64/os/'
