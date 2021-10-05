@@ -2,7 +2,11 @@
 <h2 class="more-info" data-bind="moreinfo | raw" style="position: inherit"></h2>
 <h3 class="updated-at" data-bind="updatedAtMessage" style="position: inherit"></h3>
 
-<table>
+<input type="text" id="filterInput" onkeyup="displayFilteredRows()" placeholder="Filter by value..">
+<br>
+<br>
+
+<table id="filteredTable">
   <thead>
    <tr data-foreach-hrow="hrows" data-bind-style="hrow.style" data-bind-class="hrow.class">
       <th data-foreach-col="hrow.cols" data-bind-colspan="col.colspan" data-bind-rowspan="col.rowspan" data-bind-style="col.style" data-bind-class="col.class">
