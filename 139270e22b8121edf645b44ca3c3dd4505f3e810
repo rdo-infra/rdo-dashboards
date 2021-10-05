@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0abe4193_926d7ad7",
+        "filename": "publish-report-uc.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2021-10-05T08:17:03Z",
+      "side": 1,
+      "message": "we may assume centos8 as default for backwards compatibility instead of fail if no distro is provided but anyway, not blocking for this.",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 1
+      },
+      "revId": "139270e22b8121edf645b44ca3c3dd4505f3e810",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": true
+    }
+  ]
+}
