@@ -14,7 +14,7 @@ centos9:
     - 'https://trunk.rdoproject.org/centos9-master/current/delorean.repo'
     - 'https://trunk.rdoproject.org/centos9-master/delorean-deps.repo'
   repos:
-    - 'BaseOS,https://composes.stream.centos.org/production/latest-CentOS-Stream/compose/BaseOS/x86_64/os/'
-    - 'AppStream,https://composes.stream.centos.org/production/latest-CentOS-Stream/compose/AppStream/x86_64/os/'
-    - 'HighAvailability,https://composes.stream.centos.org/production/latest-CentOS-Stream/compose/HighAvailability/x86_64/os/'
-    - 'CRB,https://composes.stream.centos.org/production/latest-CentOS-Stream/compose/CRB/x86_64/os/'
+    - 'BaseOS,http://mirror.stream.centos.org/9-stream/BaseOS/x86_64/os/'
+    - 'AppStream,http://mirror.stream.centos.org/9-stream/AppStream/x86_64/os/'
+    - 'HighAvailability,http://mirror.stream.centos.org/9-stream/HighAvailability/x86_64/os/'
+    - 'CRB,http://mirror.stream.centos.org/9-stream/CRB/x86_64/os/'
