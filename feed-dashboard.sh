@@ -44,6 +44,12 @@ VICTORIA_TRIPLEO_URL=https://trunk.rdoproject.org/centos8-victoria/current-tripl
 WALLABY_CURRENT_URL=http://trunk.rdoproject.org/centos8-wallaby/current/delorean.repo
 WALLABY_RDO_URL=http://trunk.rdoproject.org/centos8-wallaby/current-tripleo-rdo/versions.csv
 WALLABY_TRIPLEO_URL=https://trunk.rdoproject.org/centos8-wallaby/current-tripleo/versions.csv
+XENA_CURRENT_URL=http://trunk.rdoproject.org/centos8-xena/current/delorean.repo
+XENA_RDO_URL=http://trunk.rdoproject.org/centos8-xena/current-tripleo-rdo/versions.csv
+XENA_TRIPLEO_URL=https://trunk.rdoproject.org/centos8-xena/current-tripleo/versions.csv
+YOGA_CURRENT_URL=http://trunk.rdoproject.org/centos9-yoga/current/delorean.repo
+YOGA_RDO_URL=http://trunk.rdoproject.org/centos9-yoga/current-tripleo-rdo/versions.csv
+YOGA_TRIPLEO_URL=https://trunk.rdoproject.org/centos9-yoga/current-tripleo/versions.csv
 PERIODIC_CGI=http://tripleo.org/cgi-bin/cistatus-periodic.cgi
 
 send_to_dashboard() {
@@ -179,6 +185,8 @@ process_issues $USSURI_TRIPLEO_URL tripleopin-ussuri $TRIPLEO_ISSUES U1ITy0cu 'T
 
 process_issues $VICTORIA_TRIPLEO_URL tripleopin-victoria $TRIPLEO_ISSUES U1ITy0cu 'TripleoCI Promotion blocker+stable branch: victoria' 'Critical CI Outage' 'CI Failing Jobs'
 process_issues $WALLABY_TRIPLEO_URL tripleopin-wallaby $TRIPLEO_ISSUES U1ITy0cu 'TripleoCI Promotion blocker+stable branch: wallaby' 'Critical CI Outage' 'CI Failing Jobs'
+process_issues $XENA_TRIPLEO_URL tripleopin-xena $TRIPLEO_ISSUES U1ITy0cu 'TripleoCI Promotion blocker+stable branch: xena' 'Critical CI Outage' 'CI Failing Jobs'
+process_issues $YOGA_TRIPLEO_URL tripleopin-yoga $TRIPLEO_ISSUES U1ITy0cu 'TripleoCI Promotion blocker+stable branch: yoga' 'Critical CI Outage' 'CI Failing Jobs'
 
 # process delorean
 
@@ -186,6 +194,8 @@ get_components_max_ts $CURRENT_URL delorean
 get_components_max_ts $USSURI_CURRENT_URL deloreanussuri
 get_components_max_ts $VICTORIA_CURRENT_URL deloreanvictoria
 get_components_max_ts $WALLABY_CURRENT_URL deloreanwallaby
+get_components_max_ts $XENA_CURRENT_URL deloreanxena
+get_components_max_ts $YOGA_CURRENT_URL deloreanyoga
 get_max_ts $TRAIN_CONSISTENT_URL deloreantrain
 
 # process the deloreanci
@@ -195,5 +205,8 @@ process_issues $TRAIN_RDO_URL deloreancitrain "$TRIPLEO_ISSUES?menu=filter&filte
 process_issues $USSURI_RDO_URL deloreanciussuri "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A ussuri,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: ussuri' 'Critical CI Outage' 'CI Failing Jobs'
 process_issues $VICTORIA_RDO_URL deloreancivictoria "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A victoria,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: victoria' 'Critical CI Outage' 'CI Failing Jobs'
 process_issues $WALLABY_RDO_URL deloreanciwallaby "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A wallaby,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: wallaby' 'Critical CI Outage' 'CI Failing Jobs'
+process_issues $XENA_RDO_URL deloreancixena "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A xena,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: xena' 'Critical CI Outage' 'CI Failing Jobs'
+process_issues $YOGA_RDO_URL deloreanciyoga "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A yoga,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: yoga' 'Critical CI Outage' 'CI Failing Jobs'
+
 
 # feed-dashboard.sh ends here

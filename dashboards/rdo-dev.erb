@@ -14,6 +14,12 @@ $(function() {
       <div data-id="delorean" data-view="Alert" data-title="Master Packaging" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days with a failed build" data-link="http://trunk.rdoproject.org/centos8/status_report.html"></div>
     </li>
     <li data-row="1" data-col="2" data-sizex="1" data-sizey="1">
+      <div data-id="deloreanyoga" data-view="Alert" data-title="Yoga Packaging" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days with a failed build" data-link="http://trunk.rdoproject.org/centos9-yoga/status_report.html"></div>
+    </li>
+    <li data-row="1" data-col="2" data-sizex="1" data-sizey="1">
+      <div data-id="deloreanxena" data-view="Alert" data-title="Xena Packaging" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days with a failed build" data-link="http://trunk.rdoproject.org/centos8-xena/status_report.html"></div>
+    </li>
+    <li data-row="1" data-col="2" data-sizex="1" data-sizey="1">
       <div data-id="deloreanwallaby" data-view="Alert" data-title="Wallaby Packaging" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days with a failed build" data-link="http://trunk.rdoproject.org/centos8-wallaby/status_report.html"></div>
     </li>
     <li data-row="1" data-col="3" data-sizex="1" data-sizey="1">
@@ -33,6 +39,12 @@ $(function() {
       <div data-id="deloreanci" data-view="Alert" data-title="Master RDO Promotion CI" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since successful run" data-link="https://jenkins-cloudsig-ci.apps.ocp.ci.centos.org/view/phase-1-pipelines/job/rdo_trunk-promote-master-centos8-current-tripleo/"></div>
     </li>
     <li data-row="2" data-col="2" data-sizex="1" data-sizey="1">
+      <div data-id="deloreanciyoga" data-view="Alert" data-title="Yoga RDO Promotion CI" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since successful run" data-link="https://jenkins-cloudsig-ci.apps.ocp.ci.centos.org/view/phase-1-pipelines/job/rdo_trunk-promote-yoga-centos9-current-tripleo/"></div>
+    </li>
+    <li data-row="2" data-col="2" data-sizex="1" data-sizey="1">
+      <div data-id="deloreancixena" data-view="Alert" data-title="Xena RDO Promotion CI" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since successful run" data-link="https://jenkins-cloudsig-ci.apps.ocp.ci.centos.org/view/phase-1-pipelines/job/rdo_trunk-promote-xena-centos8-current-tripleo/"></div>
+    </li>
+    <li data-row="2" data-col="2" data-sizex="1" data-sizey="1">
       <div data-id="deloreanciwallaby" data-view="Alert" data-title="Wallaby RDO Promotion CI" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since successful run" data-link="https://jenkins-cloudsig-ci.apps.ocp.ci.centos.org/view/phase-1-pipelines/job/rdo_trunk-promote-wallaby-centos8-current-tripleo/"></div>
     </li>
     <li data-row="2" data-col="3" data-sizex="1" data-sizey="1">
@@ -44,12 +56,15 @@ $(function() {
     <li data-row="2" data-col="5" data-sizex="1" data-sizey="1">
       <div data-id="deloreancitrain" data-view="Alert" data-title="Train RDO Promotion CI" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since successful run" data-link="https://jenkins-cloudsig-ci.apps.ocp.ci.centos.org/view/phase-1-pipelines/job/rdo_trunk-promote-train-centos8-current-tripleo/"></div>
     </li>
-    <li data-row="2" data-col="6" data-sizex="1" data-sizey="1">
-      <div data-view="Countdown" data-title="Xena M1" data-end="Wed, 26 May 2021 12:00:00 UTC"></div>
-    </li>
 
     <li data-row="3" data-col="1" data-sizex="1" data-sizey="1">
       <div data-id="tripleopin" data-view="Alert" data-title="Tripleo Pin Packages Master" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since pinning" data-link="http://cistatus.tripleo.org/"></div>
+    </li>
+    <li data-row="3" data-col="2" data-sizex="1" data-sizey="1">
+      <div data-id="tripleopin-yoga" data-view="Alert" data-title="Tripleo Pin Packages Yoga" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since pinning" data-link="http://cistatus.tripleo.org/"></div>
+    </li>
+    <li data-row="3" data-col="2" data-sizex="1" data-sizey="1">
+      <div data-id="tripleopin-xena" data-view="Alert" data-title="Tripleo Pin Packages Xena" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since pinning" data-link="http://cistatus.tripleo.org/"></div>
     </li>
     <li data-row="3" data-col="2" data-sizex="1" data-sizey="1">
       <div data-id="tripleopin-wallaby" data-view="Alert" data-title="Tripleo Pin Packages Wallaby" data-addclass-danger="isTooHigh" data-addclass-alert="isHigh" data-suffix="d" data-moreinfo="# of days since pinning" data-link="http://cistatus.tripleo.org/"></div>
