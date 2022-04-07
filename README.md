@@ -125,12 +125,14 @@ Use `bundle info [gemname]` to see where a bundled gem is installed.
 ```bash
     ./feed-dashboard.sh <dashboard url>
 ```
+If not adding feed-dashboard.sh to cron, this script should be run after starting dashboard running to feed it once (useful for development purposes).
 
-A file named /etc/rdo-dashboards.conf is expected to be present. This file must be in YAML format, and provide the token like this:
+A file named /etc/rdo-dashboards.conf is expected to be present. This file must be in YAML format, and provide the token like below.
+Note, that token provided in this file must be the same, as in file config.ru.
 
 ```yaml
 ---
-auth_token: "token"
+auth_token: "YOUR_AUTH_TOKEN"
 ```
 
 ##### Now start your dashboard!

@@ -59,7 +59,11 @@ AUTH_TOKEN = yaml_file['auth_token']
 #
 #
 #
-map_version_to_endpoint = {'master'  : 'https://trunk.rdoproject.org/api-centos8-master-uc',
+map_version_to_endpoint = {'master-c9'  : 'https://trunk.rdoproject.org/api-centos9-master-uc',
+                           'master-c8'  : 'https://trunk.rdoproject.org/api-centos8-master-uc',
+                           'yoga-c9'  : 'https://trunk.rdoproject.org/api-centos9-yoga',
+                           'yoga-c8'  : 'https://trunk.rdoproject.org/api-centos8-yoga',
+                           'xena'  : 'https://trunk.rdoproject.org/api-centos8-xena',
                            'wallaby'  : 'https://trunk.rdoproject.org/api-centos8-wallaby',
                            'victoria'  : 'https://trunk.rdoproject.org/api-centos8-victoria',
                            'ussuri'  : 'https://trunk.rdoproject.org/api-centos8-ussuri',
@@ -216,8 +220,13 @@ def update_dashboard(dashboard, release):
 #####
 # update dashboards from delorean api
 #####
-update_dashboard(args.dashboard, 'master')
+update_dashboard(args.dashboard, 'master-c9')
+update_dashboard(args.dashboard, 'master-c8')
+update_dashboard(args.dashboard, 'yoga-c9')
+update_dashboard(args.dashboard, 'yoga-c8')
+update_dashboard(args.dashboard, 'xena')
 update_dashboard(args.dashboard, 'wallaby')
 update_dashboard(args.dashboard, 'victoria')
 update_dashboard(args.dashboard, 'ussuri')
 update_dashboard(args.dashboard, 'train')
+

@@ -27,7 +27,8 @@ WIDGETS_URL="$1/widgets"
 TOKEN_FILE='/etc/rdo-dashboards.conf'
 TOKEN=$(grep auth_token ${TOKEN_FILE} | cut -f2 -d:  | awk '{print $1}' | tr -d '"')
 
-CURRENT_URL=http://trunk.rdoproject.org/centos8-master/current/delorean.repo
+CURRENT_C9_URL=http://trunk.rdoproject.org/centos9-master/current/delorean.repo
+CURRENT_C8_URL=http://trunk.rdoproject.org/centos8-master/current/delorean.repo
 CONSISTENT_URL=http://trunk.rdoproject.org/centos8/consistent/versions.csv
 TRIPLEO_URL=http://trunk.rdoproject.org/centos8/current-tripleo/versions.csv
 TRIPLEO_ISSUES=https://trello.com/b/U1ITy0cu/tripleo-and-rdo-ci
@@ -44,6 +45,9 @@ VICTORIA_TRIPLEO_URL=https://trunk.rdoproject.org/centos8-victoria/current-tripl
 WALLABY_CURRENT_URL=http://trunk.rdoproject.org/centos8-wallaby/current/delorean.repo
 WALLABY_RDO_URL=http://trunk.rdoproject.org/centos8-wallaby/current-tripleo-rdo/versions.csv
 WALLABY_TRIPLEO_URL=https://trunk.rdoproject.org/centos8-wallaby/current-tripleo/versions.csv
+XENA_CURRENT_URL=http://trunk.rdoproject.org/centos8-xena/current/delorean.repo
+YOGA_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-yoga/current/delorean.repo
+YOGA_C8_CURRENT_URL=http://trunk.rdoproject.org/centos8-yoga/current/delorean.repo
 PERIODIC_CGI=http://tripleo.org/cgi-bin/cistatus-periodic.cgi
 
 send_to_dashboard() {
@@ -182,10 +186,14 @@ process_issues $WALLABY_TRIPLEO_URL tripleopin-wallaby $TRIPLEO_ISSUES U1ITy0cu 
 
 # process delorean
 
-get_components_max_ts $CURRENT_URL delorean
+get_components_max_ts $CURRENT_C9_URL deloreanmasterc9
+get_components_max_ts $CURRENT_C8_URL deloreanmasterc8
 get_components_max_ts $USSURI_CURRENT_URL deloreanussuri
 get_components_max_ts $VICTORIA_CURRENT_URL deloreanvictoria
 get_components_max_ts $WALLABY_CURRENT_URL deloreanwallaby
+get_components_max_ts $XENA_CURRENT_URL deloreanxena
+get_components_max_ts $YOGA_C9_CURRENT_URL deloreanyogac9
+get_components_max_ts $YOGA_C8_CURRENT_URL deloreanyogac8
 get_max_ts $TRAIN_CONSISTENT_URL deloreantrain
 
 # process the deloreanci
@@ -197,3 +205,4 @@ process_issues $VICTORIA_RDO_URL deloreancivictoria "$TRIPLEO_ISSUES?menu=filter
 process_issues $WALLABY_RDO_URL deloreanciwallaby "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A wallaby,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: wallaby' 'Critical CI Outage' 'CI Failing Jobs'
 
 # feed-dashboard.sh ends here
+
