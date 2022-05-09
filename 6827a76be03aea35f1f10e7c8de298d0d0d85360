@@ -18,6 +18,23 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "c944b153_b934a439",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 635
+      },
+      "writtenOn": "2022-05-09T12:41:17Z",
+      "side": 1,
+      "message": "We also need to cleanup [1][2] and [3]\n\n[1] https://github.com/rdo-infra/rdo-dashboards/blob/1ca7ffb2756094086625126b69444ce2296e041d/feed-dashboard-dlrnapi.py#L69\n[2] https://github.com/rdo-infra/rdo-dashboards/blob/1ca7ffb2756094086625126b69444ce2296e041d/feed-dashboard-dlrnapi.py#L230\n[3] https://github.com/rdo-infra/rdo-dashboards/blob/1ca7ffb2756094086625126b69444ce2296e041d/feed-dashboard.sh#L182\n",
+      "revId": "6827a76be03aea35f1f10e7c8de298d0d0d85360",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c1591f39_b3c0f98d",
@@ -31,6 +48,30 @@
       "writtenOn": "2022-05-09T10:11:33Z",
       "side": 1,
       "message": "Do we need to keep this ?",
+      "range": {
+        "startLine": 68,
+        "startChar": 20,
+        "endLine": 68,
+        "endChar": 38
+      },
+      "revId": "6827a76be03aea35f1f10e7c8de298d0d0d85360",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "baeebb61_33ce2ebf",
+        "filename": "dashboards/rdo-dev.erb",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 635
+      },
+      "writtenOn": "2022-05-09T12:41:17Z",
+      "side": 1,
+      "message": "We can remove this also",
+      "parentUuid": "c1591f39_b3c0f98d",
       "range": {
         "startLine": 68,
         "startChar": 20,
