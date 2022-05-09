@@ -1,6 +1,23 @@
 {
   "comments": [
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "3701b91b_7328db20",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 242
+      },
+      "writtenOn": "2022-05-09T11:40:51Z",
+      "side": 1,
+      "message": "leaving for RDO to decide",
+      "revId": "6827a76be03aea35f1f10e7c8de298d0d0d85360",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c1591f39_b3c0f98d",
