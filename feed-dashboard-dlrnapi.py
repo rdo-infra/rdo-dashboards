@@ -66,7 +66,6 @@ map_version_to_endpoint = {'master-c9'  : 'https://trunk.rdoproject.org/api-cent
                            'xena'  : 'https://trunk.rdoproject.org/api-centos8-xena',
                            'wallaby'  : 'https://trunk.rdoproject.org/api-centos8-wallaby',
                            'victoria'  : 'https://trunk.rdoproject.org/api-centos8-victoria',
-                           'ussuri'  : 'https://trunk.rdoproject.org/api-centos8-ussuri',
                            'train'  : 'https://trunk.rdoproject.org/api-centos-train'}
 
 def get_endpoint(release):
@@ -227,6 +226,5 @@ update_dashboard(args.dashboard, 'yoga-c8')
 update_dashboard(args.dashboard, 'xena')
 update_dashboard(args.dashboard, 'wallaby')
 update_dashboard(args.dashboard, 'victoria')
-update_dashboard(args.dashboard, 'ussuri')
 update_dashboard(args.dashboard, 'train')
 
