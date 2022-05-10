@@ -35,6 +35,24 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "2410631e_d25499a2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 672
+      },
+      "writtenOn": "2022-05-10T09:15:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "c944b153_b934a439",
+      "revId": "6827a76be03aea35f1f10e7c8de298d0d0d85360",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c1591f39_b3c0f98d",
@@ -72,6 +90,30 @@
       "side": 1,
       "message": "We can remove this also",
       "parentUuid": "c1591f39_b3c0f98d",
+      "range": {
+        "startLine": 68,
+        "startChar": 20,
+        "endLine": 68,
+        "endChar": 38
+      },
+      "revId": "6827a76be03aea35f1f10e7c8de298d0d0d85360",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d94f98f8_e585b946",
+        "filename": "dashboards/rdo-dev.erb",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 672
+      },
+      "writtenOn": "2022-05-10T09:15:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "baeebb61_33ce2ebf",
       "range": {
         "startLine": 68,
         "startChar": 20,
