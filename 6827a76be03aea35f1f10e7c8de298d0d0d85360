@@ -76,6 +76,30 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "55bb5d5a_b467b81b",
+        "filename": "dashboards/rdo-dev.erb",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 672
+      },
+      "writtenOn": "2022-05-10T11:38:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "26fbf649_90496e63",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 9
+      },
+      "revId": "6827a76be03aea35f1f10e7c8de298d0d0d85360",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "c1591f39_b3c0f98d",
