@@ -5,7 +5,7 @@
 feeder_script = "generate-report-ftbfs.sh /tmp/ftbfs_report.csv"
 feeder_log = "generate-report-ftbfs.log"
 
-SCHEDULER.every '15m', first_in: '10m' do
+SCHEDULER.every '15m', first_in: '0m' do
 
   working_dir = Dir.pwd
   abs_path_feeder_script = "#{working_dir}/#{feeder_script}"
