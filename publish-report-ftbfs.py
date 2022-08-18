@@ -30,6 +30,10 @@ for data in listReport[1:]:
     _row = {}
     _row["cols"] = []
     for field in data:
+        if field.endswith("rpmbuild.log"):
+            field = "<a href='{0}'>rpmbuild.log</a>".format(field)
+        if field.startswith("https://"):
+            field = "<a href='{0}'>{0}</a>".format(field)
         _row["cols"].append({"value": field})
     rows.append(_row)
 
