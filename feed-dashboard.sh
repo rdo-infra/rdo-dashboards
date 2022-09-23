@@ -27,8 +27,6 @@ WIDGETS_URL="$1/widgets"
 TOKEN_FILE='/etc/rdo-dashboards.conf'
 TOKEN=$(grep auth_token ${TOKEN_FILE} | cut -f2 -d:  | awk '{print $1}' | tr -d '"')
 
-CURRENT_C9_URL=http://trunk.rdoproject.org/centos9-master/current/delorean.repo
-CURRENT_C8_URL=http://trunk.rdoproject.org/centos8-master/current/delorean.repo
 CONSISTENT_URL=http://trunk.rdoproject.org/centos8/consistent/versions.csv
 TRIPLEO_URL=http://trunk.rdoproject.org/centos8/current-tripleo/versions.csv
 TRIPLEO_ISSUES=https://trello.com/b/U1ITy0cu/tripleo-and-rdo-ci
@@ -36,15 +34,10 @@ RDO_URL=http://trunk.rdoproject.org/centos8/current-passed-ci/versions.csv
 TRAIN_CONSISTENT_URL=http://trunk.rdoproject.org/centos7-train/consistent/versions.csv
 TRAIN_RDO_URL=http://trunk.rdoproject.org/centos7-train/current-tripleo-rdo/versions.csv
 TRAIN_TRIPLEO_URL=https://trunk.rdoproject.org/centos7-train/current-tripleo/versions.csv
-VICTORIA_CURRENT_URL=http://trunk.rdoproject.org/centos8-victoria/current/delorean.repo
 VICTORIA_RDO_URL=http://trunk.rdoproject.org/centos8-victoria/current-tripleo-rdo/versions.csv
 VICTORIA_TRIPLEO_URL=https://trunk.rdoproject.org/centos8-victoria/current-tripleo/versions.csv
-WALLABY_CURRENT_URL=http://trunk.rdoproject.org/centos8-wallaby/current/delorean.repo
 WALLABY_RDO_URL=http://trunk.rdoproject.org/centos8-wallaby/current-tripleo-rdo/versions.csv
 WALLABY_TRIPLEO_URL=https://trunk.rdoproject.org/centos8-wallaby/current-tripleo/versions.csv
-XENA_CURRENT_URL=http://trunk.rdoproject.org/centos8-xena/current/delorean.repo
-YOGA_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-yoga/current/delorean.repo
-YOGA_C8_CURRENT_URL=http://trunk.rdoproject.org/centos8-yoga/current/delorean.repo
 PERIODIC_CGI=http://tripleo.org/cgi-bin/cistatus-periodic.cgi
 
 send_to_dashboard() {
