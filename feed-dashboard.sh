@@ -28,7 +28,6 @@ TOKEN_FILE='/etc/rdo-dashboards.conf'
 TOKEN=$(grep auth_token ${TOKEN_FILE} | cut -f2 -d:  | awk '{print $1}' | tr -d '"')
 
 CURRENT_C9_URL=http://trunk.rdoproject.org/centos9-master/current/delorean.repo
-CURRENT_C8_URL=http://trunk.rdoproject.org/centos8-master/current/delorean.repo
 CONSISTENT_URL=http://trunk.rdoproject.org/centos8/consistent/versions.csv
 TRIPLEO_URL=http://trunk.rdoproject.org/centos8/current-tripleo/versions.csv
 TRIPLEO_ISSUES=https://trello.com/b/U1ITy0cu/tripleo-and-rdo-ci
@@ -51,12 +50,9 @@ send_to_dashboard() {
     curl -s -d "{ \"auth_token\": \"$TOKEN\", \"value\": $2 $3 }" $WIDGETS_URL/$1
 }
 
+
 send_comps_to_dashboard() {
-    if [ -z "$3" ]; then
-        curl -s -d "{ \"auth_token\": \"$TOKEN\", \"value\": $2, \"moreinfo\": \"No FTBFS\" }" $WIDGETS_URL/$1
-    else
-        curl -s -d "{ \"auth_token\": \"$TOKEN\", \"value\": $2, \"moreinfo\": \"FTBFS in: $3\" }" $WIDGETS_URL/$1
-    fi
+        curl -s -d "{ \"auth_token\": \"$TOKEN\", \"value\": $2 }" $WIDGETS_URL/$1
 }
 
 get_max_ts() {
@@ -127,7 +123,6 @@ get_components_max_ts() {
     done
 
     send_comps_to_dashboard $widget $ts "$failed_comps"
-
 }
 
 process_issues() {
@@ -182,7 +177,6 @@ process_issues $WALLABY_TRIPLEO_URL tripleopin-wallaby $TRIPLEO_ISSUES U1ITy0cu 
 # process delorean
 
 get_components_max_ts $CURRENT_C9_URL deloreanmasterc9
-get_components_max_ts $CURRENT_C8_URL deloreanmasterc8
 get_components_max_ts $VICTORIA_CURRENT_URL deloreanvictoria
 get_components_max_ts $WALLABY_CURRENT_URL deloreanwallaby
 get_components_max_ts $XENA_CURRENT_URL deloreanxena
