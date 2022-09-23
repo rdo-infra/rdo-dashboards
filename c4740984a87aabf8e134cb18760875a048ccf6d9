@@ -52,6 +52,47 @@
       "parentUuid": "c365d314_1de3b8c8",
       "revId": "c4740984a87aabf8e134cb18760875a048ccf6d9",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c3be62f7_6a861631",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 635
+      },
+      "writtenOn": "2022-09-23T10:19:03Z",
+      "side": 1,
+      "message": "I haven\u0027t seen this value to know how many days have passed, so yeah it\u0027s valuable, we need to keep it. But as Karolina mentioned, it is only if we fix the code to make it accurate.",
+      "parentUuid": "c08ea491_0115159f",
+      "revId": "c4740984a87aabf8e134cb18760875a048ccf6d9",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "f3d4ef2b_711469fd",
+        "filename": "dashboards/rdo-dev.erb",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 635
+      },
+      "writtenOn": "2022-09-23T10:19:03Z",
+      "side": 1,
+      "message": "I think we need to update this tile as well as we don\u0027t use topic \"openstack/puppet/rdo\" anymore\n\n[1] https://review.opendev.org/q/topic:openstack/puppet/rdo",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 345
+      },
+      "revId": "c4740984a87aabf8e134cb18760875a048ccf6d9",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
