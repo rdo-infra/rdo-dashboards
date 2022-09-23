@@ -16,6 +16,24 @@
       "message": "IIUC, this is totally removing the \"\u003crelease\u003e Packaging\" boxes from the dashboard. I\u0027m not sure about that, i think it\u0027s good to remove the part \"FTBS in:\" info in the boxes but i still see value in knowing how many days have passed since last consistent repository. That info is not in the FTBFS dashboard and it\u0027s good to know. Knowing the current FTBFS and its the date is different, as there may be have been overlapping FTBFS, etc...\n\n@jcapitao, wdyt?\n",
       "revId": "c4740984a87aabf8e134cb18760875a048ccf6d9",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c365d314_1de3b8c8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 757
+      },
+      "writtenOn": "2022-09-23T09:57:27Z",
+      "side": 1,
+      "message": "FTBFS is one part but I have strong doubts if it works correctly. There were issues, where there was no failed packages and this dashboard showed the opposite. Also in other way, where there acutally was issue, information was not correct.",
+      "parentUuid": "87da8194_f66375de",
+      "revId": "c4740984a87aabf8e134cb18760875a048ccf6d9",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
