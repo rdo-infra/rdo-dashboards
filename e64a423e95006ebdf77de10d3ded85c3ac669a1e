@@ -46,6 +46,30 @@
       },
       "revId": "e64a423e95006ebdf77de10d3ded85c3ac669a1e",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c8b24709_ab7efe03",
+        "filename": "feed-dashboard.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2022-09-28T13:45:22Z",
+      "side": 1,
+      "message": "Right, iiuc that requires $ts and we need to maintain that part. I meant specifically the failed_comps variable only.",
+      "parentUuid": "723c79e4_42f96ff1",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 2
+      },
+      "revId": "e64a423e95006ebdf77de10d3ded85c3ac669a1e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
