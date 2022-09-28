@@ -108,6 +108,24 @@
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "a2e13441_2b461301",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 757
+      },
+      "writtenOn": "2022-09-28T11:04:16Z",
+      "side": 1,
+      "message": "I\u0027m fixing presentation issues for know. I\u0027ll monitor this dashboard to try to spot the issue with incorrect info presented and fix it when appears, because I didn\u0027t manage to reproduce it.",
+      "parentUuid": "c8f81f45_ff4f2433",
+      "revId": "c4740984a87aabf8e134cb18760875a048ccf6d9",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "f3d4ef2b_711469fd",
@@ -121,6 +139,30 @@
       "writtenOn": "2022-09-23T10:19:03Z",
       "side": 1,
       "message": "I think we need to update this tile as well as we don\u0027t use topic \"openstack/puppet/rdo\" anymore\n\n[1] https://review.opendev.org/q/topic:openstack/puppet/rdo",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 345
+      },
+      "revId": "c4740984a87aabf8e134cb18760875a048ccf6d9",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5660c173_504ca83c",
+        "filename": "dashboards/rdo-dev.erb",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 757
+      },
+      "writtenOn": "2022-09-28T11:04:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "f3d4ef2b_711469fd",
       "range": {
         "startLine": 43,
         "startChar": 0,
