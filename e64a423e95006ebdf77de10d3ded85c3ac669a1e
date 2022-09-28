@@ -22,6 +22,30 @@
       },
       "revId": "e64a423e95006ebdf77de10d3ded85c3ac669a1e",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "723c79e4_42f96ff1",
+        "filename": "feed-dashboard.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 757
+      },
+      "writtenOn": "2022-09-28T12:38:46Z",
+      "side": 1,
+      "message": "if we want to maintain this feature of showing when was the last consistent repo status (and colors), it can\u0027t be removed, because the counting of days base on this.",
+      "parentUuid": "7a205988_44b5bce2",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 121,
+        "endChar": 2
+      },
+      "revId": "e64a423e95006ebdf77de10d3ded85c3ac669a1e",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
