@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f8d123f9_ec9fbfca",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 757
+      },
+      "writtenOn": "2022-10-26T07:42:38Z",
+      "side": 1,
+      "message": "maybe we can also add centos9-master-head here? we don\u0027t care for FTBFS now, but it would be useful to see if the builds are clean",
+      "revId": "54a8d9d928471658b6bbc186b141e3609d424d1d",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    }
+  ]
+}
