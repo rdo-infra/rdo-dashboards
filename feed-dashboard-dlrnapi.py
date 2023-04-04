@@ -60,7 +60,7 @@ AUTH_TOKEN = yaml_file['auth_token']
 #
 #
 map_version_to_endpoint = {'master-c9'  : 'https://trunk.rdoproject.org/api-centos9-master-uc',
-                           'master-c8'  : 'https://trunk.rdoproject.org/api-centos8-master-uc',
+                           'antelope-c9'  : 'https://trunk.rdoproject.org/api-centos9-antelope',
                            'zed-c9'  : 'https://trunk.rdoproject.org/api-centos9-zed',
                            'yoga-c9'  : 'https://trunk.rdoproject.org/api-centos9-yoga',
                            'yoga-c8'  : 'https://trunk.rdoproject.org/api-centos8-yoga',
@@ -221,7 +221,7 @@ def update_dashboard(dashboard, release):
 # update dashboards from delorean api
 #####
 update_dashboard(args.dashboard, 'master-c9')
-update_dashboard(args.dashboard, 'master-c8')
+update_dashboard(args.dashboard, 'antelope-c9')
 update_dashboard(args.dashboard, 'zed-c9')
 update_dashboard(args.dashboard, 'yoga-c9')
 update_dashboard(args.dashboard, 'yoga-c8')

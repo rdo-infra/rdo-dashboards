@@ -45,6 +45,7 @@ XENA_CURRENT_URL=http://trunk.rdoproject.org/centos8-xena/current/delorean.repo
 YOGA_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-yoga/current/delorean.repo
 YOGA_C8_CURRENT_URL=http://trunk.rdoproject.org/centos8-yoga/current/delorean.repo
 ZED_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-zed/current/delorean.repo
+ANTELOPE_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-antelope/current/delorean.repo
 PERIODIC_CGI=http://tripleo.org/cgi-bin/cistatus-periodic.cgi
 
 send_to_dashboard() {
@@ -182,6 +183,7 @@ get_components_max_ts $XENA_CURRENT_URL deloreanxena
 get_components_max_ts $YOGA_C9_CURRENT_URL deloreanyogac9
 get_components_max_ts $YOGA_C8_CURRENT_URL deloreanyogac8
 get_components_max_ts $ZED_C9_CURRENT_URL deloreanzedc9
+get_components_max_ts $ANTELOPE_C9_CURRENT_URL deloreanantelopec9
 get_max_ts $TRAIN_CONSISTENT_URL deloreantrain
 
 # process the deloreanci
