@@ -38,14 +38,20 @@ TRAIN_TRIPLEO_URL=https://trunk.rdoproject.org/centos8-train/current-tripleo/ver
 VICTORIA_CURRENT_URL=http://trunk.rdoproject.org/centos8-victoria/current/delorean.repo
 VICTORIA_RDO_URL=http://trunk.rdoproject.org/centos8-victoria/puppet-passed-ci/versions.csv
 VICTORIA_TRIPLEO_URL=https://trunk.rdoproject.org/centos8-victoria/current-tripleo/versions.csv
+USSURI_CURRENT_URL=http://trunk.rdoproject.org/centos8-ussuri/current/delorean.repo
 WALLABY_CURRENT_URL=http://trunk.rdoproject.org/centos8-wallaby/current/delorean.repo
 WALLABY_RDO_URL=http://trunk.rdoproject.org/centos8-wallaby/puppet-passed-ci/versions.csv
+WALLABY_C9_RDO_URL=http://trunk.rdoproject.org/centos9-wallaby/puppet-passed-ci/versions.csv
 WALLABY_TRIPLEO_URL=https://trunk.rdoproject.org/centos8-wallaby/current-tripleo/versions.csv
 XENA_CURRENT_URL=http://trunk.rdoproject.org/centos8-xena/current/delorean.repo
+XENA_C9_RDO_URL=http://trunk.rdoproject.org/centos9-xena/puppet-passed-ci/versions.csv
 YOGA_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-yoga/current/delorean.repo
 YOGA_C8_CURRENT_URL=http://trunk.rdoproject.org/centos8-yoga/current/delorean.repo
+YOGA_C9_RDO_URL=http://trunk.rdoproject.org/centos9-yoga/puppet-passed-ci/versions.csv
 ZED_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-zed/current/delorean.repo
+ZED_C9_RDO_URL=http://trunk.rdoproject.org/centos9-zed/puppet-passed-ci/versions.csv
 ANTELOPE_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-antelope/current/delorean.repo
+ANTELOPE_C9_RDO_URL=http://trunk.rdoproject.org/centos9-antelope/puppet-passed-ci/versions.csv
 PERIODIC_CGI=http://tripleo.org/cgi-bin/cistatus-periodic.cgi
 
 send_to_dashboard() {
@@ -178,6 +184,7 @@ process_issues $WALLABY_TRIPLEO_URL tripleopin-wallaby $TRIPLEO_ISSUES U1ITy0cu 
 
 get_components_max_ts $CURRENT_C9_URL deloreanmasterc9
 get_components_max_ts $VICTORIA_CURRENT_URL deloreanvictoria
+get_components_max_ts $USSURI_CURRENT_URL deloreanussuri
 get_components_max_ts $WALLABY_CURRENT_URL deloreanwallaby
 get_components_max_ts $XENA_CURRENT_URL deloreanxena
 get_components_max_ts $YOGA_C9_CURRENT_URL deloreanyogac9
@@ -191,7 +198,10 @@ get_max_ts $TRAIN_CONSISTENT_URL deloreantrain
 process_issues $RDO_URL deloreanci "$TRIPLEO_ISSUES?menu=filter&filter=label:master,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+master' 'Critical CI Outage' 'CI Failing Jobs'
 process_issues $TRAIN_RDO_URL deloreancitrain "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A train,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: train' 'Critical CI Outage' 'CI Failing Jobs'
 process_issues $VICTORIA_RDO_URL deloreancivictoria "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A victoria,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: victoria' 'Critical CI Outage' 'CI Failing Jobs'
-process_issues $WALLABY_RDO_URL deloreanciwallaby "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A wallaby,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: wallaby' 'Critical CI Outage' 'CI Failing Jobs'
-
+process_issues $WALLABY_C9_RDO_URL deloreanciwallaby "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A wallaby,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: wallaby' 'Critical CI Outage' 'CI Failing Jobs'
+process_issues $XENA_C9_RDO_URL deloreancixena "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A xena,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: xena' 'Critical CI Outage' 'CI Failing Jobs'
+process_issues $YOGA_C9_RDO_URL deloreanciyoga "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A yoga,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: yoga' 'Critical CI Outage' 'CI Failing Jobs'
+process_issues $ZED_C9_RDO_URL deloreancized "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A zed,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: zed' 'Critical CI Outage' 'CI Failing Jobs'
+process_issues $ANTELOPE_C9_RDO_URL deloreanciantelope "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A antelope,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: antelope' 'Critical CI Outage' 'CI Failing Jobs'
 # feed-dashboard.sh ends here
 
