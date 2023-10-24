@@ -52,6 +52,8 @@ ZED_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-zed/current/delorean.repo
 ZED_C9_RDO_URL=http://trunk.rdoproject.org/centos9-zed/puppet-passed-ci/versions.csv
 ANTELOPE_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-antelope/current/delorean.repo
 ANTELOPE_C9_RDO_URL=http://trunk.rdoproject.org/centos9-antelope/puppet-passed-ci/versions.csv
+BOBCAT_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-bobcat/current/delorean.repo
+BOBCAT_C9_RDO_URL=http://trunk.rdoproject.org/centos9-bobcat/puppet-passed-ci/versions.csv
 PERIODIC_CGI=http://tripleo.org/cgi-bin/cistatus-periodic.cgi
 
 send_to_dashboard() {
@@ -191,6 +193,7 @@ get_components_max_ts $YOGA_C9_CURRENT_URL deloreanyogac9
 get_components_max_ts $YOGA_C8_CURRENT_URL deloreanyogac8
 get_components_max_ts $ZED_C9_CURRENT_URL deloreanzedc9
 get_components_max_ts $ANTELOPE_C9_CURRENT_URL deloreanantelopec9
+get_components_max_ts $BOBCAT_C9_CURRENT_URL deloreanbobcatc9
 get_max_ts $TRAIN_CONSISTENT_URL deloreantrain
 
 # process the deloreanci
@@ -203,5 +206,6 @@ process_issues $XENA_C9_RDO_URL deloreancixena "$TRIPLEO_ISSUES?menu=filter&filt
 process_issues $YOGA_C9_RDO_URL deloreanciyoga "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A yoga,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: yoga' 'Critical CI Outage' 'CI Failing Jobs'
 process_issues $ZED_C9_RDO_URL deloreancized "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A zed,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: zed' 'Critical CI Outage' 'CI Failing Jobs'
 process_issues $ANTELOPE_C9_RDO_URL deloreanciantelope "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A antelope,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: antelope' 'Critical CI Outage' 'CI Failing Jobs'
+process_issues $BOBCAT_C9_RDO_URL deloreancibobcat "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A bobcat,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: bobcat' 'Critical CI Outage' 'CI Failing Jobs'
 # feed-dashboard.sh ends here
 
