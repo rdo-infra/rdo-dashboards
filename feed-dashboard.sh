@@ -32,13 +32,6 @@ CONSISTENT_URL=http://trunk.rdoproject.org/centos8/consistent/versions.csv
 TRIPLEO_URL=http://trunk.rdoproject.org/centos9/current-tripleo/versions.csv
 TRIPLEO_ISSUES=https://trello.com/b/U1ITy0cu/tripleo-and-rdo-ci
 RDO_URL=http://trunk.rdoproject.org/centos9/puppet-passed-ci/versions.csv
-TRAIN_CONSISTENT_URL=http://trunk.rdoproject.org/centos8-train/consistent/versions.csv
-TRAIN_RDO_URL=http://trunk.rdoproject.org/centos8-train/puppet-passed-ci/versions.csv
-TRAIN_TRIPLEO_URL=https://trunk.rdoproject.org/centos8-train/current-tripleo/versions.csv
-VICTORIA_CURRENT_URL=http://trunk.rdoproject.org/centos8-victoria/current/delorean.repo
-VICTORIA_RDO_URL=http://trunk.rdoproject.org/centos8-victoria/puppet-passed-ci/versions.csv
-VICTORIA_TRIPLEO_URL=https://trunk.rdoproject.org/centos8-victoria/current-tripleo/versions.csv
-USSURI_CURRENT_URL=http://trunk.rdoproject.org/centos8-ussuri/current/delorean.repo
 WALLABY_CURRENT_URL=http://trunk.rdoproject.org/centos8-wallaby/current/delorean.repo
 WALLABY_RDO_URL=http://trunk.rdoproject.org/centos8-wallaby/puppet-passed-ci/versions.csv
 WALLABY_C9_RDO_URL=http://trunk.rdoproject.org/centos9-wallaby/puppet-passed-ci/versions.csv
@@ -177,16 +170,11 @@ get_max_ts https://trunk.rdoproject.org/centos9-master/puppet-passed-ci/versions
 
 process_issues $TRIPLEO_URL tripleopin $TRIPLEO_ISSUES U1ITy0cu 'TripleoCI Promotion blocker+master' 'Critical CI Outage' 'CI Failing Jobs'
 
-process_issues $TRAIN_TRIPLEO_URL tripleopin-train $TRIPLEO_ISSUES U1ITy0cu 'TripleoCI Promotion blocker+stable branch: train' 'Critical CI Outage' 'CI Failing Jobs'
-
-process_issues $VICTORIA_TRIPLEO_URL tripleopin-victoria $TRIPLEO_ISSUES U1ITy0cu 'TripleoCI Promotion blocker+stable branch: victoria' 'Critical CI Outage' 'CI Failing Jobs'
 process_issues $WALLABY_TRIPLEO_URL tripleopin-wallaby $TRIPLEO_ISSUES U1ITy0cu 'TripleoCI Promotion blocker+stable branch: wallaby' 'Critical CI Outage' 'CI Failing Jobs'
 
 # process delorean
 
 get_components_max_ts $CURRENT_C9_URL deloreanmasterc9
-get_components_max_ts $VICTORIA_CURRENT_URL deloreanvictoria
-get_components_max_ts $USSURI_CURRENT_URL deloreanussuri
 get_components_max_ts $WALLABY_CURRENT_URL deloreanwallaby
 get_components_max_ts $XENA_CURRENT_URL deloreanxena
 get_components_max_ts $YOGA_C9_CURRENT_URL deloreanyogac9
@@ -194,13 +182,10 @@ get_components_max_ts $YOGA_C8_CURRENT_URL deloreanyogac8
 get_components_max_ts $ZED_C9_CURRENT_URL deloreanzedc9
 get_components_max_ts $ANTELOPE_C9_CURRENT_URL deloreanantelopec9
 get_components_max_ts $BOBCAT_C9_CURRENT_URL deloreanbobcatc9
-get_max_ts $TRAIN_CONSISTENT_URL deloreantrain
 
 # process the deloreanci
 
 process_issues $RDO_URL deloreanci "$TRIPLEO_ISSUES?menu=filter&filter=label:master,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+master' 'Critical CI Outage' 'CI Failing Jobs'
-process_issues $TRAIN_RDO_URL deloreancitrain "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A train,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: train' 'Critical CI Outage' 'CI Failing Jobs'
-process_issues $VICTORIA_RDO_URL deloreancivictoria "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A victoria,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: victoria' 'Critical CI Outage' 'CI Failing Jobs'
 process_issues $WALLABY_C9_RDO_URL deloreanciwallaby "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A wallaby,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: wallaby' 'Critical CI Outage' 'CI Failing Jobs'
 process_issues $XENA_C9_RDO_URL deloreancixena "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A xena,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: xena' 'Critical CI Outage' 'CI Failing Jobs'
 process_issues $YOGA_C9_RDO_URL deloreanciyoga "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A yoga,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: yoga' 'Critical CI Outage' 'CI Failing Jobs'
