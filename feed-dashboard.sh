@@ -27,25 +27,22 @@ WIDGETS_URL="$1/widgets"
 TOKEN_FILE='/etc/rdo-dashboards.conf'
 TOKEN=$(grep auth_token ${TOKEN_FILE} | cut -f2 -d:  | awk '{print $1}' | tr -d '"')
 
-TRIPLEO_ISSUES=https://trello.com/b/U1ITy0cu/tripleo-and-rdo-ci
-CURRENT_C9_URL=http://trunk.rdoproject.org/centos9-master/current/delorean.repo
-CONSISTENT_URL=http://trunk.rdoproject.org/centos8/consistent/versions.csv
-RDO_URL=http://trunk.rdoproject.org/centos9/puppet-passed-ci/versions.csv
-WALLABY_CURRENT_URL=http://trunk.rdoproject.org/centos8-wallaby/current/delorean.repo
-WALLABY_RDO_URL=http://trunk.rdoproject.org/centos8-wallaby/puppet-passed-ci/versions.csv
+MASTER_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-master/current/delorean.repo
+MASTER_C9_URL=http://trunk.rdoproject.org/centos9/puppet-passed-ci/versions.csv
+WALLABY_C8_CURRENT_URL=http://trunk.rdoproject.org/centos8-wallaby/current/delorean.repo
 WALLABY_C9_RDO_URL=http://trunk.rdoproject.org/centos9-wallaby/puppet-passed-ci/versions.csv
-XENA_CURRENT_URL=http://trunk.rdoproject.org/centos8-xena/current/delorean.repo
+XENA_C8_CURRENT_URL=http://trunk.rdoproject.org/centos8-xena/current/delorean.repo
 XENA_C9_RDO_URL=http://trunk.rdoproject.org/centos9-xena/puppet-passed-ci/versions.csv
 YOGA_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-yoga/current/delorean.repo
-YOGA_C8_CURRENT_URL=http://trunk.rdoproject.org/centos8-yoga/current/delorean.repo
 YOGA_C9_RDO_URL=http://trunk.rdoproject.org/centos9-yoga/puppet-passed-ci/versions.csv
+YOGA_C8_CURRENT_URL=http://trunk.rdoproject.org/centos8-yoga/current/delorean.repo
+YOGA_C8_RDO_URL=http://trunk.rdoproject.org/centos8-yoga/puppet-passed-ci/versions.csv
 ZED_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-zed/current/delorean.repo
 ZED_C9_RDO_URL=http://trunk.rdoproject.org/centos9-zed/puppet-passed-ci/versions.csv
 ANTELOPE_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-antelope/current/delorean.repo
 ANTELOPE_C9_RDO_URL=http://trunk.rdoproject.org/centos9-antelope/puppet-passed-ci/versions.csv
 BOBCAT_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-bobcat/current/delorean.repo
 BOBCAT_C9_RDO_URL=http://trunk.rdoproject.org/centos9-bobcat/puppet-passed-ci/versions.csv
-PERIODIC_CGI=http://tripleo.org/cgi-bin/cistatus-periodic.cgi
 
 send_to_dashboard() {
     curl -s -d "{ \"auth_token\": \"$TOKEN\", \"value\": $2 $3 }" $WIDGETS_URL/$1
@@ -124,66 +121,27 @@ get_components_max_ts() {
     send_comps_to_dashboard $widget $ts
 }
 
-process_issues() {
-    url="$1"
-    tag="$2"
-    issues_url="$3"
-    shift 3
-
-    case $issues_url in
-        *trello.com*)
-            issues=$($DIR/count-trello-cards.py "$@" 2>/dev/null)
-            ;;
-        *)
-            issues=$(curl -s "$issues_url/export/txt" | egrep '^[0-9]+\.' | grep -Fvi '[fixed]' | wc -l)
-            ;;
-    esac
-
-    if [ $issues -gt 0 ]; then
-        echo "$issues issues"
-        if [ $issues -eq 1 ]; then
-            extra=", \"moreinfo\": \"$issues issue\", \"link\": \"$issues_url\""
-        else
-            extra=", \"moreinfo\": \"$issues issues\", \"link\": \"$issues_url\""
-        fi
-    else
-        extra=
-    fi
-    get_max_ts "$url" "$tag" "$extra"
-}
-
 min=$(date '+%s')
 now=$min
 
-# process puppetci
-get_max_ts https://trunk.rdoproject.org/centos9-master/puppet-passed-ci/versions.csv puppetci
+# process FTBFS
 
-# process tripleoci
-
-# ts=$(curl -s $PERIODIC_CGI|grep ^periodic-tripleo-ci-f22-ha,|grep -F SUCCESS|cut -d, -f2)
-# days=$(( ( $now - $ts ) / (24 * 3600) ))
-# send_to_dashboard tripleoci $days
-
-
-# process delorean
-
-get_components_max_ts $CURRENT_C9_URL deloreanmasterc9
-get_components_max_ts $WALLABY_CURRENT_URL deloreanwallaby
-get_components_max_ts $XENA_CURRENT_URL deloreanxena
+get_components_max_ts $MASTER_C9_CURRENT_URL deloreanmasterc9
+get_components_max_ts $WALLABY_C8_CURRENT_URL deloreanwallaby
+get_components_max_ts $XENA_C8_CURRENT_URL deloreanxena
 get_components_max_ts $YOGA_C9_CURRENT_URL deloreanyogac9
 get_components_max_ts $YOGA_C8_CURRENT_URL deloreanyogac8
 get_components_max_ts $ZED_C9_CURRENT_URL deloreanzedc9
 get_components_max_ts $ANTELOPE_C9_CURRENT_URL deloreanantelopec9
 get_components_max_ts $BOBCAT_C9_CURRENT_URL deloreanbobcatc9
 
-# process the deloreanci
+# process promotion CI
 
-process_issues $RDO_URL deloreanci "$TRIPLEO_ISSUES?menu=filter&filter=label:master,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+master' 'Critical CI Outage' 'CI Failing Jobs'
-process_issues $WALLABY_C9_RDO_URL deloreanciwallaby "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A wallaby,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: wallaby' 'Critical CI Outage' 'CI Failing Jobs'
-process_issues $XENA_C9_RDO_URL deloreancixena "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A xena,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: xena' 'Critical CI Outage' 'CI Failing Jobs'
-process_issues $YOGA_C9_RDO_URL deloreanciyoga "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A yoga,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: yoga' 'Critical CI Outage' 'CI Failing Jobs'
-process_issues $ZED_C9_RDO_URL deloreancized "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A zed,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: zed' 'Critical CI Outage' 'CI Failing Jobs'
-process_issues $ANTELOPE_C9_RDO_URL deloreanciantelope "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A antelope,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: antelope' 'Critical CI Outage' 'CI Failing Jobs'
-process_issues $BOBCAT_C9_RDO_URL deloreancibobcat "$TRIPLEO_ISSUES?menu=filter&filter=label:stable branch%3A bobcat,label:RDO CI Promotion blocker" U1ITy0cu 'RDO CI Promotion blocker+stable branch: bobcat' 'Critical CI Outage' 'CI Failing Jobs'
+get_max_ts $MASTER_C9_RDO_URL deloreanci
+get_max_ts $WALLABY_C9_RDO_URL deloreanciwallaby
+get_max_ts $XENA_C9_RDO_URL deloreancixena
+get_max_ts $YOGA_C9_RDO_URL deloreanciyoga
+get_max_ts $ZED_C9_RDO_URL deloreancized
+get_max_ts $ANTELOPE_C9_RDO_URL deloreanciantelope
+get_max_ts $BOBCAT_C9_RDO_URL deloreancibobcat
 # feed-dashboard.sh ends here
-
