@@ -28,7 +28,7 @@ TOKEN_FILE='/etc/rdo-dashboards.conf'
 TOKEN=$(grep auth_token ${TOKEN_FILE} | cut -f2 -d:  | awk '{print $1}' | tr -d '"')
 
 MASTER_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-master/current/delorean.repo
-MASTER_C9_URL=http://trunk.rdoproject.org/centos9/puppet-passed-ci/versions.csv
+MASTER_C9_RDO_URL=http://trunk.rdoproject.org/centos9/puppet-passed-ci/versions.csv
 WALLABY_C8_CURRENT_URL=http://trunk.rdoproject.org/centos8-wallaby/current/delorean.repo
 WALLABY_C9_RDO_URL=http://trunk.rdoproject.org/centos9-wallaby/puppet-passed-ci/versions.csv
 XENA_C8_CURRENT_URL=http://trunk.rdoproject.org/centos8-xena/current/delorean.repo
