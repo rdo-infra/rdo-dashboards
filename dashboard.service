@@ -7,7 +7,7 @@ Environment=PATH=/home/centos/bin:/usr/bin:/usr/local/bin
 Type=simple
 User=centos
 WorkingDirectory=/home/centos/rdo-dashboards
-ExecStart=/home/centos/bin/dashing start
+ExecStart=/home/centos/bin/smashing start
 
 [Install]
 WantedBy=multi-user.target
