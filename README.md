@@ -58,18 +58,15 @@ Full URI: https://trunk.rdoproject.org/centos7-{release}/{commit[0:2]}/{commit[2
 
 # installation directions
 
-This has been tested on CentOS 8
+This has been tested on CentOS Stream 9
 
 ##### Install dependencies needed to get rolling.
 
 ```bash
 
 sudo dnf install epel-release -y
-sudo dnf install git ruby ruby-devel libxcrypt-devel openssl-devel nodejs gcc-c++ make redhat-rpm-config \
-    python3 python3-virtualenv python3-koji
-
-gem install --user-install bundler
-gem install --user-install dashing json
+sudo dnf install --enablerepo=crb git ruby ruby-devel rubygem-bundler libxcrypt-devel openssl-devel gcc-c++ make redhat-rpm-config \
+    nodejs python3 python3-virtualenv python3-koji
 ```
 
 ##### bundle (install ruby deps)
@@ -77,7 +74,8 @@ gem install --user-install dashing json
 ```bash
 git clone https://github.com/rdo-infra/rdo-dashboards
 cd rdo-dashboards
-bundle
+bundle config set --local path ~/.gem
+bundle install
 ```
 
 ##### The output should look like the following.
@@ -85,7 +83,7 @@ bundle
 _note: Don't panic!  The first time you bundle, there will be spam from gems being installed._
 
 ```bash
-$ bundle
+$ bundle install
 Fetching gem metadata from https://rubygems.org/..............
 Fetching gem metadata from https://rubygems.org/.
 Resolving dependencies...
@@ -138,10 +136,10 @@ auth_token: "YOUR_AUTH_TOKEN"
 ##### Now start your dashboard!
 
 ```bash
-dashing start
+smashing start
 ```
 
-The dashboard uses [Thin](https://github.com/macournoyer/thin), which can be run in other ways (background, arbitrary ports, etc), for example with ``dashing start -p 5000``.
+The dashboard uses [Thin](https://github.com/macournoyer/thin), which can be run in other ways (background, arbitrary ports, etc), for example with ``smashing start -p 5000``.
 
 Point your favorite browser at: http://localhost:3030
 
