@@ -1,0 +1,75 @@
+- hosts: all
+  name: deploy rdo-dashboards
+  tasks:
+    - name: Install dnf-plugins-core and epel
+      become: true
+      package:
+        name:
+          - dnf-plugins-core
+          - epel-release
+
+    - name: Enable CRB repo CentOS 9
+      become: true
+      ansible.builtin.command: dnf config-manager --enable crb --save
+      changed_when: false
+      when: ansible_distribution == "CentOS" and ansible_distribution_major_version == "9"
+
+    - name: Install needed packages
+      become: true
+      package:
+        name:
+          - ruby-devel
+          - gcc
+          - gcc-c++
+          - make
+          - rubygem-bundler
+          - nodejs
+          - git
+          - openssl-devel
+          - redhat-rpm-config
+          - python3
+          - python3-virtualenv
+          - python3-koji
+        state: present
+
+    - name: Disable selinux
+      become: true
+      command: "setenforce 0"
+
+    - name: Install rdo-dashboards
+      command: "bundle install --path ~/.gem"
+      args:
+        chdir: '{{ ansible_user_dir }}/src/review.rdoproject.org/rdo-infra/rdo-dashboards'
+
+    - name: Create configuration file
+      copy:
+        src: rdo-dashboards.conf
+        dest: /etc/
+        owner: '{{ ansible_user }}'
+        mode: 0750
+
+    - name: Install config.ru
+      copy:
+        src: config.ru.in
+        dest: "{{ ansible_user_dir }}/src/review.rdoproject.org/rdo-infra/rdo-dashboards/config.ru"
+
+    - name: Start the rdo_dashboards service
+      command: "/usr/bin/bundle exec smashing start -d"
+      args:
+        chdir: '{{ ansible_user_dir }}/src/review.rdoproject.org/rdo-infra/rdo-dashboards'
+
+    - name: wait 10 seconds while thin server starts
+      pause:
+        seconds: 10
+
+    - name: Test rdo_dashboards service is up
+      command: "curl http://127.0.0.1:3030/rdo-dev"
+      register: rdo_dev_output
+      args:
+        chdir: '{{ ansible_user_dir }}/src/review.rdoproject.org/rdo-infra/rdo-dashboards'
+
+    - name: Check output of rdo-dev dashboard
+      fail:
+        msg: "RDO Promotion is not in rdo-dev dashboard output"
+      when: "'RDO Promotion' not in rdo_dev_output.stdout"
+

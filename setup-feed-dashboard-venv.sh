@@ -24,10 +24,7 @@ rm -rf .venv-dlrnapi
 
 # create virtualenv so dlrnap requirements are sandboxed.
 
-echo "*** Using virtualenv with '--no-site-packages' to avoid known centos/fedora/rhel packaging nrv depency issues"
-echo ""
-
-python3 -m virtualenv --no-site-packages .venv-dlrnapi
+python3 -m virtualenv .venv-dlrnapi
 
 # enter the venv
 source .venv-dlrnapi/bin/activate

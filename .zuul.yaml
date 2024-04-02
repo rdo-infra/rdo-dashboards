@@ -1,0 +1,13 @@
+- job:
+    name: rdo-dashboards-deploy
+    parent: base
+    run: playbooks/rdo-dashboards-deploy.yaml
+    nodeset: rdo-centos-9-stream
+
+- project:
+    check:
+      jobs:
+        - rdo-dashboards-deploy
+    gate:
+      jobs:
+        - rdo-dashboards-deploy
