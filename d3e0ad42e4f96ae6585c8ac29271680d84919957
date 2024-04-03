@@ -34,6 +34,24 @@
       "parentUuid": "8a166bf5_f97c028c",
       "revId": "d3e0ad42e4f96ae6585c8ac29271680d84919957",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "44a0ee54_d72c177a",
+        "filename": "README.md",
+        "patchSetId": 1
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 757
+      },
+      "writtenOn": "2024-04-03T08:21:55Z",
+      "side": 1,
+      "message": "now this step is removed, isn\u0027t it necessary?",
+      "parentUuid": "9b74af09_ab10a61e",
+      "revId": "d3e0ad42e4f96ae6585c8ac29271680d84919957",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
