@@ -39,6 +39,24 @@
       "message": "when I run bundle as non-root user and then sudo smashing start -p 3030 I get:\n\nIgnoring eventmachine-1.2.7 because its extensions are not built. Try: gem pristine eventmachine --version 1.2.7\nIgnoring ffi-1.16.3 because its extensions are not built. Try: gem pristine ffi --version 1.16.3\nIgnoring json-2.7.1 because its extensions are not built. Try: gem pristine json --version 2.7.1\nIgnoring sassc-2.4.0 because its extensions are not built. Try: gem pristine sassc --version 2.4.0\nIgnoring thin-1.8.2 because its extensions are not built. Try: gem pristine thin --version 1.8.2\nIgnoring eventmachine-1.2.7 because its extensions are not built. Try: gem pristine eventmachine --version 1.2.7\nIgnoring ffi-1.16.3 because its extensions are not built. Try: gem pristine ffi --version 1.16.3\nIgnoring json-2.7.1 because its extensions are not built. Try: gem pristine json --version 2.7.1\nIgnoring sassc-2.4.0 because its extensions are not built. Try: gem pristine sassc --version 2.4.0\nIgnoring thin-1.8.2 because its extensions are not built. Try: gem pristine thin --version 1.8.2\nCould not find json-2.7.1, sassc-2.4.0, thin-1.8.2, ffi-1.16.3, eventmachine-1.2.7 in any of the sources\n\nIf I run sudo bundle it\u0027s ok",
       "revId": "661817958d1ec64df0570ad7aa9576df3c315cd3",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8c56a7f8_d23eb02d",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 635
+      },
+      "writtenOn": "2024-04-03T08:38:25Z",
+      "side": 1,
+      "message": "```\ncat \u003c\u003cEOF \u003e Containerfile\nFROM quay.io/centos/centos:stream9\n\nRUN dnf update -y \u0026\u0026 \\\n    dnf install -y rpmdevtools git rsync sudo \u0026\u0026 \\\n    dnf install epel-release -y \u0026\u0026 \\\n    dnf install -y --enablerepo\u003dcrb git ruby ruby-devel rubygem-bundler libxcrypt-devel openssl-devel nodejs gcc-c++ make redhat-rpm-config python3 python3-virtualenv python3-koji\nRUN useradd -d /home/zuul -s /bin/bash zuul\nRUN usermod -aG wheel zuul\nRUN echo \u0027%wheel ALL\u003d(ALL) NOPASSWD:ALL\u0027 \u003e\u003e /etc/sudoers\nRUN echo -e \"\u0027\u0027\u0027\\nauth_token: \"YOUR_AUTH_TOKEN\"\" \u003e\u003e /etc/rdo-dashboards.conf\nUSER zuul\nRUN echo \"set -o vi\" \u003e\u003e /home/zuul/.bashrc\nWORKDIR /home/zuul\nEOF\n\npodman build -t dashboard-cs9 -f Containerfile\n\n# cd in rdo-dashboards repo\npodman run --rm -v $PWD:/workspace:Z -p 3030:3030 -w /workspace -it dashboard-cs9:latest\n\n$ bundle\n$ sudo smashing start -p 3030\n```",
+      "parentUuid": "997177d3_a8bbf168",
+      "revId": "661817958d1ec64df0570ad7aa9576df3c315cd3",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
