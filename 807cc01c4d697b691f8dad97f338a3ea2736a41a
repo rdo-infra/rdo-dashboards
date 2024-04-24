@@ -39,6 +39,30 @@
       },
       "revId": "807cc01c4d697b691f8dad97f338a3ea2736a41a",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "31ce3c91_43b0067f",
+        "filename": "dashboards/rdo-dev.erb",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 757
+      },
+      "writtenOn": "2024-04-24T13:32:53Z",
+      "side": 1,
+      "message": "typo! good catch",
+      "parentUuid": "1bd760aa_ba51729f",
+      "range": {
+        "startLine": 17,
+        "startChar": 20,
+        "endLine": 17,
+        "endChar": 36
+      },
+      "revId": "807cc01c4d697b691f8dad97f338a3ea2736a41a",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
