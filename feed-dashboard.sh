@@ -43,6 +43,8 @@ ANTELOPE_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-antelope/current/del
 ANTELOPE_C9_RDO_URL=http://trunk.rdoproject.org/centos9-antelope/puppet-passed-ci/versions.csv
 BOBCAT_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-bobcat/current/delorean.repo
 BOBCAT_C9_RDO_URL=http://trunk.rdoproject.org/centos9-bobcat/puppet-passed-ci/versions.csv
+CARACAL_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-caracal/current/delorean.repo
+CARACAL_C9_RDO_URL=http://trunk.rdoproject.org/centos9-caracal/puppet-passed-ci/versions.csv
 
 send_to_dashboard() {
     curl -s -d "{ \"auth_token\": \"$TOKEN\", \"value\": $2 $3 }" $WIDGETS_URL/$1
@@ -134,6 +136,7 @@ get_components_max_ts $YOGA_C8_CURRENT_URL deloreanyogac8
 get_components_max_ts $ZED_C9_CURRENT_URL deloreanzedc9
 get_components_max_ts $ANTELOPE_C9_CURRENT_URL deloreanantelopec9
 get_components_max_ts $BOBCAT_C9_CURRENT_URL deloreanbobcatc9
+get_components_max_ts $CARACAL_C9_CURRENT_URL deloreancaracalc9
 
 # process promotion CI
 
@@ -144,4 +147,5 @@ get_max_ts $YOGA_C9_RDO_URL deloreanciyoga
 get_max_ts $ZED_C9_RDO_URL deloreancized
 get_max_ts $ANTELOPE_C9_RDO_URL deloreanciantelope
 get_max_ts $BOBCAT_C9_RDO_URL deloreancibobcat
+get_max_ts $CARACAL_C9_RDO_URL deloreancicaracal
 # feed-dashboard.sh ends here
