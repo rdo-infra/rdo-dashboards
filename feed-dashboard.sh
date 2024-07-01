@@ -28,54 +28,53 @@ TOKEN_FILE='/etc/rdo-dashboards.conf'
 TOKEN=$(grep auth_token ${TOKEN_FILE} | cut -f2 -d:  | awk '{print $1}' | tr -d '"')
 
 MASTER_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-master/current/delorean.repo
-MASTER_C9_RDO_URL=http://trunk.rdoproject.org/centos9/puppet-passed-ci/versions.csv
 WALLABY_C8_CURRENT_URL=http://trunk.rdoproject.org/centos8-wallaby/current/delorean.repo
-WALLABY_C9_RDO_URL=http://trunk.rdoproject.org/centos9-wallaby/puppet-passed-ci/versions.csv
 XENA_C8_CURRENT_URL=http://trunk.rdoproject.org/centos8-xena/current/delorean.repo
-XENA_C9_RDO_URL=http://trunk.rdoproject.org/centos9-xena/puppet-passed-ci/versions.csv
 YOGA_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-yoga/current/delorean.repo
-YOGA_C9_RDO_URL=http://trunk.rdoproject.org/centos9-yoga/puppet-passed-ci/versions.csv
 YOGA_C8_CURRENT_URL=http://trunk.rdoproject.org/centos8-yoga/current/delorean.repo
-YOGA_C8_RDO_URL=http://trunk.rdoproject.org/centos8-yoga/puppet-passed-ci/versions.csv
 ZED_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-zed/current/delorean.repo
-ZED_C9_RDO_URL=http://trunk.rdoproject.org/centos9-zed/puppet-passed-ci/versions.csv
 ANTELOPE_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-antelope/current/delorean.repo
-ANTELOPE_C9_RDO_URL=http://trunk.rdoproject.org/centos9-antelope/puppet-passed-ci/versions.csv
 BOBCAT_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-bobcat/current/delorean.repo
-BOBCAT_C9_RDO_URL=http://trunk.rdoproject.org/centos9-bobcat/puppet-passed-ci/versions.csv
 CARACAL_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-caracal/current/delorean.repo
-CARACAL_C9_RDO_URL=http://trunk.rdoproject.org/centos9-caracal/puppet-passed-ci/versions.csv
 
 send_to_dashboard() {
     curl -s -d "{ \"auth_token\": \"$TOKEN\", \"value\": $2 $3 }" $WIDGETS_URL/$1
 }
 
-
 send_comps_to_dashboard() {
         curl -s -d "{ \"auth_token\": \"$TOKEN\", \"value\": $2 }" $WIDGETS_URL/$1
 }
 
-get_max_ts() {
-    url=$1
-    widget=$2
-    extra="$3"
-    ts=0
-    for line in $(curl -s -L $url); do
-        val="$(echo $line|cut -d, -f7)"
-        if [[ "$val" =~ ^[0-9]+$ ]] && [[ "$val" -gt "$ts" ]]; then
-            ts=$val
-        fi
-    done
+get_version_csv_url() {
+    release=$1
+    repo=$2
+    echo "https://trunk.rdoproject.org/${release}/${repo}/versions.csv"
+    return 0
+}
 
-    if [ $ts != 0 ]; then
-        days=$(( ( $now - $ts ) / (24 * 3600) ))
+get_latest_build_ts_diff_between() {
+    repo_a=$1
+    repo_b=$2
+    release=$3
+    widget=$4
+    extra="$5"
+    ts_a=0
+    ts_b=0
+
+    version_url_a=$(get_version_csv_url $release $repo_a)
+    version_url_b=$(get_version_csv_url $release $repo_b)
+
+    ts_a=$(curl -sL "$version_url_a" | tail -n +2 | cut -d, -f7 |sort | tail -n 1)
+    ts_b=$(curl -sL "$version_url_b" | tail -n +2 | cut -d, -f7 |sort | tail -n 1)
+    if [ $ts_a != 0 ] && [ $ts_b != 0 ]; then
+        days=$(( ( $ts_a - $ts_b ) / (24 * 3600) ))
         send_to_dashboard $widget $days "$extra"
 
-        echo "$url -> $days" 1>&2
+        echo "$version_url_a - $version_url_b -> $days" 1>&2
     else
         send_to_dashboard $widget 1000 "$extra"
 
-        echo "$url -> never" 1>&2
+        echo "$version_url_a - $version_url_b -> never" 1>&2
     fi
 }
 
@@ -140,12 +139,12 @@ get_components_max_ts $CARACAL_C9_CURRENT_URL deloreancaracalc9
 
 # process promotion CI
 
-get_max_ts $MASTER_C9_RDO_URL deloreanci
-get_max_ts $WALLABY_C9_RDO_URL deloreanciwallaby
-get_max_ts $XENA_C9_RDO_URL deloreancixena
-get_max_ts $YOGA_C9_RDO_URL deloreanciyoga
-get_max_ts $ZED_C9_RDO_URL deloreancized
-get_max_ts $ANTELOPE_C9_RDO_URL deloreanciantelope
-get_max_ts $BOBCAT_C9_RDO_URL deloreancibobcat
-get_max_ts $CARACAL_C9_RDO_URL deloreancicaracal
+get_latest_build_ts_diff_between puppet-ci-testing puppet-passed-ci centos9-master deloreanci
+get_latest_build_ts_diff_between puppet-ci-testing puppet-passed-ci centos9-wallaby deloreanciwallaby
+get_latest_build_ts_diff_between puppet-ci-testing puppet-passed-ci centos9-xena deloreancixena
+get_latest_build_ts_diff_between puppet-ci-testing puppet-passed-ci centos9-yoga deloreanciyoga
+get_latest_build_ts_diff_between puppet-ci-testing puppet-passed-ci centos9-zed deloreancized
+get_latest_build_ts_diff_between puppet-ci-testing puppet-passed-ci centos9-antelope deloreanciantelope
+get_latest_build_ts_diff_between puppet-ci-testing puppet-passed-ci centos9-bobcat deloreancibobcat
+get_latest_build_ts_diff_between puppet-ci-testing puppet-passed-ci centos9-caracal deloreancicaracal
 # feed-dashboard.sh ends here
