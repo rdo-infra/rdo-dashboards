@@ -36,6 +36,7 @@ ZED_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-zed/current/delorean.repo
 ANTELOPE_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-antelope/current/delorean.repo
 BOBCAT_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-bobcat/current/delorean.repo
 CARACAL_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-caracal/current/delorean.repo
+DALMATIAN_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-dalmatian/current/delorean.repo
 
 send_to_dashboard() {
     curl -s -d "{ \"auth_token\": \"$TOKEN\", \"value\": $2 $3 }" $WIDGETS_URL/$1
@@ -136,6 +137,7 @@ get_components_max_ts $ZED_C9_CURRENT_URL deloreanzedc9
 get_components_max_ts $ANTELOPE_C9_CURRENT_URL deloreanantelopec9
 get_components_max_ts $BOBCAT_C9_CURRENT_URL deloreanbobcatc9
 get_components_max_ts $CARACAL_C9_CURRENT_URL deloreancaracalc9
+get_components_max_ts $DALMATIAN_C9_CURRENT_URL deloreandalmatianc9
 
 # process promotion CI
 
@@ -147,4 +149,5 @@ get_latest_build_ts_diff_between puppet-ci-testing puppet-passed-ci centos9-zed 
 get_latest_build_ts_diff_between puppet-ci-testing puppet-passed-ci centos9-antelope deloreanciantelope
 get_latest_build_ts_diff_between puppet-ci-testing puppet-passed-ci centos9-bobcat deloreancibobcat
 get_latest_build_ts_diff_between puppet-ci-testing puppet-passed-ci centos9-caracal deloreancicaracal
+get_latest_build_ts_diff_between puppet-ci-testing puppet-passed-ci centos9-dalmatian deloreancidalmatian
 # feed-dashboard.sh ends here
