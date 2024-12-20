@@ -64,10 +64,6 @@ map_version_to_endpoint = {'master-c9'  : 'https://trunk.rdoproject.org/api-cent
                            'caracal-c9'  : 'https://trunk.rdoproject.org/api-centos9-caracal',
                            'bobcat-c9'  : 'https://trunk.rdoproject.org/api-centos9-bobcat',
                            'antelope-c9'  : 'https://trunk.rdoproject.org/api-centos9-antelope',
-                           'zed-c9'  : 'https://trunk.rdoproject.org/api-centos9-zed',
-                           'yoga-c9'  : 'https://trunk.rdoproject.org/api-centos9-yoga',
-                           'yoga-c8'  : 'https://trunk.rdoproject.org/api-centos8-yoga',
-                           'xena'  : 'https://trunk.rdoproject.org/api-centos8-xena',
                            'wallaby'  : 'https://trunk.rdoproject.org/api-centos8-wallaby'}
 
 def get_endpoint(release):
@@ -226,9 +222,5 @@ update_dashboard(args.dashboard, 'dalmatian-c9')
 update_dashboard(args.dashboard, 'caracal-c9')
 update_dashboard(args.dashboard, 'bobcat-c9')
 update_dashboard(args.dashboard, 'antelope-c9')
-update_dashboard(args.dashboard, 'zed-c9')
-update_dashboard(args.dashboard, 'yoga-c9')
-update_dashboard(args.dashboard, 'yoga-c8')
-update_dashboard(args.dashboard, 'xena')
 update_dashboard(args.dashboard, 'wallaby')
 

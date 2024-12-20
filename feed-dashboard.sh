@@ -28,11 +28,6 @@ TOKEN_FILE='/etc/rdo-dashboards.conf'
 TOKEN=$(grep auth_token ${TOKEN_FILE} | cut -f2 -d:  | awk '{print $1}' | tr -d '"')
 
 MASTER_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-master/current/delorean.repo
-WALLABY_C8_CURRENT_URL=http://trunk.rdoproject.org/centos8-wallaby/current/delorean.repo
-XENA_C8_CURRENT_URL=http://trunk.rdoproject.org/centos8-xena/current/delorean.repo
-YOGA_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-yoga/current/delorean.repo
-YOGA_C8_CURRENT_URL=http://trunk.rdoproject.org/centos8-yoga/current/delorean.repo
-ZED_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-zed/current/delorean.repo
 ANTELOPE_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-antelope/current/delorean.repo
 BOBCAT_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-bobcat/current/delorean.repo
 CARACAL_C9_CURRENT_URL=http://trunk.rdoproject.org/centos9-caracal/current/delorean.repo
@@ -129,11 +124,6 @@ now=$min
 # process FTBFS
 
 get_components_max_ts $MASTER_C9_CURRENT_URL deloreanmasterc9
-get_components_max_ts $WALLABY_C8_CURRENT_URL deloreanwallaby
-get_components_max_ts $XENA_C8_CURRENT_URL deloreanxena
-get_components_max_ts $YOGA_C9_CURRENT_URL deloreanyogac9
-get_components_max_ts $YOGA_C8_CURRENT_URL deloreanyogac8
-get_components_max_ts $ZED_C9_CURRENT_URL deloreanzedc9
 get_components_max_ts $ANTELOPE_C9_CURRENT_URL deloreanantelopec9
 get_components_max_ts $BOBCAT_C9_CURRENT_URL deloreanbobcatc9
 get_components_max_ts $CARACAL_C9_CURRENT_URL deloreancaracalc9
@@ -142,10 +132,6 @@ get_components_max_ts $DALMATIAN_C9_CURRENT_URL deloreandalmatianc9
 # process promotion CI
 
 get_latest_build_ts_diff_between puppet-ci-testing puppet-passed-ci centos9-master deloreanci
-get_latest_build_ts_diff_between puppet-ci-testing puppet-passed-ci centos9-wallaby deloreanciwallaby
-get_latest_build_ts_diff_between puppet-ci-testing puppet-passed-ci centos9-xena deloreancixena
-get_latest_build_ts_diff_between puppet-ci-testing puppet-passed-ci centos9-yoga deloreanciyoga
-get_latest_build_ts_diff_between puppet-ci-testing puppet-passed-ci centos9-zed deloreancized
 get_latest_build_ts_diff_between puppet-ci-testing puppet-passed-ci centos9-antelope deloreanciantelope
 get_latest_build_ts_diff_between puppet-ci-testing puppet-passed-ci centos9-bobcat deloreancibobcat
 get_latest_build_ts_diff_between puppet-ci-testing puppet-passed-ci centos9-caracal deloreancicaracal
